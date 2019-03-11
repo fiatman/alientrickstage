@@ -5,6 +5,7 @@ namespace Stage.AlienTrick
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using static Stage.AlienTrick.PortalEntities;
 
     public partial class Appointments
     {
@@ -16,6 +17,6 @@ namespace Stage.AlienTrick
 
         public int? Task_ID { get; set; }
 
-        public virtual Tasks Tasks { get; set; }
+        public virtual Task Tasks { get; set; }
     }
 }
