@@ -1,0 +1,105 @@
+﻿@model IEnumerable<PortalEntities.Student>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Studenten</h2>
+
+<br />
+<p>
+    <a class="FontAwesomeButton" href="@Url.Action("Create", "Studenten", null)"><i class="far fa-plus-square"></i> Nieuwe Student</a>
+</p>
+
+<form asp-controller="Studenten" asp-action="Index" class="form-inline">
+    <p>
+        <input class="form-control" type="text" placeholder="Achternaam" name="SearchString"> <input class="btn btn-default" type="submit" value="Filter" />
+    </p>
+</form>
+<table class="table">
+    <tr>
+        <th>
+            Voornaam
+        </th>
+        <th>
+            Achternaam
+        </th>
+        <th>
+            Leeftijd
+        </th>
+        <th>
+            School
+        </th>
+        <th>
+            Nationaliteit
+        </th>
+        <th>
+            Studentnummer
+        </th>
+        <th>
+            Stagevergoeding
+        </th>
+        <th>
+            Opmerkingen
+        </th>
+        <th>
+            Status
+        </th>
+        <th>
+            Voortgang
+        </th>
+        <th></th>
+    </tr>
+
+    @if (Model == null)
+    {
+        <text>Geen studenten geselecteerd</text>
+    }
+    else
+    {
+
+        foreach (var student in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(m => student.Firstname)
+        </td>
+        <td>
+            @Html.DisplayFor(m => student.Lastname)
+        </td>
+        <td>
+            @Html.DisplayFor(m => student.Age)
+        </td>
+        <td>
+            @Html.DisplayFor(m => student.City)
+        </td>
+        <td>
+            @Html.DisplayFor(m => student.School)
+        </td>
+        <td>
+            @Html.DisplayFor(m => student.Nationality)
+        </td>
+        <td>
+            @Html.DisplayFor(m => student.Studentnumber)
+        </td>
+        <td>
+            @Html.DisplayFor(m => student.Compensation)
+        </td>
+        <td>
+            @Html.DisplayFor(m => student.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(m => student.StudentStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(m => student.Progress)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = student.ID }) |
+        </td>
+        <td>
+            <a class="FontAwesomeButton" href="@Url.Action("GetProgress", "Studenten", new { id = student.ID , AmountOfHourstoComplete = student.AmountOfhoursToComplete , AmountofbookedHours = student.AmountofbookedHours})"><i class="far fa-plus-square"></i>Voeg Uren Toe</a>
+        </td>
+    </tr>
+        }
+    }
+</table>

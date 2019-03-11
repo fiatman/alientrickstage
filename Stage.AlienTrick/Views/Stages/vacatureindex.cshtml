@@ -1,0 +1,54 @@
+﻿@model IEnumerable<PortalEntities.Vacature>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<br />
+
+<form asp-controller="Vacatures" asp-action="Index" class="form-inline">
+    <p>
+        <input class="form-control" type="text" placeholder="Naam" name="SearchString1"> <input class="btn btn-default" type="submit" value="Filter" />
+    </p>
+</form>
+
+<table class="table">
+    <tr>
+        <th>
+            Naam
+        </th>
+        <th>
+            Aantal Uur
+        </th>
+        <th>
+            Aantal Studenten
+        </th>
+        <th>
+            Stage Beschrijving
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var stage in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(m => stage.StageTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(m => stage.AmountofHours)
+            </td>
+            <td>
+                @Html.DisplayFor(m => stage.AmountofStudents)
+            </td>
+            <td>
+                @Html.DisplayFor(m => stage.StageDescription)
+            </td>
+            <td>
+               @Html.ActionLink("Maak hiermee een nieuwe stage aan", "Studentslist", "Stages", new { VacatureID = stage.ID }, null)
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,58 @@
+﻿@*@model Stage.AlienTrick.PortalEntities.Task
+@{
+    ViewBag.Title = "PlanMeeting";
+}
+
+<h2>PlanMeeting</h2>
+
+@using (Html.BeginForm("PlanMeeting", "Student", FormMethod.Post, null))
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.TaskName, "Stage Naam", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TaskName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.TaskName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <br>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Taskdescription, "Beginperiode", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Taskdescription, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+            @Html.ValidationMessageFor(model => model.Taskdescription, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <br>
+    @Html.DropDownListFor(model => model.Type, new List<SelectListItem>
+  { new SelectListItem{Text="Afspraak", Value="False"},
+    new SelectListItem{Text="Opdracht", Value="True",  Selected = true},
+    })
+    @if (Model.Type == "Afspraak")
+    {
+
+
+        <br>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Rating, "Opleidingsniveau", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Rating, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Rating, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Status, "Stage Beschrijving", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+    }
+    <br>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+}

@@ -1,0 +1,40 @@
+﻿@model Stage.AlienTrick.Models.Messagemodel
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>CreateMessage</h2>
+
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+
+
+@using (Html.BeginForm("Create", "Message", FormMethod.Post, null))
+{
+    @Html.HiddenFor(m => m.SenderName)
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ReceiverName, "Ontvanger Naam", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ReceiverName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ReceiverName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.MessageText, "Bericht", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.MessageText, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.MessageText, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Verstuur nieuwe chat!" class="btn btn-default" />
+        </div>
+    </div>
+
+}

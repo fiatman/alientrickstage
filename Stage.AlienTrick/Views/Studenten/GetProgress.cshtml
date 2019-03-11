@@ -1,0 +1,13 @@
+﻿@model Stage.AlienTrick.Models.Voortgangsmodel
+@{
+    ViewBag.Title = "GetProgress";
+}
+
+<h2>GetProgress</h2>
+
+<h1>@Model.ProgressPercentage %</h1>
+
+
+<p>
+    <a class="FontAwesomeButton" href="@Url.Action("AddHours", "Studenten", new { id = Model.student.ID})"><i class="far fa-plus-square"></i> Nieuwe Student</a>
+</p>

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<PortalEntities.Message>
+
+@{
+    ViewBag.Title = "Berichten";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a class="FontAwesomeButton" href="@Url.Action("Create", "Message", null)"><i class="far fa-plus-square"></i> Nieuw bericht!</a>
+</p>
+<form asp-controller="Message" asp-action="Index" class="form-inline">
+    <p>
+        <input class="form-control" type="text" placeholder="Stage Naam" name="SearchString"> <input class="btn btn-default" type="submit" value="Filter" />
+    </p>
+</form>
+<table class="table">
+    <tr>
+        <th>
+            Persoon
+        </th>
+        <th>
+            Verzonden tijd
+        </th>
+
+
+    @foreach (var message in Model)
+     {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(m => message.SenderName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => message.TimeSent)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Antwoord", "Edit", new { id = message.MessageID })
+                    </td>
+                </tr>
+            
+     }
+
+
+    
+
+</table>

@@ -1,0 +1,71 @@
+﻿@model IEnumerable<PortalEntities.Stage>
+
+@{
+    ViewBag.Title = "Stageoverzichten";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a class="FontAwesomeButton" href="@Url.Action("Vacatureindex", "Stages", null)"><i class="far fa-plus-square"></i> Nieuwe stage</a>
+</p> 
+<form asp-controller="Stage" asp-action="Index" class="form-inline">
+    <p>
+        <input class="form-control" type="text" placeholder="Stage Naam" name="SearchString"> <input class="btn btn-default" type="submit" value="Filter" />
+    </p>
+</form>
+<table class="table">
+    <tr>
+        <th>
+            Stage Naam
+        </th>
+        <th>
+            Beginperiode
+        </th>
+        <th>
+            Eindperiode
+        </th>
+        <th>
+            Stagebescrhijving
+        </th>
+        <th>
+            Benodigde Opleiding
+        </th>
+    </tr>
+
+
+    @foreach (var stage in Model)
+    {
+        if (stage.Beginperiod <= DateTime.Now)
+        {
+            if (stage.Endperiod > DateTime.Now)
+            {
+
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(m => stage.StageName)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => stage.Beginperiod)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => stage.Endperiod)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => stage.StageDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => stage.NeededEducation)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = stage.ID })
+                </td>
+            </tr>
+            }
+        }
+
+
+    }
+
+</table>
