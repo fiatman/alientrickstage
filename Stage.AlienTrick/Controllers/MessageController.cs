@@ -35,7 +35,7 @@ namespace Stage.AlienTrick.Controllers
                     throw new Exception("Heb je niks gemaakt?");
 
 
-                var CreateMessage = new PortalEntities.Message();
+                var CreateMessage = new Message();
                 CreateMessage.ReceiverName = messagemodel.ReceiverName;
                 CreateMessage.SenderName = messagemodel.SenderName;
                 CreateMessage.MessageText = messagemodel.MessageText;

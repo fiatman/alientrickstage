@@ -9,7 +9,7 @@ namespace Stage.AlienTrick.Models
     {
         public int VacatureID { get; set; }
         public int StudentID { get; set; }
-        public IEnumerable<PortalEntities.Student> Students{ get; set; }
+        public IEnumerable<Student> Students{ get; set; }
         public DateTime Beginperiod { get; set; }
         public DateTime Endperiod { get; set; }
         public string NeededEducation { get; set; }

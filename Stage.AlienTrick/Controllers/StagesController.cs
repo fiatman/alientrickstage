@@ -16,16 +16,16 @@ namespace Stage.AlienTrick.Controllers
         //Get students
         public ActionResult Studentslist(Models.Stagemodel stagemodel, string searchString2)
         {
-            var students = db.Studenten.ToList();
+            var studentens = db.Students.ToList();
             if (!string.IsNullOrWhiteSpace(searchString2))
             {
-                students = students
+                studentens = studentens
                     .Where(s => s.Lastname.ToLower().Contains(searchString2.ToLower()))
                     .ToList();
             }
 
             var result = new Models.Stagemodel();
-            result.Students = students;
+            result.Students = studentens;
             result.VacatureID = stagemodel.VacatureID;
             return View(result);
         }
@@ -67,7 +67,7 @@ namespace Stage.AlienTrick.Controllers
             //save
             if (ModelState.IsValid)
             {
-                var CreateStage = new PortalEntities.Stage();
+                var CreateStage = new Stage();
                 CreateStage.Beginperiod = stagemodel.Beginperiod;
                 CreateStage.Endperiod = stagemodel.Endperiod;
                 CreateStage.StudentID = stagemodel.StudentID;
@@ -90,7 +90,7 @@ namespace Stage.AlienTrick.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PortalEntities.Stage stage = db.Stages.Find(id);
+            Stage stage = db.Stages.Find(id);
             if (id == null)
             {
                 return HttpNotFound();
@@ -99,7 +99,7 @@ namespace Stage.AlienTrick.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,StageName,Beginperiod,Endperiod,StageDescription,NeededEducation,Vacature")] PortalEntities.Stage stage)
+        public ActionResult Edit([Bind(Include = "ID,StageName,Beginperiod,Endperiod,StageDescription,NeededEducation,Vacature")] Stage stage)
         {
             if (ModelState.IsValid)
             {

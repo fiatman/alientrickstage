@@ -19,7 +19,7 @@ namespace Stage.AlienTrick.Controllers
         // GET: Studenten
         public ActionResult Index(string searchString)
         {
-            var studentenCollection = db.Studenten.AsQueryable();
+            var studentenCollection = db.Students.AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(searchString))
             {
@@ -46,7 +46,7 @@ namespace Stage.AlienTrick.Controllers
 
             if (ModelState.IsValid)
             {
-                db.Studenten.Add(new Student {
+                db.Students.Add(new Student {
                     Firstname = students.Firstname,
                     Lastname = students.Lastname,
                     Age = students.Age,
@@ -64,9 +64,9 @@ namespace Stage.AlienTrick.Controllers
                     
                 });
                 db.SaveChanges();
-                return View("index");
+                
             }
-            return View();
+            return RedirectToAction("Index");
         }
 
         //Edit
@@ -77,7 +77,7 @@ namespace Stage.AlienTrick.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Student student = db.Studenten.Find(ID);
+            Student student = db.Students.Find(ID);
             if (ID == null)
             {
                 return HttpNotFound();
@@ -116,20 +116,30 @@ namespace Stage.AlienTrick.Controllers
         }
 
 
-        public ActionResult AddHours(int? id)
+        public ActionResult AddHours(int? id, Student studentstage )
         {
-            Models.Voortgangsmodel voortgang = new Models.Voortgangsmodel();
-            var student = db.Studenten.Where(s => s.ID == id).FirstOrDefault();
-            voortgang.AmountofbookedHours = student.AmountofbookedHours;
-            voortgang.AmountOfHourstoComplete = student.AmountOfhoursToComplete;
-            voortgang.student = student;
-            return View(voortgang);
+            
+            var student = db.Students.Where(s => s.ID == id).FirstOrDefault();
+            if (studentstage.Stage != null)
+            {
+
+
+                Models.Voortgangsmodel voortgang = new Models.Voortgangsmodel();
+                voortgang.AmountofbookedHours = student.AmountofbookedHours;
+                voortgang.AmountOfHourstoComplete = student.AmountOfhoursToComplete;
+                voortgang.student = student;
+                return View(voortgang);
+            }
+            else
+            {
+                return RedirectToAction("index");
+            }
         }
     
         [HttpPost]
         public ActionResult AddHours(Models.Voortgangsmodel v)
         {
-            var student = db.Studenten.Where(s => s.ID == v.student.ID).FirstOrDefault();
+            var student = db.Students.Where(s => s.ID == v.student.ID).FirstOrDefault();
 
             double CalculateHours = student.AmountofbookedHours + v.AmountofbookedHours;
 

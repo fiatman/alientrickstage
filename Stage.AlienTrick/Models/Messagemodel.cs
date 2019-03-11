@@ -7,7 +7,7 @@ namespace Stage.AlienTrick.Models
 {
     public class Messagemodel
     {
-        public IEnumerable<PortalEntities.Message> Message { get; set; }
+        public IEnumerable<Message> Message { get; set; }
         public int MessageID { get; set; }
         public string MessageText { get; set; }
         public DateTime TimeSent { get; set; }

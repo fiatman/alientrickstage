@@ -4,15 +4,14 @@ namespace Stage.AlienTrick.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
-
-    internal sealed class Configuration : DbMigrationsConfiguration<Stage.AlienTrick.PortalEntities>
+    internal sealed class Configuration : DbMigrationsConfiguration<PortalEntities>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(Stage.AlienTrick.PortalEntities context)
+        protected override void Seed(PortalEntities context)
         {
             //  This method will be called after migrating to the latest version.
 
