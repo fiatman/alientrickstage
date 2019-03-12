@@ -1,4 +1,5 @@
 ﻿@model global::Stage.AlienTrick.Models.Voortgangsmodel
+
 @{
     ViewBag.Title = "GetProgress";
 }
@@ -8,7 +9,9 @@
 <h1>Op dit moment heb je @Model.ProgressPercentage% van je stage uren voldaan.</h1>
 <h3>Totale stage uren zijn @Model.AmountOfHourstoComplete uur voor jou.</h3>
 <h3>Jij hebt tot nu toe @Model.AmountofbookedHours uur gedraaid.</h3>
-
+<div class="progress">
+    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="@Model.ProgressPercentage"></div>
+</div>
 <p>
     <a class="FontAwesomeButton" href="@Url.Action("AddHours", "Studenten", new { id = Model.student.ID})"><i class="far fa-plus-square"></i>Voeg hier je uren toe</a>
 </p>

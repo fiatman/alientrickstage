@@ -163,6 +163,7 @@ namespace Stage.AlienTrick.Controllers
                 }
                 else
                 {
+                  
                     Models.Voortgangsmodel voortgang = new Models.Voortgangsmodel();
                     voortgang.AmountofbookedHours = student.AmountofbookedHours;
                     voortgang.AmountOfHourstoComplete = student.AmountOfhoursToComplete;
@@ -194,9 +195,9 @@ namespace Stage.AlienTrick.Controllers
             }
             else
             {
-                student.AmountofbookedHours = CalculateHours;
-                student.StudentStatus = HoursAccepted;
-                db.SaveChanges();
+                    student.AmountofbookedHours = CalculateHours;
+                    student.StudentStatus = HoursAccepted;
+                    db.SaveChanges();
             }
 
 
