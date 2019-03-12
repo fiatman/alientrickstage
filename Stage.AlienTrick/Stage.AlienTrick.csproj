@@ -147,6 +147,10 @@
     </Compile>
     <Compile Include="JobApplication.cs" />
     <Compile Include="Message.cs" />
+    <Compile Include="Migrations\201903120824072_ry.cs" />
+    <Compile Include="Migrations\201903120824072_ry.Designer.cs">
+      <DependentUpon>201903120824072_ry.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Messagemodel.cs" />
     <Compile Include="Models\Stagemodel.cs" />
@@ -210,6 +214,8 @@
     <Content Include="Views\Studenten\GetProgress.cshtml" />
     <Content Include="Views\Studenten\PlanMeeting.cshtml" />
     <Content Include="Views\Studenten\AddHours.cshtml" />
+    <Content Include="Views\Studenten\Edit.cshtml" />
+    <Content Include="Views\Studenten\AcceptHours.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -229,6 +235,11 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201903120824072_ry.resx">
+      <DependentUpon>201903120824072_ry.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

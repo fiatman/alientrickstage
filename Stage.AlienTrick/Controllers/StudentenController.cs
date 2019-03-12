@@ -39,10 +39,10 @@ namespace Stage.AlienTrick.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Firstname,Lastname,Age,City,School,Nationality,Studentnumber,Compensation,Description,StudentStatus,Progress, AmountOfhoursToComplete, AmountofbookedHours")] Student students)
         {
-           
-            
-                students.AmountofbookedHours = 0;
-            
+
+
+            students.AmountofbookedHours = 0;
+
 
             if (ModelState.IsValid)
             {
@@ -61,24 +61,46 @@ namespace Stage.AlienTrick.Controllers
                     AmountofbookedHours = students.AmountofbookedHours,
                     AmountOfhoursToComplete = students.AmountOfhoursToComplete
 
-                    
+
                 });
                 db.SaveChanges();
-                
+
             }
             return RedirectToAction("Index");
         }
-
-        //Edit
-        public ActionResult Edit(int? ID)
+        // Uren Goedkeuren
+        public ActionResult AcceptHours(int? id, Models.Voortgangsmodel voortgangsmodel)
         {
-            if(ID == null)
+            var studentaccepthours = db.Students.Where(s => s.ID == id).FirstOrDefault();
+            voortgangsmodel.AmountofbookedHours = studentaccepthours.AmountofbookedHours;
+            voortgangsmodel.AmountOfHourstoComplete = studentaccepthours.AmountOfhoursToComplete;
+            voortgangsmodel.student = studentaccepthours;
+            voortgangsmodel.HoursAccepted = studentaccepthours.StudentStatus;
+            return View(voortgangsmodel);
+        }
+
+        [HttpPost]
+        public ActionResult AcceptHoursNow (int? id, [Bind(Include = "StudentStatus")] Student studenthoursaccept, Models.Voortgangsmodel voortgangsmodel)
+        {
+            if (ModelState.IsValid)
+            {
+                studenthoursaccept.StudentStatus = 1;
+
+                db.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
+    
+        //Edit
+        public ActionResult Edit(int? id)
+        {
+            if(id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Student student = db.Students.Find(ID);
-            if (ID == null)
+            Student student = db.Students.Find(id);
+            if (id == null)
             {
                 return HttpNotFound();
             }
@@ -120,7 +142,7 @@ namespace Stage.AlienTrick.Controllers
         {
             
             var student = db.Students.Where(s => s.ID == id).FirstOrDefault();
-            if (studentstage.Stage != null)
+            if (studentstage.Stage != null || student.StudentStatus != 0)
             {
 
 
@@ -132,18 +154,22 @@ namespace Stage.AlienTrick.Controllers
             }
             else
             {
+                TempData["msg"] = "<script>alert('Student is niet gekoppeld aan stage, of de laatst ingevoerde uren zijn nog niet goedgekeurd!');</script>";
                 return RedirectToAction("index");
+
             }
         }
     
         [HttpPost]
         public ActionResult AddHours(Models.Voortgangsmodel v)
         {
+            var HoursAccepted = 0;
             var student = db.Students.Where(s => s.ID == v.student.ID).FirstOrDefault();
 
             double CalculateHours = student.AmountofbookedHours + v.AmountofbookedHours;
 
             student.AmountofbookedHours = CalculateHours;
+            student.StudentStatus = HoursAccepted;
             db.SaveChanges();
             
 

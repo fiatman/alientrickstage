@@ -1,0 +1,15 @@
+﻿@model global::Stage.AlienTrick.Models.Voortgangsmodel
+@{
+    ViewBag.Title = "AcceptHours";
+}
+
+<h2>Uren Accepteren</h2>
+
+<h3>Deze student heeft @Model.AmountofbookedHours uren geboekt.</h3>
+
+<h4>Wilt u deze accepteren? druk dan op de knop: Uren Goedkeuren.</h4>
+
+@using (Html.BeginForm("AcceptHoursNow", "Student", FormMethod.Post))
+{
+    <button name="AcceptHoursNow" type="submit" value="AcceptHoursNow" class="btn btn-default">Uren Goedkeuren</button>
+}

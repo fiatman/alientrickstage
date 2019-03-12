@@ -9,7 +9,7 @@
 <p>
     <a class="FontAwesomeButton" href="@Url.Action("Create", "Studenten", null)"><i class="far fa-plus-square"></i> Nieuwe Student</a>
 </p>
-
+@Html.Raw(TempData["msg"])
 <form asp-controller="Studenten" asp-action="Index" class="form-inline">
     <p>
         <input class="form-control" type="text" placeholder="Achternaam" name="SearchString"> <input class="btn btn-default" type="submit" value="Filter" />
@@ -94,7 +94,10 @@
             @Html.DisplayFor(m => student.Progress)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = student.ID }) |
+            @Html.ActionLink("Edit", "Edit", new { id = student.ID })
+        </td>
+        <td>
+            @Html.ActionLink("Uren goedkeuren", "AcceptHours", new { id = student.ID })
         </td>
         <td>
             <a class="FontAwesomeButton" href="@Url.Action("GetProgress", "Studenten", new { id = student.ID , AmountOfHourstoComplete = student.AmountOfhoursToComplete , AmountofbookedHours = student.AmountofbookedHours})"><i class="far fa-plus-square"></i>Voeg Uren Toe</a>
