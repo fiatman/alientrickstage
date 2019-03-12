@@ -80,14 +80,13 @@ namespace Stage.AlienTrick.Controllers
         }
 
         [HttpPost]
-        public ActionResult AcceptHoursNow (int? id, [Bind(Include = "StudentStatus")] Student studenthoursaccept, Models.Voortgangsmodel voortgangsmodel)
+        public ActionResult AcceptHoursNow (int? id, Models.Voortgangsmodel voortgangsmodel, Student studenthoursaccept)
         {
-            if (ModelState.IsValid)
-            {
-                studenthoursaccept.StudentStatus = 1;
-
-                db.SaveChanges();
-            }
+            var studenthoursaccepting = voortgangsmodel.student;
+            studenthoursaccept.StudentStatus = 1;
+            studenthoursaccept = studenthoursaccepting;
+            db.SaveChanges();
+            
             return RedirectToAction("Index");
         }
     

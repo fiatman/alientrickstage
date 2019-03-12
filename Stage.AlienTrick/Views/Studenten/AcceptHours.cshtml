@@ -9,7 +9,9 @@
 
 <h4>Wilt u deze accepteren? druk dan op de knop: Uren Goedkeuren.</h4>
 
-@using (Html.BeginForm("AcceptHoursNow", "Student", FormMethod.Post))
+@using (Html.BeginForm("AcceptHoursNow", "Studenten", FormMethod.Post))
 {
-    <button name="AcceptHoursNow" type="submit" value="AcceptHoursNow" class="btn btn-default">Uren Goedkeuren</button>
+<p>
+    <a class="FontAwesomeButton" href="@Url.Action("AcceptHoursNow", "Studenten", new { id = Model.student.ID })"><i class="far fa-plus-square"></i>Uren Goedkeuren</a>
+</p>
 }
