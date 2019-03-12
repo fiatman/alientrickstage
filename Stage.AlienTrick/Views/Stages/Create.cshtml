@@ -12,6 +12,7 @@
 @using (Html.BeginForm("CreateStage", "Stages", FormMethod.Post, null))
 {
     @Html.HiddenFor(m => m.StudentID)
+    @Html.HiddenFor(m => m.StudentID)
     @Html.HiddenFor(m => m.VacatureID)
     @Html.AntiForgeryToken()
 

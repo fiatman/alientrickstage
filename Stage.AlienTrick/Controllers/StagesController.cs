@@ -24,7 +24,7 @@ namespace Stage.AlienTrick.Controllers
                     .ToList();
             }
 
-            var result = new Models.Stagemodel();
+            var result = new Stagemodel();
             result.Students = studentens;
             result.VacatureID = stagemodel.VacatureID;
             return View(result);
@@ -65,20 +65,24 @@ namespace Stage.AlienTrick.Controllers
         public ActionResult CreateStage(Stagemodel stagemodel)
         {
             //save
-            if (ModelState.IsValid)
-            {
+            
+                var students = db.Students.FirstOrDefault(d => d.ID == stagemodel.StudentID);
                 var CreateStage = new Stage();
                 CreateStage.Beginperiod = stagemodel.Beginperiod;
+                
                 CreateStage.Endperiod = stagemodel.Endperiod;
+                students.Stage_ID = stagemodel.VacatureID;
                 CreateStage.StudentID = stagemodel.StudentID;
                 CreateStage.StageName = stagemodel.StageName;
                 CreateStage.VacatureID = stagemodel.VacatureID;
                 CreateStage.StageDescription = stagemodel.StageDescription;
                 CreateStage.NeededEducation = stagemodel.NeededEducation;
+                
+                
                 db.Stages.Add(CreateStage);
                 db.SaveChanges();
                 
-            }
+            
             return RedirectToAction("Index");
         }
 

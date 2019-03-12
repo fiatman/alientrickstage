@@ -2,13 +2,15 @@
 @{
     ViewBag.Title = "GetProgress";
 }
+@Html.Raw(TempData["msg"])
+<h2>Jouw voortgang</h2>
 
-<h2>GetProgress</h2>
-
-<h1>@Model.ProgressPercentage %</h1>
+<h1>Op dit moment heb je @Model.ProgressPercentage% van je stage uren voldaan.</h1>
+<h3>Totale stage uren zijn @Model.AmountOfHourstoComplete uur voor jou.</h3>
+<h3>Jij hebt tot nu toe @Model.AmountofbookedHours uur gedraaid.</h3>
 
 <p>
-    <a class="FontAwesomeButton" href="@Url.Action("AddHours", "Studenten", new { id = Model.student.ID})"><i class="far fa-plus-square"></i>Voeg uren toe</a>
+    <a class="FontAwesomeButton" href="@Url.Action("AddHours", "Studenten", new { id = Model.student.ID})"><i class="far fa-plus-square"></i>Voeg hier je uren toe</a>
 </p>
 
 

@@ -37,13 +37,8 @@ namespace Stage.AlienTrick.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Firstname,Lastname,Age,City,School,Nationality,Studentnumber,Compensation,Description,StudentStatus,Progress, AmountOfhoursToComplete, AmountofbookedHours")] Student students)
+        public ActionResult Create([Bind(Include = "Firstname,Lastname,Age,City,School,Nationality,Studentnumber,Compensation,Description,Progress, AmountOfhoursToComplete, AmountofbookedHours")] Student students)
         {
-
-
-            students.AmountofbookedHours = 0;
-
-
             if (ModelState.IsValid)
             {
                 db.Students.Add(new Student {
@@ -56,9 +51,9 @@ namespace Stage.AlienTrick.Controllers
                     Studentnumber = students.Studentnumber,
                     Compensation = students.Compensation,
                     Description = students.Description,
-                    StudentStatus = students.StudentStatus,
-                    Progress = students.Progress,
-                    AmountofbookedHours = students.AmountofbookedHours,
+                    StudentStatus = 0,
+                    Progress = 0,
+                    AmountofbookedHours = 0,
                     AmountOfhoursToComplete = students.AmountOfhoursToComplete
 
 
@@ -69,6 +64,7 @@ namespace Stage.AlienTrick.Controllers
             return RedirectToAction("Index");
         }
         // Uren Goedkeuren
+        [HttpGet]
         public ActionResult AcceptHours(int? id, Models.Voortgangsmodel voortgangsmodel)
         {
             var studentaccepthours = db.Students.Where(s => s.ID == id).FirstOrDefault();
@@ -78,15 +74,29 @@ namespace Stage.AlienTrick.Controllers
             voortgangsmodel.HoursAccepted = studentaccepthours.StudentStatus;
             return View(voortgangsmodel);
         }
-
         [HttpPost]
-        public ActionResult AcceptHoursNow (int? id, Models.Voortgangsmodel voortgangsmodel, Student studenthoursaccept)
+        public ActionResult AcceptHours(int? id, Models.Voortgangsmodel voortgangsmodel, Student studenthoursaccept)
         {
-            var studenthoursaccepting = voortgangsmodel.student;
-            studenthoursaccept.StudentStatus = 1;
-            studenthoursaccept = studenthoursaccepting;
-            db.SaveChanges();
-            
+            var studentaccepthours = db.Students.Where(s => s.ID == id).FirstOrDefault();
+            if (studentaccepthours.StudentStatus == 0)
+            {
+                studentaccepthours.StudentStatus = 1;
+                db.SaveChanges();
+            }
+            else
+            {
+                if (studentaccepthours.AmountofbookedHours >= studentaccepthours.AmountOfhoursToComplete)
+                {
+                    TempData["msg"] = "<script>alert('Deze student heef zijn stageuren voltooid!');</script>";
+                    return RedirectToAction("index");
+                }
+                else
+                {
+                    TempData["msg"] = "<script>alert('Er zijn geen uren meer gelogd sinds laatste goedkeuring!');</script>";
+                    return RedirectToAction("index");
+                }
+            }
+
             return RedirectToAction("Index");
         }
     
@@ -108,7 +118,7 @@ namespace Stage.AlienTrick.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit ([Bind(Include ="ID, Firstname, Lastname, Age, City, School, Nationality, Studentnumber, Compensation, Description, StudentStatus, Progress, AmountOfhoursToComplete, AmountofbookedHours")] Student student)
+        public ActionResult Edit ([Bind(Include ="ID, Firstname, Lastname, Age, City, School, Nationality, Studentnumber, Compensation, Description, Progress, AmountOfhoursToComplete, AmountofbookedHours")] Student student)
         {
             if (ModelState.IsValid)
             {
@@ -125,9 +135,12 @@ namespace Stage.AlienTrick.Controllers
 
             voortgangsmodel.ProgressPercentage = GetStudentProcessPercentage(student);
             voortgangsmodel.student = student;
+            if (student.AmountOfhoursToComplete == student.AmountofbookedHours)
+            {
+                TempData["msg"] = "<script>alert('Je hebt jou stageuren behaald! ');</script>";
+            }
 
-
-                return View(voortgangsmodel);
+            return View(voortgangsmodel);
             
         }
 
@@ -143,13 +156,20 @@ namespace Stage.AlienTrick.Controllers
             var student = db.Students.Where(s => s.ID == id).FirstOrDefault();
             if (studentstage.Stage != null || student.StudentStatus != 0)
             {
-
-
-                Models.Voortgangsmodel voortgang = new Models.Voortgangsmodel();
-                voortgang.AmountofbookedHours = student.AmountofbookedHours;
-                voortgang.AmountOfHourstoComplete = student.AmountOfhoursToComplete;
-                voortgang.student = student;
-                return View(voortgang);
+                if (student.AmountOfhoursToComplete == student.AmountofbookedHours)
+                {
+                    TempData["msg"] = "<script>alert('Je hebt jou stageuren behaald! ');</script>";
+                    return RedirectToAction("index");
+                }
+                else
+                {
+                    Models.Voortgangsmodel voortgang = new Models.Voortgangsmodel();
+                    voortgang.AmountofbookedHours = student.AmountofbookedHours;
+                    voortgang.AmountOfHourstoComplete = student.AmountOfhoursToComplete;
+                    voortgang.student = student;
+                    return View(voortgang);
+                }
+                
             }
             else
             {
@@ -167,10 +187,17 @@ namespace Stage.AlienTrick.Controllers
 
             double CalculateHours = student.AmountofbookedHours + v.AmountofbookedHours;
 
-            student.AmountofbookedHours = CalculateHours;
-            student.StudentStatus = HoursAccepted;
-            db.SaveChanges();
-            
+            if (student.AmountOfhoursToComplete == student.AmountofbookedHours)
+            {
+                TempData["msg"] = "<script>alert('Jouw stage zit erop! je hebt alle uren gedraaid die je moest draaien!');</script>";
+                return RedirectToAction("index");
+            }
+            else
+            {
+                student.AmountofbookedHours = CalculateHours;
+                student.StudentStatus = HoursAccepted;
+                db.SaveChanges();
+            }
 
 
             return RedirectToAction("GetProgress", new

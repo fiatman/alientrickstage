@@ -12,7 +12,6 @@ namespace Stage.AlienTrick.Models
         public double AmountOfHourstoComplete { get; set; }
         public double AmountofbookedHours { get; set; }
         public double ProgressPercentage { get; set; }
-
         public int HoursAccepted { get; set; }
 
     }
