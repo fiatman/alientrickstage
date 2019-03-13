@@ -93,6 +93,9 @@
         <td>
             <a class="FontAwesomeButton" href="@Url.Action("GetProgress", "Studenten", new { id = student.ID , AmountOfHourstoComplete = student.AmountOfhoursToComplete , AmountofbookedHours = student.AmountofbookedHours})"><i class="far fa-plus-square"></i>Voeg Uren Toe</a>
         </td>
+        <td>
+            @Html.ActionLink("Voeg taak toe aan student", "CreateMeeting", "Studenten", new { id = student.ID }, null)
+        </td>
     </tr>
         }
     }

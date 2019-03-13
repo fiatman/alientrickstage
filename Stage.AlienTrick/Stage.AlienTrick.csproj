@@ -147,9 +147,13 @@
     </Compile>
     <Compile Include="JobApplication.cs" />
     <Compile Include="Message.cs" />
-    <Compile Include="Migrations\201903120824072_ry.cs" />
-    <Compile Include="Migrations\201903120824072_ry.Designer.cs">
-      <DependentUpon>201903120824072_ry.cs</DependentUpon>
+    <Compile Include="Migrations\201903131328452_intiial.cs" />
+    <Compile Include="Migrations\201903131328452_intiial.Designer.cs">
+      <DependentUpon>201903131328452_intiial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903131331504_timespan.cs" />
+    <Compile Include="Migrations\201903131331504_timespan.Designer.cs">
+      <DependentUpon>201903131331504_timespan.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Messagemodel.cs" />
@@ -213,7 +217,6 @@
     <Content Include="Views\Message\Index.cshtml" />
     <Content Include="Views\Message\Create.cshtml" />
     <Content Include="Views\Studenten\GetProgress.cshtml" />
-    <Content Include="Views\Studenten\PlanMeeting.cshtml" />
     <Content Include="Views\Studenten\AddHours.cshtml" />
     <Content Include="Views\Studenten\Edit.cshtml" />
     <Content Include="Views\Studenten\AcceptHours.cshtml" />
@@ -239,8 +242,11 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903120824072_ry.resx">
-      <DependentUpon>201903120824072_ry.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201903131328452_intiial.resx">
+      <DependentUpon>201903131328452_intiial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903131331504_timespan.resx">
+      <DependentUpon>201903131331504_timespan.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

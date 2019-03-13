@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -12,9 +13,10 @@ namespace Stage.AlienTrick.Models
         public Student student { get; set; }
         public string TaskName { get; set; }
         public string TaskDescription { get; set; }
-        public int Type { get; set; }
+        public TimeSpan Time { get; set; }
+        public string Type { get; set; }
         public int Rating { get; set; }
-        public int SchoolOrWork { get; set; }
+        public string SchoolOrWork { get; set; }
         public int Status { get; set; }
     }
 }

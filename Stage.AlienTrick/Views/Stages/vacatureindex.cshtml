@@ -7,6 +7,7 @@
 
 <br />
 
+
 <form asp-controller="Vacatures" asp-action="Index" class="form-inline">
     <p>
         <input class="form-control" type="text" placeholder="Naam" name="SearchString1"> <input class="btn btn-default" type="submit" value="Filter" />
@@ -46,7 +47,7 @@
                 @Html.DisplayFor(m => stage.StageDescription)
             </td>
             <td>
-               @Html.ActionLink("Maak hiermee een nieuwe stage aan", "Studentslist", "Stages", new { VacatureID = stage.ID }, null)
+               @Html.ActionLink("Maak hiermee een nieuwe stage aan", "Studentslist", "Stages", new { VacatureID = stage.ID}, null)
             </td>
         </tr>
     }

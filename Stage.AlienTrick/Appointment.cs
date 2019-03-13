@@ -14,6 +14,8 @@ namespace Stage.AlienTrick
 
         public DateTime EndDate { get; set; }
 
+        public TimeSpan Time { get; set; }
+
         public int? Task_ID { get; set; }
 
         public virtual Task Task { get; set; }

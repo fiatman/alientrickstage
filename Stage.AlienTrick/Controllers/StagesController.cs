@@ -69,7 +69,6 @@ namespace Stage.AlienTrick.Controllers
                 var students = db.Students.FirstOrDefault(d => d.ID == stagemodel.StudentID);
                 var CreateStage = new Stage();
                 CreateStage.Beginperiod = stagemodel.Beginperiod;
-                
                 CreateStage.Endperiod = stagemodel.Endperiod;
                 students.Stage_ID = stagemodel.VacatureID;
                 CreateStage.StudentID = stagemodel.StudentID;
@@ -77,8 +76,8 @@ namespace Stage.AlienTrick.Controllers
                 CreateStage.VacatureID = stagemodel.VacatureID;
                 CreateStage.StageDescription = stagemodel.StageDescription;
                 CreateStage.NeededEducation = stagemodel.NeededEducation;
-                
-                
+
+                db.Students.Add(students);
                 db.Stages.Add(CreateStage);
                 db.SaveChanges();
                 
