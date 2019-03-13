@@ -77,7 +77,6 @@ namespace Stage.AlienTrick.Controllers
                 CreateStage.StageDescription = stagemodel.StageDescription;
                 CreateStage.NeededEducation = stagemodel.NeededEducation;
 
-                db.Students.Add(students);
                 db.Stages.Add(CreateStage);
                 db.SaveChanges();
                 
