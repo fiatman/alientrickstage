@@ -1,58 +1,94 @@
-﻿@*@model global::Stage.AlienTrick.PortalEntities.Task
+﻿@model global::Stage.AlienTrick.Models.Takenmodel
 @{
     ViewBag.Title = "PlanMeeting";
 }
 
-<h2>PlanMeeting</h2>
+<h2>Selecteer hier de student waar een taak of afspraak aan gekoppeld moet worden</h2>
 
-@using (Html.BeginForm("PlanMeeting", "Student", FormMethod.Post, null))
-{
-    <div class="form-group">
-        @Html.LabelFor(model => model.TaskName, "Stage Naam", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.TaskName, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.TaskName, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <br>
-    <div class="form-group">
-        @Html.LabelFor(model => model.Taskdescription, "Beginperiode", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Taskdescription, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
-            @Html.ValidationMessageFor(model => model.Taskdescription, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <br>
-    @Html.DropDownListFor(model => model.Type, new List<SelectListItem>
-  { new SelectListItem{Text="Afspraak", Value="False"},
-    new SelectListItem{Text="Opdracht", Value="True",  Selected = true},
-    })
-    @if (Model.Type == "Afspraak")
+<br />
+
+<form asp-controller="Studenten" asp-action="Index" class="form-inline">
+
+    <p>
+        <input class="form-control" type="text" placeholder="Achternaam" name="SearchString2"> <input class="btn btn-default" type="submit" value="Filter" />
+    </p>
+</form>
+<table class="table">
+    <tr>
+        <th>
+            Voornaam
+        </th>
+        <th>
+            Achternaam
+        </th>
+        <th>
+            Leeftijd
+        </th>
+        <th>
+            School
+        </th>
+        <th>
+            Nationaliteit
+        </th>
+        <th>
+            Studentnummer
+        </th>
+        <th>
+            Stagevergoeding
+        </th>
+        <th>
+            Opmerkingen
+        </th>
+        <th>
+            Status
+        </th>
+        <th>
+            Voortgang
+        </th>
+        <th></th>
+    </tr>
+
+
+    @foreach (var student in Model.Students)
     {
-
-
-        <br>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Rating, "Opleidingsniveau", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Rating, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Rating, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <br>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Status, "Stage Beschrijving", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
+        <tr>
+            <td>
+                @Html.DisplayFor(m => student.Firstname)
+            </td>
+            <td>
+                @Html.DisplayFor(m => student.Lastname)
+            </td>
+            <td>
+                @Html.DisplayFor(m => student.Age)
+            </td>
+            <td>
+                @Html.DisplayFor(m => student.City)
+            </td>
+            <td>
+                @Html.DisplayFor(m => student.School)
+            </td>
+            <td>
+                @Html.DisplayFor(m => student.Nationality)
+            </td>
+            <td>
+                @Html.DisplayFor(m => student.Studentnumber)
+            </td>
+            <td>
+                @Html.DisplayFor(m => student.Compensation)
+            </td>
+            <td>
+                @Html.DisplayFor(m => student.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(m => student.StudentStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(m => student.Progress)
+            </td>
+            <td>
+                @Html.ActionLink("Kies deze student", "CreateMeeting", "Studenten", new { id = student.ID }, null)
+            </td>
+        </tr>
     }
-    <br>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
-        </div>
-    </div>
-}
+
+</table>

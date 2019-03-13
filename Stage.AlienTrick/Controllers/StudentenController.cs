@@ -208,16 +208,40 @@ namespace Stage.AlienTrick.Controllers
                 student.AmountOfhoursToComplete
             });
         }
-        [HttpPost]
-        public ActionResult PlanMeeting([Bind(Include = "TaskName,Taskdescription,Type,Rating,SchoolOrWork,Status")]Task TaskOrMeeting)
-        {
 
-            if (ModelState.IsValid)
-            {
-                db.Tasks.Add(TaskOrMeeting);
+
+        public ActionResult PlanMeeting(string searchString2 , Models.Takenmodel takenmodel)
+        {
+                var studentens = db.Students.ToList();
+                if (!string.IsNullOrWhiteSpace(searchString2))
+                {
+                    studentens = studentens
+                        .Where(s => s.Lastname.ToLower().Contains(searchString2.ToLower()))
+                        .ToList();
+                }
+
+            var result = new Models.Takenmodel();
+                result.Students = studentens;
+                return View(result);
+            
+        }
+        [HttpGet]
+        public ActionResult CreateMeeting(int? id, Models.Takenmodel takenmodel)
+        {
+            return View(takenmodel);
+        }
+
+        [HttpPost]
+        public ActionResult CreateMeeting(int? id , Models.Takenmodel takenmodel, Student student)
+        {
+            var stm = db.Students.Where(s => s.ID == takenmodel.student.ID).FirstOrDefault();
+
+            
+            
+                //db.Tasks.Add();
                 db.SaveChanges();
                 return View("index");
-            }
+            
             return View();
 
         }

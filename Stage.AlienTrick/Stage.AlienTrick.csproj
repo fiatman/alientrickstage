@@ -154,6 +154,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Messagemodel.cs" />
     <Compile Include="Models\Stagemodel.cs" />
+    <Compile Include="Models\Takenmodel.cs" />
     <Compile Include="Models\Voortgangsmodel.cs" />
     <Compile Include="PortalEntities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -216,6 +217,7 @@
     <Content Include="Views\Studenten\AddHours.cshtml" />
     <Content Include="Views\Studenten\Edit.cshtml" />
     <Content Include="Views\Studenten\AcceptHours.cshtml" />
+    <Content Include="Views\Studenten\CreateMeeting.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -86,7 +86,7 @@
                 @Html.DisplayFor(m => student.Progress)
             </td>
             <td>
-                @Html.ActionLink("Kies deze student", "Create", "Stages", new { StudentID = student.ID, VacatureID = Model.VacatureID }, null) |
+                @Html.ActionLink("Kies deze student", "CreateMeeting", "Studenten", new { StudentID = student.ID, VacatureID = Model.VacatureID }, null) |
             </td>
         </tr>
     }
