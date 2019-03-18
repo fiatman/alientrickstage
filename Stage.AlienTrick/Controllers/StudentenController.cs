@@ -234,20 +234,27 @@ namespace Stage.AlienTrick.Controllers
         [HttpPost]
         public ActionResult CreateMeeting(int? id , Models.Takenmodel takenmodel, Student student)
         {
-            var stm = db.Students.Where(s => s.ID == takenmodel.student.ID).FirstOrDefault();
+            var stm = db.Students.Where(s => s.ID == id).FirstOrDefault();
+            Task task = new Task();
 
+            task.SchoolOrWork = takenmodel.SchoolOrWork;
+            task.Student_ID = id;
+            task.TaskName = takenmodel.TaskName;
+            task.Taskdescription = takenmodel.TaskDescription;
+            task.Type = takenmodel.Type;
+            task.Rating = takenmodel.Rating;
             
             
-                //db.Tasks.Add();
+            
+                db.Tasks.Add(task);
                 db.SaveChanges();
                 return View("index");
-            
-            return View();
+          
 
         }
     }
      
-    }
+}
         
  
 
