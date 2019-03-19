@@ -247,6 +247,7 @@ namespace Stage.AlienTrick.Controllers
                 task.Taskdescription = takenmodel.TaskDescription;
                 task.Type = takenmodel.Type;
                 task.Rating = takenmodel.Rating;
+                task.TaskApproved = 0;
                 db.SaveChanges();
 
                 var apmt = db.Appointments.Where(d => d.Task_ID == d.Task.ID).FirstOrDefault();
@@ -263,6 +264,7 @@ namespace Stage.AlienTrick.Controllers
                 task.Taskdescription = takenmodel.TaskDescription;
                 task.Type = takenmodel.Type;
                 task.Rating = takenmodel.Rating;
+                task.TaskApproved = 0;
 
 
 
@@ -329,6 +331,17 @@ namespace Stage.AlienTrick.Controllers
                     return RedirectToAction("index");
                 }
             }
+        }
+
+        [HttpPost]
+        public ActionResult Approvetask(int? id , Models.Takenmodel takenmodel, Task task)
+        {
+            Task studenttask = db.Tasks.Where(d => d.Student_ID == id).FirstOrDefault();
+            studenttask.TaskApproved = 2;
+            db.SaveChanges();
+            return RedirectToAction("index");
+
+            
         }
     }
      

@@ -1,18 +1,79 @@
-﻿@model global::Stage.AlienTrick.Models.Takenmodel
+﻿@model IEnumerable<Task>
 @{
-    ViewBag.Title = "MeetingCompleted";
+    ViewBag.Title = "Index";
 }
 
+<h2>Taken van deze student</h2>
+
+<br />
+
 @Html.Raw(TempData["msg"])
-<h2>Jouw Taken</h2>
+<form asp-controller="Studenten" asp-action="Index" class="form-inline">
+    <p>
+        <input class="form-control" type="text" placeholder="Taaknaam" name="SearchString"> <input class="btn btn-default" type="submit" value="Filter" />
+    </p>
+</form>
+<table class="table">
+    <tr>
+        <th>
+            Taak naam
+        </th>
+        <th>
+            Taakbeschrijving
+        </th>
+        <th>
+            Type
+        </th>
+        <th>
+            Werk of School
+        </th>
+        <th>
+            Geplande datum(Afspraak)
+        </th>
+        <th></th>
+    </tr>
 
-<h1>Op dit moment heb je deze taak: @Model.TaskName%.</h1>
-<h3>De beschrijving van de taak is: @Model.TaskDescription.</h3>
-@*@<h3>Jou taak is  @Model.SchoolOrWork.</h3>*@
-<div class="progress">
-    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="@Model.Taskcomplete"></div>
-</div>
-<p>
-    <a class="FontAwesomeButton" href="@Url.Action("AddHours", "Studenten", new { id = Model.student.ID})"><i class="far fa-plus-square"></i>Voeg hier je uren toe</a>
-</p>
+    @if (Model == null)
+    {
+        <text>Geen studenten geselecteerd</text>
+    }
+    else
+    {
 
+        foreach (var student in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(m => student.TaskName)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => student.Taskdescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => student.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => student.SchoolOrWork)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => student.Appointments.Where(d => d.BeginDate == student.Appointments.FirstOrDefault().BeginDate));
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = student.ID })
+                </td>
+                <td>
+                    @Html.ActionLink("Uren goedkeuren", "AcceptHours", new { id = student.ID })
+                </td>
+                <td>
+                    @Html.ActionLink("Voeg taak toe aan student", "CreateMeeting", "Studenten", new { id = student.ID }, null)
+                </td>
+                <td>
+                    @Html.ActionLink("Voltooi taak of afspraak", "MeetingCompleted", "Studenten", new { id = student.ID }, null)
+                </td>
+                <td>
+                    @Html.ActionLink("Keur taken van deze student goed", "MeetingCompleted", "Studenten", new { id = student.ID }, null)
+                </td>
+            </tr>
+        }
+    }
+</table>
