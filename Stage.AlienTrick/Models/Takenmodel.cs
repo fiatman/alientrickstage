@@ -18,7 +18,9 @@ namespace Stage.AlienTrick.Models
         public int Rating { get; set; }
         public string SchoolOrWork { get; set; }
         public int Status { get; set; }
-
         public byte Taskcomplete { get; set; }
+        public DateTime BeginDate { get; set; }
+        public Appointment Appointment { get; set; }
+        public byte taskApproved { get; set; }
     }
 }

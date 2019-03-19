@@ -96,6 +96,9 @@
         <td>
             @Html.ActionLink("Voeg taak toe aan student", "CreateMeeting", "Studenten", new { id = student.ID }, null)
         </td>
+        <td>
+            @Html.ActionLink("Voltooi taak of afspraak", "MeetingCompleted", "Studenten", new { id = student.ID }, null)
+        </td>
     </tr>
         }
     }

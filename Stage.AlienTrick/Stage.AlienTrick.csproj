@@ -163,6 +163,10 @@
     <Compile Include="Migrations\201903190739366_dinges.Designer.cs">
       <DependentUpon>201903190739366_dinges.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903191315508_hoi.cs" />
+    <Compile Include="Migrations\201903191315508_hoi.Designer.cs">
+      <DependentUpon>201903191315508_hoi.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Messagemodel.cs" />
     <Compile Include="Models\Stagemodel.cs" />
@@ -229,6 +233,7 @@
     <Content Include="Views\Studenten\Edit.cshtml" />
     <Content Include="Views\Studenten\AcceptHours.cshtml" />
     <Content Include="Views\Studenten\CreateMeeting.cshtml" />
+    <Content Include="Views\Studenten\MeetingCompleted.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -261,6 +266,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903190739366_dinges.resx">
       <DependentUpon>201903190739366_dinges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903191315508_hoi.resx">
+      <DependentUpon>201903191315508_hoi.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

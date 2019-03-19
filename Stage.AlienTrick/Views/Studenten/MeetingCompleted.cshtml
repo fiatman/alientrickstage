@@ -1,0 +1,18 @@
+﻿@model global::Stage.AlienTrick.Models.Takenmodel
+@{
+    ViewBag.Title = "MeetingCompleted";
+}
+
+@Html.Raw(TempData["msg"])
+<h2>Jouw Taken</h2>
+
+<h1>Op dit moment heb je deze taak: @Model.TaskName%.</h1>
+<h3>De beschrijving van de taak is: @Model.TaskDescription.</h3>
+@*@<h3>Jou taak is  @Model.SchoolOrWork.</h3>*@
+<div class="progress">
+    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="@Model.Taskcomplete"></div>
+</div>
+<p>
+    <a class="FontAwesomeButton" href="@Url.Action("AddHours", "Studenten", new { id = Model.student.ID})"><i class="far fa-plus-square"></i>Voeg hier je uren toe</a>
+</p>
+

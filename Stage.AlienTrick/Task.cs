@@ -44,5 +44,6 @@ namespace Stage.AlienTrick
         public virtual ICollection<Appointment> Appointments { get; set; }
 
         public virtual Student Student { get; set; }
+        public byte TaskApproved { get; set; }
     }
 }

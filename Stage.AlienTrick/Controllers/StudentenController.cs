@@ -237,32 +237,59 @@ namespace Stage.AlienTrick.Controllers
             var stm = db.Students.Where(s => s.ID == id).FirstOrDefault();
             Task task = new Task();
 
-            task.SchoolOrWork = takenmodel.SchoolOrWork;
-            task.Student_ID = id;
-            task.TaskName = takenmodel.TaskName;
-            task.Taskdescription = takenmodel.TaskDescription;
-            task.Type = takenmodel.Type;
-            task.Rating = takenmodel.Rating;
-            
-            
-            
+            if (takenmodel.Type == "Afspraak")
+            {
+                Appointment appointment = new Appointment();
+                appointment.BeginDate = takenmodel.BeginDate;
+                task.SchoolOrWork = takenmodel.SchoolOrWork;
+                task.Student_ID = id;
+                task.TaskName = takenmodel.TaskName;
+                task.Taskdescription = takenmodel.TaskDescription;
+                task.Type = takenmodel.Type;
+                task.Rating = takenmodel.Rating;
+                db.SaveChanges();
+
+                var apmt = db.Appointments.Where(d => d.Task_ID == d.Task.ID).FirstOrDefault();
+                apmt.Task_ID = task.ID;
+                db.SaveChanges();
+                return RedirectToAction("index");
+
+            }
+            else
+            {
+                task.SchoolOrWork = takenmodel.SchoolOrWork;
+                task.Student_ID = id;
+                task.TaskName = takenmodel.TaskName;
+                task.Taskdescription = takenmodel.TaskDescription;
+                task.Type = takenmodel.Type;
+                task.Rating = takenmodel.Rating;
+
+
+
                 db.Tasks.Add(task);
                 db.SaveChanges();
-                return View("index");
-          
+                return RedirectToAction("index");
+            }
 
         }
 
         [HttpGet]
         public ActionResult MeetingCompleted(int? id , Models.Takenmodel takenmodel)
         {
-
+            
             var sdt = db.Tasks.Where(d => d.Student_ID == id).FirstOrDefault();
-            takenmodel.TaskName = sdt.TaskName;
-            takenmodel.TaskDescription = sdt.Taskdescription;
-            takenmodel.Taskcomplete = sdt.Taskcomplete;
-            takenmodel.Type = sdt.Type;
-
+            if (sdt == null)
+            {
+                return View(takenmodel);
+            }
+            else
+            {
+                takenmodel.TaskName = sdt.TaskName;
+                takenmodel.TaskDescription = sdt.Taskdescription;
+                takenmodel.Taskcomplete = sdt.Taskcomplete;
+                takenmodel.Type = sdt.Type;
+                takenmodel.SchoolOrWork = sdt.SchoolOrWork;
+            }
 
             return View(takenmodel);
         }
@@ -270,8 +297,38 @@ namespace Stage.AlienTrick.Controllers
         [HttpPost]
         public ActionResult MeetingCompleted(int? id , Models.Takenmodel takenmodel , Student student)
         {
-
-            return RedirectToAction("index");
+            var sdt = db.Tasks.Where(d => d.Student_ID == id).FirstOrDefault();
+            if (sdt == null)
+            {
+                return RedirectToAction("index");
+            }
+            else
+            {
+                if(sdt.Type == "Afspraak")
+                {
+                    sdt.TaskApproved = 2;
+                    db.SaveChanges();
+                    TempData["msg"] = "<script>alert('Omdat dit een afspraak was, is deze meteen goedgekeurd!');</script>";
+                    return RedirectToAction("index");
+                }
+                if(sdt.TaskApproved == 1)
+                {
+                    TempData["msg"] = "<script>alert('Deze taak is al afgerond!');</script>";
+                    return RedirectToAction("index");
+                }
+                if(sdt.TaskApproved == 2)
+                {
+                    TempData["msg"] = "<script>alert('Jouw taak is al goedgekeurd');</script>";
+                    return RedirectToAction("index");
+                }
+                else
+                {
+                    sdt.TaskApproved = 1;
+                    db.SaveChanges();
+                    TempData["msg"] = "<script>alert('Jouw taak is ingeleverd, nu wachten op goedkeuring');</script>";
+                    return RedirectToAction("index");
+                }
+            }
         }
     }
      
