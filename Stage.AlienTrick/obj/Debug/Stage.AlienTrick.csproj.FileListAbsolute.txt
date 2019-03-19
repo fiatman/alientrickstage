@@ -452,3 +452,5 @@ C:\Users\Smits\Documents\GitHub\alientrickstage\Stage.AlienTrick\obj\Debug\Stage
 C:\Users\Smits\Documents\GitHub\alientrickstage\Stage.AlienTrick\obj\Debug\Stage.AlienTrick.Migrations.intiial.resources
 C:\Users\Smits\Documents\GitHub\alientrickstage\Stage.AlienTrick\obj\Debug\Stage.AlienTrick.csproj.GenerateResource.cache
 C:\Users\Smits\Documents\GitHub\alientrickstage\Stage.AlienTrick\obj\Debug\Stage.AlienTrick.Migrations.timespan.resources
+C:\Users\Smits\Documents\GitHub\alientrickstage\Stage.AlienTrick\obj\Debug\Stage.AlienTrick.Migrations.copeted.resources
+C:\Users\Smits\Documents\GitHub\alientrickstage\Stage.AlienTrick\obj\Debug\Stage.AlienTrick.Migrations.dinges.resources

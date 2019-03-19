@@ -28,6 +28,8 @@ namespace Stage.AlienTrick
         [StringLength(255)]
         public string Type { get; set; }
 
+        public byte Taskcomplete { get; set; }
+
         public int Rating { get; set; }
 
         [Required]

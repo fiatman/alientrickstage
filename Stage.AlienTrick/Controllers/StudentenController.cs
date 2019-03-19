@@ -252,6 +252,27 @@ namespace Stage.AlienTrick.Controllers
           
 
         }
+
+        [HttpGet]
+        public ActionResult MeetingCompleted(int? id , Models.Takenmodel takenmodel)
+        {
+
+            var sdt = db.Tasks.Where(d => d.Student_ID == id).FirstOrDefault();
+            takenmodel.TaskName = sdt.TaskName;
+            takenmodel.TaskDescription = sdt.Taskdescription;
+            takenmodel.Taskcomplete = sdt.Taskcomplete;
+            takenmodel.Type = sdt.Type;
+
+
+            return View(takenmodel);
+        }
+
+        [HttpPost]
+        public ActionResult MeetingCompleted(int? id , Models.Takenmodel takenmodel , Student student)
+        {
+
+            return RedirectToAction("index");
+        }
     }
      
 }

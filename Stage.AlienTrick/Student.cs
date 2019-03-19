@@ -43,6 +43,8 @@ namespace Stage.AlienTrick
         [StringLength(255)]
         public string Studentnumber { get; set; }
 
+        public byte Taskcompleted { get; set; }
+
         public decimal Compensation { get; set; }
 
         public string Description { get; set; }
