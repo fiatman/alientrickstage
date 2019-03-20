@@ -276,28 +276,34 @@ namespace Stage.AlienTrick.Controllers
         }
 
         [HttpGet]
-        public ActionResult MeetingCompleted(int? id , Models.Takenmodel takenmodel)
+        public ActionResult MeetingCompleted(int? id , Models.Takenmodel takenmodel , string SearchString)
         {
-            
-            var sdt = db.Tasks.Where(d => d.Student_ID == id).FirstOrDefault();
-            if (sdt == null)
+           
+            var TaskCollection = db.Tasks.AsQueryable().Where(d => d.Student_ID == id);
+
+            if (!string.IsNullOrWhiteSpace(SearchString))
             {
-                return View(takenmodel);
-            }
-            else
-            {
-                takenmodel.TaskName = sdt.TaskName;
-                takenmodel.TaskDescription = sdt.Taskdescription;
-                takenmodel.Taskcomplete = sdt.Taskcomplete;
-                takenmodel.Type = sdt.Type;
-                takenmodel.SchoolOrWork = sdt.SchoolOrWork;
+                TaskCollection = TaskCollection.Where(A => A.TaskName.ToLower().Contains(SearchString.ToLower()));
             }
 
+            return View(TaskCollection.ToArray());
+
+
+        }
+        [HttpGet]
+        public ActionResult Completethemeeting(int? id)
+        {
+             Models.Takenmodel takenmodel = new Models.Takenmodel();
+             var taak = db.Tasks.Where(d => d.ID == id).FirstOrDefault();
+             var studentstask = db.Students.Where(t => t.ID == taak.Student_ID).FirstOrDefault();
+            takenmodel.student = studentstask;
+            takenmodel.TaskName = taak.TaskName;
+            takenmodel.TaskDescription = taak.Taskdescription;
+            takenmodel.Type = taak.Type;
             return View(takenmodel);
         }
-
         [HttpPost]
-        public ActionResult MeetingCompleted(int? id , Models.Takenmodel takenmodel , Student student)
+        public ActionResult Completethemeeting(int? id , Models.Takenmodel takenmodel , Student student)
         {
             var sdt = db.Tasks.Where(d => d.Student_ID == id).FirstOrDefault();
             if (sdt == null)

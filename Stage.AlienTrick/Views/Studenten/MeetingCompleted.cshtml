@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<Task>
+
 @{
-    ViewBag.Title = "Index";
+              ViewBag.Title = "MeetingCompleted";
 }
 
 <h2>Taken van deze student</h2>
@@ -40,38 +41,26 @@
     else
     {
 
-        foreach (var student in Model)
+        foreach (var Task in Model)
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(m => student.TaskName)
+                    @Task.TaskName
                 </td>
                 <td>
-                    @Html.DisplayFor(m => student.Taskdescription)
+                    @Task.Taskdescription
                 </td>
                 <td>
-                    @Html.DisplayFor(m => student.Type)
+                    @Task.Type
                 </td>
                 <td>
-                    @Html.DisplayFor(m => student.SchoolOrWork)
+                    @Task.SchoolOrWork
                 </td>
                 <td>
-                    @Html.DisplayFor(m => student.Appointments.Where(d => d.BeginDate == student.Appointments.FirstOrDefault().BeginDate));
+                    @Task.Appointments.Where(d => d.Task_ID == Task.Student.ID).Select(b => b.BeginDate).FirstOrDefault()
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = student.ID })
-                </td>
-                <td>
-                    @Html.ActionLink("Uren goedkeuren", "AcceptHours", new { id = student.ID })
-                </td>
-                <td>
-                    @Html.ActionLink("Voeg taak toe aan student", "CreateMeeting", "Studenten", new { id = student.ID }, null)
-                </td>
-                <td>
-                    @Html.ActionLink("Voltooi taak of afspraak", "MeetingCompleted", "Studenten", new { id = student.ID }, null)
-                </td>
-                <td>
-                    @Html.ActionLink("Keur taken van deze student goed", "MeetingCompleted", "Studenten", new { id = student.ID }, null)
+                    @Html.ActionLink("Keur taken van deze student goed", "Completethemeeting", "Studenten", new { id = Task.ID }, null)
                 </td>
             </tr>
         }

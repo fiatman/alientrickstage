@@ -1,0 +1,17 @@
+﻿@model global:: Stage.AlienTrick.Models.Takenmodel
+@{
+    ViewBag.Title = "Completethemeeting";
+}
+
+<h2>Completethemeeting</h2>
+
+<h3>Wil je de taak van deze student: @Model.student.Firstname voltooien?</h3>
+<h3>Taaknaam: @Model.TaskName</h3>
+<h3> Taak type: @Model.Type</h3>
+<h3>Taak beschrijving: @Model.TaskDescription</h3>
+
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Taak goedkeuren" class="btn btn-default" />
+    </div>
+</div>

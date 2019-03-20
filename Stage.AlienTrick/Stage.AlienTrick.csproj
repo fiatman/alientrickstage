@@ -234,6 +234,7 @@
     <Content Include="Views\Studenten\AcceptHours.cshtml" />
     <Content Include="Views\Studenten\CreateMeeting.cshtml" />
     <Content Include="Views\Studenten\MeetingCompleted.cshtml" />
+    <Content Include="Views\Studenten\Completethemeeting.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
