@@ -51,6 +51,10 @@ namespace Stage.AlienTrick
                 .HasMany(e => e.Stages)
                 .WithOptional(e => e.Vacature)
                 .WillCascadeOnDelete();
+
+            modelBuilder.Entity<Appointment>()
+                .Property(f => f.BeginDate)
+                .HasColumnType("datetime");
         }
     }
 }

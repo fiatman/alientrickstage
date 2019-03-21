@@ -14,7 +14,8 @@
     var afspraakTypen = new SelectListItem[]
     {
 new SelectListItem { Value = "Taak", Text = "Taak" },
-new SelectListItem { Value = "Afspraak", Text = "Afspraak" }
+new SelectListItem { Value = "Afspraak", Text = "Afspraak" },
+new SelectListItem { Value = "Verlof", Text = "Verlof" }
     };
     @Html.HiddenFor(m => m.student.ID)
     @Html.AntiForgeryToken()
@@ -40,7 +41,7 @@ new SelectListItem { Value = "Afspraak", Text = "Afspraak" }
     <br>
     <br />
     <div class="form-group" id="typeafspraak">
-        @Html.LabelFor(model => model.Type, "Taak = 1 Aspraak = 2", htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.Type, "Taak, afspraak of verlof", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.DropDownListFor(model => model.Type, afspraakTypen, new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
@@ -64,7 +65,12 @@ new SelectListItem { Value = "Afspraak", Text = "Afspraak" }
             jQuery("#typeafspraak").on("input", function (e) {
                 if (jQuery(e.target).val() === "Afspraak") {
                     jQuery("#datepicker").show();
-                } else {
+                }
+                else if (jQuery(e.target).val() === "Verlof") {
+                    jQuery("#datepicker").show();
+                    }
+
+                 else {
                     jQuery("#datepicker").hide();
                 }
             });
@@ -74,27 +80,30 @@ new SelectListItem { Value = "Afspraak", Text = "Afspraak" }
             jQuery("#typeafspraak").on("input", function (f) {
                 if (jQuery(f.target).val() === "Afspraak") {
                     jQuery("#time").show();
-                } else {
+                } else if ((jQuery(f.target).val() === "Verlof")){
+                    jQuery("#time").show();
+                }
+                else {
                     jQuery("#time").hide();
                 }
             });
         });
     </script>
     <div class="form-group" id="datepicker" style="display: none">
-        @Html.LabelFor(model => model.appointment.BeginDate, "Wanneer is de afspraak?", htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.BeginDate, "Wanneer is de afspraak?", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.appointment.BeginDate, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
-            @Html.ValidationMessageFor(model => model.appointment.BeginDate, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.BeginDate, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+            @Html.ValidationMessageFor(model => model.BeginDate, "", new { @class = "text-danger" })
         </div>
     </div>
     <br />
     <br />
     <br />
-         <div class="form-group" id="time" style="display: none">
-             @Html.LabelFor(model => model.appointment.Time, "Hoelaat is de afspraak?", htmlAttributes: new { @class = "control-label col-md-2" })
+         <div class="form-group" id="time" *style="display: none">
+             @Html.LabelFor(model => model.Time, "Hoelaat is de afspraak?", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                 @Html.EditorFor(model => model.appointment.BeginDate, new { htmlAttributes = new { @class = "form-control", @type = "time", @min = "8:00", @max = "19:00" } })
-                 @Html.ValidationMessageFor(model => model.appointment.Time, "", new { @class = "text-danger" })
+                 @Html.EditorFor(model => model.Time, new { htmlAttributes = new { @class = "form-control", @type = "time" } })
+                 @Html.ValidationMessageFor(model => model.Time, "", new { @class = "text-danger" })
                 </div>
          </div>
          <br />

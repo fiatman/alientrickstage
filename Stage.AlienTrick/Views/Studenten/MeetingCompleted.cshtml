@@ -1,8 +1,8 @@
 ﻿@model IEnumerable<Task>
 
 @{
-              ViewBag.Title = "MeetingCompleted";
-}
+    ViewBag.Title = "MeetingCompleted";
+ }
 
 <h2>Taken van deze student</h2>
 
@@ -43,26 +43,29 @@
 
         foreach (var Task in Model)
         {
-            <tr>
-                <td>
-                    @Task.TaskName
-                </td>
-                <td>
-                    @Task.Taskdescription
-                </td>
-                <td>
-                    @Task.Type
-                </td>
-                <td>
-                    @Task.SchoolOrWork
-                </td>
-                <td>
-                    @Task.Appointments.Where(d => d.Task_ID == Task.Student.ID).Select(b => b.BeginDate).FirstOrDefault()
-                </td>
-                <td>
-                    @Html.ActionLink("Keur taken van deze student goed", "Completethemeeting", "Studenten", new { id = Task.ID }, null)
-                </td>
-            </tr>
+    <tr>
+        <td>
+            @Task.TaskName
+        </td>
+        <td>
+            @Task.Taskdescription
+        </td>
+        <td>
+            @Task.Type
+        </td>
+        <td>
+            @Task.SchoolOrWork
+        </td>
+        <td>
+            @Task.Appointments.Where(d => d.Task_ID == Task.Student.ID).Select(b => b.BeginDate).FirstOrDefault()
+        </td>
+        <td>
+            @Html.ActionLink("Keur taken van deze student goed", "Completethemeeting", "Studenten", new { id = Task.ID }, null)
+        </td>
+        <td>
+            @Html.ActionLink("Geef een cijfer", "Applyrating", "Studenten", new { id = Task.Student_ID }, null)
+        </td>
+    </tr>
         }
     }
 </table>

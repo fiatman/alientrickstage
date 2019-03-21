@@ -237,6 +237,30 @@ namespace Stage.AlienTrick.Controllers
             var stm = db.Students.Where(s => s.ID == id).FirstOrDefault();
             Task task = new Task();
 
+            if(takenmodel.Type == "Verlof")
+            {
+                Appointment appointment = new Appointment();
+                
+                task.SchoolOrWork = takenmodel.SchoolOrWork;
+                task.Student_ID = id;
+                task.TaskName = takenmodel.TaskName;
+                task.Taskdescription = takenmodel.TaskDescription;
+                task.Type = takenmodel.Type;
+                task.Rating = takenmodel.Rating;
+                task.TaskApproved = 3;
+                
+                db.Tasks.Add(task);
+                db.SaveChanges();
+
+                
+                appointment.Task_ID = task.ID;
+
+                appointment.BeginDate = takenmodel.BeginDate;
+                appointment.Time = takenmodel.Time;
+                db.Appointments.Add(appointment);
+                db.SaveChanges();
+            }
+
             if (takenmodel.Type == "Afspraak")
             {
                 Appointment appointment = new Appointment();
@@ -312,6 +336,15 @@ namespace Stage.AlienTrick.Controllers
             }
             else
             {
+                if(sdt.Type == "Verlof")
+                {
+                    if (sdt.TaskApproved == 3)
+                    {
+                        sdt.TaskApproved = 2;
+                        db.SaveChanges();
+                        return RedirectToAction("index");
+                    }
+                }
                 if(sdt.Type == "Afspraak")
                 {
                     sdt.TaskApproved = 2;
@@ -348,6 +381,31 @@ namespace Stage.AlienTrick.Controllers
             return RedirectToAction("index");
 
             
+        }
+
+        [HttpGet]
+        public ActionResult Applyrating(int? id , Models.Takenmodel takenmodel , Task task)
+        {
+            var ttb = db.Tasks.Where(d => d.Student_ID == id).FirstOrDefault();
+            takenmodel.TaskName = ttb.TaskName;
+            takenmodel.TaskDescription = ttb.Taskdescription;
+            takenmodel.taskApproved = ttb.TaskApproved;
+            takenmodel.Rating = ttb.Rating;
+            takenmodel.Type = ttb.Type;
+            return View(takenmodel);
+        }
+
+        [HttpPost]
+        public ActionResult Applyrating(int? id , [Bind(Include ="Rating")] Task task , Models.Takenmodel takenmodel)
+        {
+            var ttb = db.Tasks.Where(d => d.Student_ID == id).FirstOrDefault();
+
+            ttb.Rating = takenmodel.Rating;
+            db.Entry(ttb).State = EntityState.Modified;
+            db.SaveChanges();
+
+            return View("index");
+
         }
     }
      

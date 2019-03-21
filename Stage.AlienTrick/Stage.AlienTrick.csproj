@@ -167,6 +167,18 @@
     <Compile Include="Migrations\201903191315508_hoi.Designer.cs">
       <DependentUpon>201903191315508_hoi.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903211306447_dng.cs" />
+    <Compile Include="Migrations\201903211306447_dng.Designer.cs">
+      <DependentUpon>201903211306447_dng.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903211308436_da.cs" />
+    <Compile Include="Migrations\201903211308436_da.Designer.cs">
+      <DependentUpon>201903211308436_da.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903211311579_kadkh.cs" />
+    <Compile Include="Migrations\201903211311579_kadkh.Designer.cs">
+      <DependentUpon>201903211311579_kadkh.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Messagemodel.cs" />
     <Compile Include="Models\Stagemodel.cs" />
@@ -235,6 +247,7 @@
     <Content Include="Views\Studenten\CreateMeeting.cshtml" />
     <Content Include="Views\Studenten\MeetingCompleted.cshtml" />
     <Content Include="Views\Studenten\Completethemeeting.cshtml" />
+    <Content Include="Views\Studenten\Applyrating.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -270,6 +283,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903191315508_hoi.resx">
       <DependentUpon>201903191315508_hoi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903211306447_dng.resx">
+      <DependentUpon>201903211306447_dng.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903211308436_da.resx">
+      <DependentUpon>201903211308436_da.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903211311579_kadkh.resx">
+      <DependentUpon>201903211311579_kadkh.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
