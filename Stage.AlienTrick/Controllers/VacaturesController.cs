@@ -108,5 +108,18 @@ namespace Stage.AlienTrick.Controllers
             }
             base.Dispose(disposing);
         }
+
+        [HttpPost]
+        public ActionResult Applyforjob(int? id, int vcid, Student student, JobApplication jobApplication)
+        {
+            student = db.Students.Where(t => t.ID == id).FirstOrDefault();
+            jobApplication.CandidateName = student.Firstname;
+            jobApplication.CandidateLastName = student.Lastname;
+            jobApplication.ApplicationDate = DateTime.Now;
+            jobApplication.Vacature_id = vcid;
+            db.JobApplications.Add(jobApplication);
+            db.SaveChanges();
+            return RedirectToAction("index");
+        }
     }
 }

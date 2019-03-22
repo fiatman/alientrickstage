@@ -458,3 +458,7 @@ C:\Users\Smits\Documents\GitHub\alientrickstage\Stage.AlienTrick\obj\Debug\Stage
 C:\Users\Smits\Documents\GitHub\alientrickstage\Stage.AlienTrick\obj\Debug\Stage.AlienTrick.Migrations.dng.resources
 C:\Users\Smits\Documents\GitHub\alientrickstage\Stage.AlienTrick\obj\Debug\Stage.AlienTrick.Migrations.da.resources
 C:\Users\Smits\Documents\GitHub\alientrickstage\Stage.AlienTrick\obj\Debug\Stage.AlienTrick.Migrations.kadkh.resources
+C:\Users\Smits\Documents\GitHub\alientrickstage\Stage.AlienTrick\obj\Debug\Stage.AlienTrick.Migrations.hoi1.resources
+C:\Users\Smits\Documents\GitHub\alientrickstage\Stage.AlienTrick\obj\Debug\Stage.AlienTrick.Migrations.time.resources
+C:\Users\Smits\Documents\GitHub\alientrickstage\Stage.AlienTrick\obj\Debug\Stage.AlienTrick.Migrations.id.resources
+C:\Users\Smits\Documents\GitHub\alientrickstage\Stage.AlienTrick\obj\Debug\Stage.AlienTrick.Migrations.nieuw.resources

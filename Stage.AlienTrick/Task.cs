@@ -40,6 +40,10 @@ namespace Stage.AlienTrick
 
         public int? Student_ID { get; set; }
 
+        public DateTime BeginDate { get; set; }
+
+        public TimeSpan  Time { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Appointment> Appointments { get; set; }
 

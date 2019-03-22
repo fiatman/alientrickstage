@@ -21,5 +21,7 @@ namespace Stage.AlienTrick
         public string CandidateLastName { get; set; }
 
         public string Enclosureurl { get; set; }
+
+        public int Vacature_id { get; set; }
     }
 }

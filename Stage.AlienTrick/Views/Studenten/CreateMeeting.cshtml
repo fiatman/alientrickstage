@@ -11,12 +11,18 @@
 
 @using (Html.BeginForm("CreateMeeting", "Studenten", FormMethod.Post, null))
 {
+
+    var Schoolofwerk = new SelectListItem[]
+{
+new SelectListItem { Value = "1", Text = "Schoolgerelateerd" },
+new SelectListItem { Value = "2", Text = "Werkgerelateerd" },
+};
     var afspraakTypen = new SelectListItem[]
-    {
+{
 new SelectListItem { Value = "Taak", Text = "Taak" },
 new SelectListItem { Value = "Afspraak", Text = "Afspraak" },
 new SelectListItem { Value = "Verlof", Text = "Verlof" }
-    };
+};
     @Html.HiddenFor(m => m.student.ID)
     @Html.AntiForgeryToken()
 
@@ -53,7 +59,7 @@ new SelectListItem { Value = "Verlof", Text = "Verlof" }
     <div class="form-group">
         @Html.LabelFor(model => model.SchoolOrWork, "School gerelateerd = 1 Werk gerelateerd = 2", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.SchoolOrWork, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.DropDownListFor(model => model.SchoolOrWork, Schoolofwerk, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.SchoolOrWork, "", new { @class = "text-danger" })
         </div>
     </div>

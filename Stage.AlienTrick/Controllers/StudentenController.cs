@@ -240,7 +240,8 @@ namespace Stage.AlienTrick.Controllers
             if(takenmodel.Type == "Verlof")
             {
                 Appointment appointment = new Appointment();
-                
+                task.Time = takenmodel.Time;
+                task.BeginDate = takenmodel.BeginDate;
                 task.SchoolOrWork = takenmodel.SchoolOrWork;
                 task.Student_ID = id;
                 task.TaskName = takenmodel.TaskName;
@@ -251,20 +252,13 @@ namespace Stage.AlienTrick.Controllers
                 
                 db.Tasks.Add(task);
                 db.SaveChanges();
-
-                
-                appointment.Task_ID = task.ID;
-
-                appointment.BeginDate = takenmodel.BeginDate;
-                appointment.Time = takenmodel.Time;
-                db.Appointments.Add(appointment);
-                db.SaveChanges();
+                return RedirectToAction("index");
             }
 
             if (takenmodel.Type == "Afspraak")
             {
-                Appointment appointment = new Appointment();
-                appointment.BeginDate = takenmodel.BeginDate;
+
+                task.BeginDate = takenmodel.BeginDate;
                 task.SchoolOrWork = takenmodel.SchoolOrWork;
                 task.Student_ID = id;
                 task.TaskName = takenmodel.TaskName;
@@ -406,6 +400,19 @@ namespace Stage.AlienTrick.Controllers
 
             return View("index");
 
+        }
+
+        [HttpPost]
+        public ActionResult Applyforjob(int? id , int vcid , Student student , JobApplication jobApplication)
+        {
+            student = db.Students.Where(t => t.ID == id).FirstOrDefault();
+            jobApplication.CandidateName = student.Firstname;
+            jobApplication.CandidateLastName = student.Lastname;
+            jobApplication.ApplicationDate = DateTime.Now;
+            jobApplication.Vacature_id = vcid;
+            db.JobApplications.Add(jobApplication);
+            db.SaveChanges();
+            return RedirectToAction("index");
         }
     }
      
