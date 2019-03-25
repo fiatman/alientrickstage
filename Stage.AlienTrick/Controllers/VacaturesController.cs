@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Stage.AlienTrick.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -11,8 +12,10 @@ namespace Stage.AlienTrick.Controllers
 {
     public class VacaturesController : Controller
     {
+        
         private PortalEntities db = new PortalEntities();
         // GET: Vacatures
+        [AllowAnonymous]
         public ActionResult Index(string searchString)
         {
             var vacature = db.Vacatures.ToList();
@@ -27,12 +30,14 @@ namespace Stage.AlienTrick.Controllers
             return View(vacature);
         }
         //Create
+        [Rights(AllowAdmins = true)]
         public ActionResult Create()
         {
             return View();
         }
 
         //Post Create
+        [Rights(AllowAdmins = true)]
         [HttpPost]
         [ValidateAntiForgeryToken]
 
@@ -46,8 +51,9 @@ namespace Stage.AlienTrick.Controllers
             }
             return View("index");
         }
-        
+
         //Edit
+        [Rights(AllowAdmins = true)]
         public ActionResult Edit(int? ID)
         {
             if (ID == null)
@@ -62,6 +68,7 @@ namespace Stage.AlienTrick.Controllers
             return View(vacature);
         }
         //Edit post
+        [Rights(AllowAdmins = true)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,StageTitle,AmountofHours,AmountofStudents,StageDescription")] Vacature vacature)
@@ -76,6 +83,7 @@ namespace Stage.AlienTrick.Controllers
         }
 
         //Delete
+        [Rights(AllowAdmins = true)]
 
         public ActionResult Delete(int? ID)
         {
@@ -90,6 +98,7 @@ namespace Stage.AlienTrick.Controllers
             }
             return View(vacature);
         }
+        [Rights(AllowAdmins = true)]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int? ID)
@@ -108,7 +117,7 @@ namespace Stage.AlienTrick.Controllers
             }
             base.Dispose(disposing);
         }
-
+        [AllowAnonymous]
         [HttpPost]
         public ActionResult Applyforjob(int? id, int vcid, Student student, JobApplication jobApplication)
         {

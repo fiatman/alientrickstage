@@ -18,8 +18,10 @@ namespace Stage.AlienTrick.Controllers
 
     public class StudentenController : Controller
     {
+        
         private PortalEntities db = new PortalEntities();
         // GET: Studenten
+        [Rights(AllowStudents = true, AllowAdmins = true)]
         public ActionResult Index(string searchString)
         {
             var studentenCollection = db.Students.AsQueryable();
@@ -32,12 +34,13 @@ namespace Stage.AlienTrick.Controllers
             return View(studentenCollection.ToArray());
         }
         //create
-
+        [Rights(AllowAdmins = true)]
         public ActionResult Create()
         {
             return View();
         }
 
+        [Rights(AllowAdmins = true)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Firstname,Lastname,Age,City,School,Nationality,Studentnumber,Compensation,Description,Progress, AmountOfhoursToComplete, AmountofbookedHours")] Student students)
@@ -67,6 +70,7 @@ namespace Stage.AlienTrick.Controllers
             return RedirectToAction("Index");
         }
         // Uren Goedkeuren
+        [Rights(AllowAdmins = true)]
         [HttpGet]
         public ActionResult AcceptHours(int? id, Models.Voortgangsmodel voortgangsmodel)
         {
@@ -78,6 +82,7 @@ namespace Stage.AlienTrick.Controllers
             return View(voortgangsmodel);
         }
         [HttpPost]
+        [Rights(AllowAdmins = true)]
         public ActionResult AcceptHours(int? id, Models.Voortgangsmodel voortgangsmodel, Student studenthoursaccept)
         {
             var studentaccepthours = db.Students.Where(s => s.ID == id).FirstOrDefault();
@@ -102,8 +107,9 @@ namespace Stage.AlienTrick.Controllers
 
             return RedirectToAction("Index");
         }
-    
+
         //Edit
+        [Rights(AllowAdmins = true)]
         public ActionResult Edit(int? id)
         {
             if(id == null)
@@ -119,6 +125,7 @@ namespace Stage.AlienTrick.Controllers
             return View();
         }
 
+        [Rights(AllowAdmins = true)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit ([Bind(Include ="ID, Firstname, Lastname, Age, City, School, Nationality, Studentnumber, Compensation, Description, Progress, AmountOfhoursToComplete, AmountofbookedHours")] Student student)
@@ -133,6 +140,7 @@ namespace Stage.AlienTrick.Controllers
             return View(student);
         }
 
+        [Rights(AllowStudents = true, AllowAdmins = true)]
         public ActionResult GetProgress(Student student, Models.Voortgangsmodel voortgangsmodel)
         {
 
@@ -146,13 +154,13 @@ namespace Stage.AlienTrick.Controllers
             return View(voortgangsmodel);
             
         }
-
+        [Rights(AllowStudents = true, AllowAdmins = true)]
         private double GetStudentProcessPercentage(Student s)
         {
             return 100.00 / s.AmountOfhoursToComplete * s.AmountofbookedHours;
         }
 
-
+        [Rights(AllowStudents = true, AllowAdmins = true)]
         public ActionResult AddHours(int? id, Student studentstage )
         {
             
@@ -182,7 +190,8 @@ namespace Stage.AlienTrick.Controllers
 
             }
         }
-    
+
+        [Rights(AllowStudents = true, AllowAdmins = true)]
         [HttpPost]
         public ActionResult AddHours(Models.Voortgangsmodel v)
         {
@@ -212,7 +221,7 @@ namespace Stage.AlienTrick.Controllers
             });
         }
 
-
+        [Rights (AllowStudents = true , AllowAdmins = true)]
         public ActionResult PlanMeeting(string searchString2 , Models.Takenmodel takenmodel)
         {
                 var studentens = db.Students.ToList();
@@ -228,12 +237,14 @@ namespace Stage.AlienTrick.Controllers
                 return View(result);
             
         }
+        [Rights(AllowStudents = true, AllowAdmins = true)]
         [HttpGet]
         public ActionResult CreateMeeting(int? id, Models.Takenmodel takenmodel)
         {
             return View(takenmodel);
         }
 
+        [Rights(AllowStudents = true, AllowAdmins = true)]
         [HttpPost]
         public ActionResult CreateMeeting(int? id , Models.Takenmodel takenmodel, Student student)
         {
@@ -296,6 +307,7 @@ namespace Stage.AlienTrick.Controllers
 
         }
 
+        [Rights(AllowStudents = true, AllowAdmins = true)]
         [HttpGet]
         public ActionResult MeetingCompleted(int? id , Models.Takenmodel takenmodel , string SearchString)
         {
@@ -311,6 +323,7 @@ namespace Stage.AlienTrick.Controllers
 
 
         }
+        [Rights(AllowAdmins = true)]
         [HttpGet]
         public ActionResult Completethemeeting(int? id)
         {
@@ -323,6 +336,7 @@ namespace Stage.AlienTrick.Controllers
             takenmodel.Type = taak.Type;
             return View(takenmodel);
         }
+        [Rights(AllowAdmins = true)]
         [HttpPost]
         public ActionResult Completethemeeting(int? id , Models.Takenmodel takenmodel , Student student)
         {
@@ -369,6 +383,7 @@ namespace Stage.AlienTrick.Controllers
             }
         }
 
+        [Rights(AllowAdmins = true)]
         [HttpPost]
         public ActionResult Approvetask(int? id , Models.Takenmodel takenmodel, Task task)
         {
@@ -380,6 +395,7 @@ namespace Stage.AlienTrick.Controllers
             
         }
 
+        [Rights(AllowAdmins = true)]
         [HttpGet]
         public ActionResult Applyrating(int? id , Models.Takenmodel takenmodel , Task task)
         {
@@ -392,6 +408,7 @@ namespace Stage.AlienTrick.Controllers
             return View(takenmodel);
         }
 
+        [Rights(AllowAdmins = true)]
         [HttpPost]
         public ActionResult Applyrating(int? id , [Bind(Include ="Rating")] Task task , Models.Takenmodel takenmodel)
         {
@@ -405,6 +422,8 @@ namespace Stage.AlienTrick.Controllers
 
         }
 
+        [Rights(AllowAdmins = true)]
+        [AllowAnonymous]
         [HttpPost]
         public ActionResult Applyforjob(int? id , int vcid , Student student , JobApplication jobApplication)
         {
