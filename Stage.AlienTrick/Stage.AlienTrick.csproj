@@ -136,6 +136,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Attributes\RightsAttribute.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\StagesController.cs" />
@@ -195,6 +196,10 @@
     <Compile Include="Migrations\201903221421532_nieuw.Designer.cs">
       <DependentUpon>201903221421532_nieuw.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903250827511_windows authentication.cs" />
+    <Compile Include="Migrations\201903250827511_windows authentication.Designer.cs">
+      <DependentUpon>201903250827511_windows authentication.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Messagemodel.cs" />
     <Compile Include="Models\Stagemodel.cs" />
@@ -206,6 +211,7 @@
     <Compile Include="Student.cs" />
     <Compile Include="Task.cs" />
     <Compile Include="Vacature.cs" />
+    <Compile Include="WindowsUsersAndRoles.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -320,6 +326,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903221421532_nieuw.resx">
       <DependentUpon>201903221421532_nieuw.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903250827511_windows authentication.resx">
+      <DependentUpon>201903250827511_windows authentication.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

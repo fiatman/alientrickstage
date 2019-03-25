@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using Stage.AlienTrick.Attributes;
+using System.Web;
 using System.Web.Mvc;
 
 namespace Stage.AlienTrick
@@ -8,6 +9,8 @@ namespace Stage.AlienTrick
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+
+            filters.Add(new RightsAttribute());
         }
     }
 }

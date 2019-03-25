@@ -20,6 +20,8 @@ namespace Stage.AlienTrick
         public virtual DbSet<Task> Tasks { get; set; }
         public virtual DbSet<Vacature> Vacatures { get; set; }
 
+        public virtual DbSet<WindowsUsersAndRoles> WindowsUsersAndRoles { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Stage>()
