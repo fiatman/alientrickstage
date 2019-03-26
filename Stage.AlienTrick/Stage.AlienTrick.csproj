@@ -200,8 +200,17 @@
     <Compile Include="Migrations\201903250827511_windows authentication.Designer.cs">
       <DependentUpon>201903250827511_windows authentication.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903260928202_datums.cs" />
+    <Compile Include="Migrations\201903260928202_datums.Designer.cs">
+      <DependentUpon>201903260928202_datums.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903261055091_ding.cs" />
+    <Compile Include="Migrations\201903261055091_ding.Designer.cs">
+      <DependentUpon>201903261055091_ding.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Messagemodel.cs" />
+    <Compile Include="Models\Sollicitatiemodel.cs" />
     <Compile Include="Models\Stagemodel.cs" />
     <Compile Include="Models\Takenmodel.cs" />
     <Compile Include="Models\Voortgangsmodel.cs" />
@@ -270,9 +279,12 @@
     <Content Include="Views\Studenten\MeetingCompleted.cshtml" />
     <Content Include="Views\Studenten\Completethemeeting.cshtml" />
     <Content Include="Views\Studenten\Applyrating.cshtml" />
+    <Content Include="Views\Studenten\Applyforjob.cshtml" />
+    <Content Include="Views\Vacatures\Applyforjob.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Sollicitaties\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -329,6 +341,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903250827511_windows authentication.resx">
       <DependentUpon>201903250827511_windows authentication.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903260928202_datums.resx">
+      <DependentUpon>201903260928202_datums.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903261055091_ding.resx">
+      <DependentUpon>201903261055091_ding.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

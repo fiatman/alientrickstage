@@ -49,6 +49,6 @@ namespace Stage.AlienTrick
 
         public virtual Student Student { get; set; }
         public byte TaskApproved { get; set; }
-        // public f MyProperty { get; set; }
+        
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Stage.AlienTrick.Attributes;
+using Stage.AlienTrick.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -109,6 +110,34 @@ namespace Stage.AlienTrick.Controllers
             return RedirectToAction("index");
 
         }
+        [Rights(AllowAdmins = true)]
+        [AllowAnonymous]
+        [HttpGet]
+        public ActionResult Applyforjob(int? id, int vcid, Student student, JobApplication jobApplication, Sollicitatiemodel sollicitatiemodel)
+        {
+            return View(sollicitatiemodel);
+        }
+
+
+        [Rights(AllowAdmins = true)]
+        [AllowAnonymous]
+        [HttpPost]
+        public ActionResult Applyforjob(int? id, int vcid, JobApplication jobApplication, Sollicitatiemodel sollicitatiemodel)
+        {
+            jobApplication.CandidateName = sollicitatiemodel.CandidateName;
+            jobApplication.CandidateLastName = sollicitatiemodel.CandidateLastName;
+            jobApplication.CandidateMailadress = sollicitatiemodel.CandidateMailadress;
+            jobApplication.ApplicationDate = DateTime.Now;
+            jobApplication.CandidatePhoneNumber = sollicitatiemodel.Candidatephonenumber;
+            jobApplication.Enclosureurl = sollicitatiemodel.Enclosureurl;
+            jobApplication.Vacature_id = vcid;
+
+            db.JobApplications.Add(jobApplication);
+            db.SaveChanges();
+
+
+            return RedirectToAction("index");
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -117,18 +146,6 @@ namespace Stage.AlienTrick.Controllers
             }
             base.Dispose(disposing);
         }
-        [AllowAnonymous]
-        [HttpPost]
-        public ActionResult Applyforjob(int? id, int vcid, Student student, JobApplication jobApplication)
-        {
-            student = db.Students.Where(t => t.ID == id).FirstOrDefault();
-            jobApplication.CandidateName = student.Firstname;
-            jobApplication.CandidateLastName = student.Lastname;
-            jobApplication.ApplicationDate = DateTime.Now;
-            jobApplication.Vacature_id = vcid;
-            db.JobApplications.Add(jobApplication);
-            db.SaveChanges();
-            return RedirectToAction("index");
-        }
+       
     }
 }

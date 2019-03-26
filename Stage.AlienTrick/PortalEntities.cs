@@ -57,6 +57,10 @@ namespace Stage.AlienTrick
             modelBuilder.Entity<Appointment>()
                 .Property(f => f.BeginDate)
                 .HasColumnType("datetime");
+
+            modelBuilder.Entity<JobApplication>()
+                .Property(f => f.ApplicationDate)
+                .HasColumnType("datetime");
         }
     }
 }

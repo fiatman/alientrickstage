@@ -9,8 +9,9 @@ namespace Stage.AlienTrick
     public partial class JobApplication
     {
         public int ID { get; set; }
-
+        
         public DateTime ApplicationDate { get; set; }
+        public DateTime Meetingdate { get; set; }
 
         public string CandidateMailadress { get; set; }
 

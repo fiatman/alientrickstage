@@ -11,7 +11,9 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using static Stage.AlienTrick.PortalEntities;
-
+using System.IO;
+using Stage.AlienTrick.Models;
+using System.Web.UI.WebControls;
 
 namespace Stage.AlienTrick.Controllers
 {
@@ -424,21 +426,36 @@ namespace Stage.AlienTrick.Controllers
 
         [Rights(AllowAdmins = true)]
         [AllowAnonymous]
-        [HttpPost]
-        public ActionResult Applyforjob(int? id , int vcid , Student student , JobApplication jobApplication)
+        [HttpGet]
+        public ActionResult Applyforjob(int? id, int vcid, Student student, JobApplication jobApplication , Sollicitatiemodel sollicitatiemodel)
         {
-            student = db.Students.Where(t => t.ID == id).FirstOrDefault();
-            jobApplication.CandidateName = student.Firstname;
-            jobApplication.CandidateLastName = student.Lastname;
+            return View(sollicitatiemodel);
+        }
+
+
+        [Rights(AllowAdmins = true)]
+        [AllowAnonymous]
+        [HttpPost]
+        public ActionResult Applyforjob(int? id , int vcid , JobApplication jobApplication , Sollicitatiemodel sollicitatiemodel)
+        {
+            jobApplication.CandidateName = sollicitatiemodel.CandidateName;
+            jobApplication.CandidateLastName = sollicitatiemodel.CandidateLastName;
+            jobApplication.CandidateMailadress = sollicitatiemodel.CandidateMailadress;
             jobApplication.ApplicationDate = DateTime.Now;
+            jobApplication.CandidatePhoneNumber = sollicitatiemodel.Candidatephonenumber;
+            jobApplication.Enclosureurl = sollicitatiemodel.Enclosureurl;
             jobApplication.Vacature_id = vcid;
+
             db.JobApplications.Add(jobApplication);
             db.SaveChanges();
+
+            
             return RedirectToAction("index");
         }
     }
-     
+
 }
+     
         
  
 

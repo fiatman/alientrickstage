@@ -51,7 +51,7 @@
             @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
         </td>
         <td>
-            @Html.ActionLink("Solliciteer op deze vacature", "Applyforjob", new { id = item.student.ID , vcid = item.ID }) |
+            @Html.ActionLink("Solliciteer op deze vacature", "Applyforjob", new { vcid = item.ID }) |
         </td>
     </tr>
     }
