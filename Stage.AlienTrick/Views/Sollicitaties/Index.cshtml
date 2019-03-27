@@ -7,7 +7,7 @@
 
 <br />
 <p>
-    <a class="FontAwesomeButton" href="@Url.Action("Create", "Studenten", null)"><i class="far fa-plus-square"></i> Nieuwe Student</a>
+    <a class="FontAwesomeButton" href="@Url.Action("Create", "Vacatures", null)"><i class="far fa-plus-square"></i> Nieuwe Vacature</a>
 </p>
 @Html.Raw(TempData["msg"])
 <form asp-controller="Studenten" asp-action="Index" class="form-inline">
@@ -38,9 +38,6 @@
         <th>
             Gekoppelde vacature
         </th>
-        <th>
-            Gespreksdatum
-        </th>
         <th></th>
     </tr>
 
@@ -51,7 +48,7 @@
     else
     {
 
-        foreach (var s in Model)
+        foreach (var s in Model.Where(d => d.ApplyAnswered == 0))
         {
     <tr>
         <td>
@@ -84,6 +81,74 @@
         </td>
 
     </tr>
+        }
+    }
+</table>
+<br/>
+<br/>
+<h2> Al geaccepteerde sollicitaties</h2>
+<table class="table">
+    <tr>
+        <th>
+            Voornaam
+        </th>
+        <th>
+            Achternaam
+        </th>
+        <th>
+            Telefoonnummer
+        </th>
+        <th>
+            Mailadres
+        </th>
+        <th>
+            Bijgevoegd bestand
+        </th>
+        <th>
+            Sollicitatiedatum
+        </th>
+        <th>
+            Gekoppelde vacature
+        </th>
+        <th></th>
+    </tr>
+
+    @if (Model == null)
+    {
+        <text>Geen sollicitaties geselecteerd</text>
+    }
+    else
+    {
+
+        foreach (var s in Model.Where(d => d.ApplyAnswered == 1))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(m => s.CandidateName)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => s.CandidateLastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => s.CandidatePhoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => s.CandidateMailadress)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => s.Enclosureurl)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => s.ApplicationDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => s.Vacature_id)
+                </td>
+                <td>
+                    @Html.ActionLink("Sollicitant toch verwijderen", "SendInvitation", "Sollicitaties", new { id = s.ID, type = 2 }, null)
+                </td>
+
+            </tr>
         }
     }
 </table>

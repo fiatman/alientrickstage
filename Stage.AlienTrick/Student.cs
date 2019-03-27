@@ -69,5 +69,8 @@ namespace Stage.AlienTrick
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Task> Tasks { get; set; }
+        public string Windowsuseraccount { get; set; }
+
+
     }
 }

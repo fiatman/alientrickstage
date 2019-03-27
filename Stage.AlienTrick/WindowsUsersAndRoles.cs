@@ -16,7 +16,8 @@
         public byte IsAdmin { get; set; }
         public byte IsSupervisor { get; set; }
 
-        public ICollection<Student> Student { get; set; }
+    
+
 
     }
 }

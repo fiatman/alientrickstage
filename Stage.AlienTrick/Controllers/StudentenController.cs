@@ -35,6 +35,17 @@ namespace Stage.AlienTrick.Controllers
 
             return View(studentenCollection.ToArray());
         }
+
+        public ActionResult Persoonlijkevoortgang(Persoonlijkmodel persoonlijkmodel , Student student , WindowsUsersAndRoles windows)
+        {
+            //var studentuser = db.WindowsUsersAndRoles.Where(d => d.WindowsUserAccount == db.Students.Find().Windowsuseraccount);
+            var userstudent = db.Students.Where(d => d.Windowsuseraccount.Equals(User.Identity.Name)).FirstOrDefault();
+            var Student_ID = db.Tasks.Select(s => s.Student_ID);
+
+            persoonlijkmodel.voortgang = userstudent.AmountOfhoursToComplete / 100 * userstudent.AmountofbookedHours;
+            persoonlijkmodel.task = userstudent.Tasks.Where(d => d.Student_ID == userstudent.ID).ToList();
+            return View(persoonlijkmodel);
+        }
         //create
         [Rights(AllowAdmins = true)]
         public ActionResult Create()
@@ -298,6 +309,7 @@ namespace Stage.AlienTrick.Controllers
                 task.Taskdescription = takenmodel.TaskDescription;
                 task.Type = takenmodel.Type;
                 task.Rating = takenmodel.Rating;
+
                 task.TaskApproved = 0;
 
 
@@ -332,58 +344,37 @@ namespace Stage.AlienTrick.Controllers
              Models.Takenmodel takenmodel = new Models.Takenmodel();
              var taak = db.Tasks.Where(d => d.ID == id).FirstOrDefault();
              var studentstask = db.Students.Where(t => t.ID == taak.Student_ID).FirstOrDefault();
-            takenmodel.student = studentstask;
-            takenmodel.TaskName = taak.TaskName;
-            takenmodel.TaskDescription = taak.Taskdescription;
-            takenmodel.Type = taak.Type;
-            return View(takenmodel);
+            taak.TaskApproved = 2;
+            db.SaveChanges();
+            return RedirectToAction("index");
         }
-        [Rights(AllowAdmins = true)]
-        [HttpPost]
-        public ActionResult Completethemeeting(int? id , Models.Takenmodel takenmodel , Student student)
+
+        [Rights(AllowAdmins = true , AllowStudents = true)]
+        public ActionResult Inleveren(int? id)
         {
-            var sdt = db.Tasks.Where(d => d.Student_ID == id).FirstOrDefault();
-            if (sdt == null)
-            {
-                return RedirectToAction("index");
+            Task task = db.Tasks.Where(t => t.ID == id).FirstOrDefault();
+            if (task.TaskApproved == 0)
+            { 
+            task.TaskApproved = 1;
+            db.SaveChanges();
+            TempData["msg"] = "<script>alert('Jou taak is ingeleverd!');</script>";
             }
-            else
+
+            if(task.TaskApproved == 1)
             {
-                if(sdt.Type == "Verlof")
-                {
-                    if (sdt.TaskApproved == 3)
-                    {
-                        sdt.TaskApproved = 2;
-                        db.SaveChanges();
-                        return RedirectToAction("index");
-                    }
-                }
-                if(sdt.Type == "Afspraak")
-                {
-                    sdt.TaskApproved = 2;
-                    db.SaveChanges();
-                    TempData["msg"] = "<script>alert('Omdat dit een afspraak was, is deze meteen goedgekeurd!');</script>";
-                    return RedirectToAction("index");
-                }
-                if(sdt.TaskApproved == 1)
-                {
-                    TempData["msg"] = "<script>alert('Deze taak is al afgerond!');</script>";
-                    return RedirectToAction("index");
-                }
-                if(sdt.TaskApproved == 2)
-                {
-                    TempData["msg"] = "<script>alert('Jouw taak is al goedgekeurd');</script>";
-                    return RedirectToAction("index");
-                }
-                else
-                {
-                    sdt.TaskApproved = 1;
-                    db.SaveChanges();
-                    TempData["msg"] = "<script>alert('Jouw taak is ingeleverd, nu wachten op goedkeuring');</script>";
-                    return RedirectToAction("index");
-                }
+                TempData["msg"] = "<script>alert('Je hebt deze taak al ingeleverd!');</script>";
             }
+
+            if(task.TaskApproved == 3)
+            {
+                TempData["msg"] = "<script>alert('Omdat dit een afspraak was is deze meteen goedgekeurd!');</script>";
+                task.TaskApproved = 2;
+                db.SaveChanges();
+            }
+            return RedirectToAction("persoonlijkevoortgang");
         }
+        
+       
 
         [Rights(AllowAdmins = true)]
         [HttpPost]
@@ -451,6 +442,29 @@ namespace Stage.AlienTrick.Controllers
 
             
             return RedirectToAction("index");
+        }
+        [HttpGet]
+        public ActionResult CreateMeetingstudent(int? id , Takenmodel takenmodel)
+        {
+            return View(takenmodel);
+        }
+        [HttpPost]
+        public ActionResult CreateMeetingstudent(int ID, Takenmodel takenmodel , WindowsUsersAndRoles windows)
+
+        {
+            Task task = new Task();
+            task.Stagebegeleider = takenmodel.Stagebegeleider;
+            task.BeginDate = takenmodel.BeginDate;
+            task.TaskName = takenmodel.TaskName;
+            task.Taskdescription = takenmodel.TaskDescription;
+            task.Type = "Afspraak";
+            task.TaskApproved = 0;
+            db.SaveChanges();
+
+            var apmt = db.Appointments.Where(d => d.Task_ID == d.Task.ID).FirstOrDefault();
+            apmt.Task_ID = task.ID;
+            db.SaveChanges();
+            return RedirectToAction("Persoonlijkevoortgang");
         }
     }
 

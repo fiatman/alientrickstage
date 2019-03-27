@@ -1,0 +1,88 @@
+﻿@model global::Stage.AlienTrick.Models.Persoonlijkmodel
+@{
+    ViewBag.Title = "Persoonlijkevoortgang";
+}
+
+<h2>Persoonlijkevoortgang</h2>
+@Html.Raw(TempData["msg"])
+
+<h3> jou voortgang op dit moment is: @Model.voortgang %</h3>
+
+
+@Html.ActionLink("klik hier om een afspraak aan te vragen" , "CreateMeetingstudent" , "studenten")
+
+<h3> Dit zijn jou taken</h3>
+<table class="table" style="height: 200px; width: 200px;">
+    <tr>
+        <th>
+            Taaknaam
+        </th>
+        <th>
+            Taakbeschrijving
+        </th>
+        <th>
+            Type
+        </th>
+        <th>
+            School of werk
+        </th>
+        <th>
+            Status
+        </th>
+        <th>
+            Goedgekeurd
+        </th>
+        <th>
+            Cijfer
+        </th>
+        <th>
+            Datum
+        </th>
+        <th>
+            Tijd
+        </th>
+        <th></th>
+    </tr>
+
+    @if (Model == null)
+    {
+        <text>Geen studenten geselecteerd</text>
+    }
+    else
+    {
+
+        foreach (var t in Model.task)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(m => t.TaskName)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => t.Taskdescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => t.SchoolOrWork)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => t.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => t.TaskApproved)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => t.Rating)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => t.BeginDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => t.Time)
+                </td>
+                <td>
+                    @Html.ActionLink("Voltooi taak of afspraak", "Inleveren", "Studenten", new { id = t.ID }, null)
+                </td>
+
+            </tr>
+        }
+    }
+</table>

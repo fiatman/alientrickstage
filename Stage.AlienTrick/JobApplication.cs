@@ -23,5 +23,6 @@ namespace Stage.AlienTrick
         public string Enclosureurl { get; set; }
 
         public int Vacature_id { get; set; }
+        public byte ApplyAnswered { get; set; }
     }
 }

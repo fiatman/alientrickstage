@@ -213,8 +213,21 @@
     <Compile Include="Migrations\201903271027033_hoi2.Designer.cs">
       <DependentUpon>201903271027033_hoi2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903271227594_yes.cs" />
+    <Compile Include="Migrations\201903271227594_yes.Designer.cs">
+      <DependentUpon>201903271227594_yes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903271333329_ding1.cs" />
+    <Compile Include="Migrations\201903271333329_ding1.Designer.cs">
+      <DependentUpon>201903271333329_ding1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903271542138_ding2.cs" />
+    <Compile Include="Migrations\201903271542138_ding2.Designer.cs">
+      <DependentUpon>201903271542138_ding2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Messagemodel.cs" />
+    <Compile Include="Models\Persoonlijkmodel.cs" />
     <Compile Include="Models\Sollicitatiemodel.cs" />
     <Compile Include="Models\Stagemodel.cs" />
     <Compile Include="Models\Takenmodel.cs" />
@@ -287,6 +300,8 @@
     <Content Include="Views\Studenten\Applyforjob.cshtml" />
     <Content Include="Views\Vacatures\Applyforjob.cshtml" />
     <Content Include="Views\Sollicitaties\Index.cshtml" />
+    <Content Include="Views\Studenten\Persoonlijkevoortgang.cshtml" />
+    <Content Include="Views\Studenten\CreateMeetingstudent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -355,6 +370,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903271027033_hoi2.resx">
       <DependentUpon>201903271027033_hoi2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903271227594_yes.resx">
+      <DependentUpon>201903271227594_yes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903271333329_ding1.resx">
+      <DependentUpon>201903271333329_ding1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903271542138_ding2.resx">
+      <DependentUpon>201903271542138_ding2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

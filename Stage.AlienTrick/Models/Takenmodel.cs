@@ -22,5 +22,6 @@ namespace Stage.AlienTrick.Models
         [Column(TypeName = "datetime")]
         public DateTime BeginDate { get; set; }
         public byte taskApproved { get; set; }
+        public string Stagebegeleider { get; set; }
     }
 }

@@ -61,6 +61,7 @@ namespace Stage.AlienTrick
             modelBuilder.Entity<JobApplication>()
                 .Property(f => f.ApplicationDate)
                 .HasColumnType("datetime");
+
         }
     }
 }

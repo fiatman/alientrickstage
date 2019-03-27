@@ -69,3 +69,126 @@
         }
     }
 </table>
+
+<br />
+<br />
+<h2>Door de student ingeleverde taken</h2>
+<table class="table">
+    <tr>
+        <th>
+            Taak naam
+        </th>
+        <th>
+            Taakbeschrijving
+        </th>
+        <th>
+            Type
+        </th>
+        <th>
+            Werk of School
+        </th>
+        <th>
+            Geplande datum(Afspraak)
+        </th>
+        <th></th>
+    </tr>
+
+    @if (Model == null)
+    {
+        <text>Geen studenten geselecteerd</text>
+    }
+    else
+    {
+
+        foreach (var Task in Model.Where(t => t.TaskApproved == 1))
+        {
+            <tr>
+                <td>
+                    @Task.TaskName
+                </td>
+                <td>
+                    @Task.Taskdescription
+                </td>
+                <td>
+                    @Task.Type
+                </td>
+                <td>
+                    @Task.SchoolOrWork
+                </td>
+                <td>
+                    @Task.Appointments.Where(d => d.Task_ID == Task.Student.ID).Select(b => b.BeginDate).FirstOrDefault()
+                </td>
+                <td>
+                    @Html.ActionLink("Keur taken van deze student goed", "Completethemeeting", "Studenten", new { id = Task.ID }, null)
+                </td>
+                <td>
+                    @Html.ActionLink("Geef een cijfer", "Applyrating", "Studenten", new { id = Task.Student_ID }, null)
+                </td>
+            </tr>
+        }
+    }
+</table>
+<br />
+<br />
+<h2>Goedgekeurde taken</h2>
+<table class="table">
+    <tr>
+        <th>
+            Taak naam
+        </th>
+        <th>
+            Taakbeschrijving
+        </th>
+        <th>
+            Type
+        </th>
+        <th>
+            Werk of School
+        </th>
+        <th>
+            Geplande datum(Afspraak)
+        </th>
+        <th>
+            Cijfer
+        </th>
+        <th></th>
+    </tr>
+
+    @if (Model == null)
+    {
+        <text>Geen studenten geselecteerd</text>
+    }
+    else
+    {
+
+        foreach (var Task in Model.Where(t => t.TaskApproved == 2))
+        {
+    <tr>
+        <td>
+            @Task.TaskName
+        </td>
+        <td>
+            @Task.Taskdescription
+        </td>
+        <td>
+            @Task.Type
+        </td>
+        <td>
+            @Task.SchoolOrWork
+        </td>
+        <td>
+            @Task.Appointments.Where(d => d.Task_ID == Task.Student.ID).Select(b => b.BeginDate).FirstOrDefault()
+        </td>
+        <td>
+            @Task.Rating
+        </td>
+        <td>
+            @Html.ActionLink("Keur taken van deze student goed", "Completethemeeting", "Studenten", new { id = Task.ID }, null)
+        </td>
+        <td>
+            @Html.ActionLink("Geef een cijfer", "Applyrating", "Studenten", new { id = Task.Student_ID }, null)
+        </td>
+    </tr>
+        }
+    }
+</table>

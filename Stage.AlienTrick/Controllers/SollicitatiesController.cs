@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Stage.AlienTrick.Attributes;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -13,6 +15,7 @@ namespace Stage.AlienTrick.Controllers
     {
         PortalEntities db = new PortalEntities();
         // GET: Sollicitaties
+        [Rights(AllowAdmins = true)]
         public ActionResult Index(string searchString)
         {
             var jobsCollection = db.JobApplications.AsQueryable();
@@ -51,7 +54,7 @@ namespace Stage.AlienTrick.Controllers
             if (Approved)
             {
                 mailMessage.Subject = "Uitnodiging Gesprek bij AlienTrick ";
-                mailMessage.Body = "Beste " + gebruiker.FirstOrDefault() + ",\n\n" +
+                mailMessage.Body = "Beste " + gebruiker + ",\n\n" +
                         "Hartelijk dank voor jou sollicitatie bij AlienTrick. We zijn erg benieuwd naar jou en willen je graag uitnodigen voor een gesprek! \n" +
                         "Om een gesprek in te plannen neem contact op met het onderstaande nummer! \n\n" +
                         "" +
@@ -67,8 +70,8 @@ namespace Stage.AlienTrick.Controllers
                         "AlienTrick";
             } else
             {
-                    mailMessage.Subject = "Uitnodiging Gesprek bij AlienTrick ";
-                    mailMessage.Body = "Beste " + gebruiker.FirstOrDefault() + ",\n\n" +
+                    mailMessage.Subject = "Stage sollicitatie bij AlienTrick ";
+                    mailMessage.Body = "Beste " + gebruiker + ",\n\n" +
                         "Hartelijk dank voor jou sollicitatie bij AlienTrick. Tot onze spijt pas je niet bij een van onze vacatures! \n" +
                         "Wij wensen je veel succes in het vervolg van het zoeken naar een stageplaats! \n\n" +
 
@@ -80,20 +83,28 @@ namespace Stage.AlienTrick.Controllers
 
             client.Send(mailMessage);
         }
-
+        [Rights(AllowAdmins = true)]
         public ActionResult SendInvitation(int? id, int? type)
         {
 
             if (type == 1)
             {
                 SentInvitation(true, id);
+                JobApplication jobApplication = db.JobApplications.Find(id);
+                jobApplication.ApplyAnswered = 1;
+                db.Entry(jobApplication).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("index");
+
             }
             else
             {
                 SentInvitation(false, id);
+                JobApplication jobApplication = db.JobApplications.Find(id);
+                db.JobApplications.Remove(jobApplication);
+                db.SaveChanges();
+                return RedirectToAction("index");
             }
-
-            return RedirectToAction("index");
         }
         
         }
