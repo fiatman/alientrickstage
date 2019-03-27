@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Mvc;
 
 namespace Stage.AlienTrick.Controllers
@@ -24,39 +25,33 @@ namespace Stage.AlienTrick.Controllers
             return View(jobsCollection.ToArray());
         }
 
-
-
-        public void Sendinvitation(int? id, int? type)
+        private void SentInvitation(bool Approved, int? UserId)
         {
+            var usermail = db.JobApplications.Where(i => i.ID == UserId)
+                .Select(d => d.CandidateMailadress)
+                .FirstOrDefault();
 
-            if (type == 1)
+            var gebruiker = db.JobApplications.Where(g => g.ID == UserId)
+                .Select(g => g.CandidateName)
+                .FirstOrDefault();
+
+
+            SmtpClient client = new SmtpClient(WebConfigurationManager.AppSettings["SmtpHostname"])
             {
+                Port = 587,
+                EnableSsl = true,
+                Credentials = new NetworkCredential(WebConfigurationManager.AppSettings["MailUser"], WebConfigurationManager.AppSettings["MailPassword"])
+            };
 
-                // verzend een email
-                // string usermail = from i in db.JobApplications where i.ID == id select(i.CandidateMailadress).FirstOrDefault();
-
-                string usermail = db.JobApplications.Where(i => i.ID == id).Select(d => d.CandidateMailadress).FirstOrDefault();
-
-
-                try
-                {
-                    string gebruiker = db.JobApplications.Where(g => g.ID == id).Select(g => g.CandidateName).FirstOrDefault();
-
-
-
-                    SmtpClient client = new SmtpClient("smtp.gmail.com");
-                    client.Port = 587;
-                    client.EnableSsl = true;
-
-
-                    //If you need to authenticate
-                    client.Credentials = new NetworkCredential("alientrickstage@gmail.com", "Alientrick1234");
-                    MailMessage mailMessage = new MailMessage();
-                    MailAddress mailAddress = new MailAddress("noreply@kampementkunja.nl");
-                    mailMessage.From = mailAddress;
-                    mailMessage.To.Add(usermail);
-                    mailMessage.Subject = "Uitnodiging Gesprek bij AlienTrick ";
-                    mailMessage.Body = "Beste " + gebruiker.FirstOrDefault() + ",\n\n" +
+            MailMessage mailMessage = new MailMessage();
+            MailAddress mailAddress = new MailAddress(WebConfigurationManager.AppSettings["MailNoreplyAddr"]);
+            mailMessage.From = mailAddress;
+            mailMessage.To.Add(usermail);
+            
+            if (Approved)
+            {
+                mailMessage.Subject = "Uitnodiging Gesprek bij AlienTrick ";
+                mailMessage.Body = "Beste " + gebruiker.FirstOrDefault() + ",\n\n" +
                         "Hartelijk dank voor jou sollicitatie bij AlienTrick. We zijn erg benieuwd naar jou en willen je graag uitnodigen voor een gesprek! \n" +
                         "Om een gesprek in te plannen neem contact op met het onderstaande nummer! \n\n" +
                         "" +
@@ -70,45 +65,8 @@ namespace Stage.AlienTrick.Controllers
                         "" +
                         "" +
                         "AlienTrick";
-
-
-                    client.Send(mailMessage);
-
-
-
-
-                }
-                catch
-                {
-
-                }
-
-
-
-
-            }
-            if(type == 2)
+            } else
             {
-                string usermail = db.JobApplications.Where(i => i.ID == id).Select(d => d.CandidateMailadress).FirstOrDefault();
-
-
-                try
-                {
-                    string gebruiker = db.JobApplications.Where(g => g.ID == id).Select(g => g.CandidateName).FirstOrDefault();
-
-
-
-                    SmtpClient client = new SmtpClient("smtp.gmail.com");
-                    client.Port = 587;
-                    client.EnableSsl = true;
-
-
-                    //If you need to authenticate
-                    client.Credentials = new NetworkCredential("alientrickstage@gmail.com", "Alientrick1234");
-                    MailMessage mailMessage = new MailMessage();
-                    MailAddress mailAddress = new MailAddress("noreply@kampementkunja.nl");
-                    mailMessage.From = mailAddress;
-                    mailMessage.To.Add(usermail);
                     mailMessage.Subject = "Uitnodiging Gesprek bij AlienTrick ";
                     mailMessage.Body = "Beste " + gebruiker.FirstOrDefault() + ",\n\n" +
                         "Hartelijk dank voor jou sollicitatie bij AlienTrick. Tot onze spijt pas je niet bij een van onze vacatures! \n" +
@@ -118,19 +76,24 @@ namespace Stage.AlienTrick.Controllers
                         "" +
                         "" +
                         "AlienTrick";
-
-
-                    client.Send(mailMessage);
-
-
-
-
-                }
-                catch
-                {
-
-                }
             }
+
+            client.Send(mailMessage);
+        }
+
+        public ActionResult SendInvitation(int? id, int? type)
+        {
+
+            if (type == 1)
+            {
+                SentInvitation(true, id);
+            }
+            else
+            {
+                SentInvitation(false, id);
+            }
+
+            return RedirectToAction("index");
         }
         
         }

@@ -465,3 +465,4 @@ C:\Users\Smits\Documents\GitHub\alientrickstage\Stage.AlienTrick\obj\Debug\Stage
 C:\Users\Smits\Documents\GitHub\alientrickstage\Stage.AlienTrick\obj\Debug\Stage.AlienTrick.Migrations.datums.resources
 C:\Users\Smits\Documents\GitHub\alientrickstage\Stage.AlienTrick\obj\Debug\Stage.AlienTrick.Migrations.ding.resources
 C:\Users\Smits\Documents\GitHub\alientrickstage\Stage.AlienTrick\obj\Debug\Stage.AlienTrick.Migrations.hoi2.resources
+C:\Users\Smits\Documents\GitHub\alientrickstage\Stage.AlienTrick\obj\Debug\Stage.AlienTrick.csprojAssemblyReference.cache

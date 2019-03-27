@@ -75,14 +75,16 @@
         <td>
             @Html.DisplayFor(m => s.Vacature_id)
         </td>
+
         <td>
-            @Html.ActionLink("Nodig sollicitant uit", "Sendinvitation", "Vacatures", new { id = s.ID, type = 1 }, null)
+            @Html.ActionLink("Nodig sollicitant uit", "SendInvitation", "Sollicitaties", new { id = s.ID, type = 1 }, null)
         </td>
         <td>
-            @Html.ActionLink("Weiger sollicitant", "Sendinvitation", "Vacatures", new { id = s.ID, type = 2 }, null)
+            @Html.ActionLink("Weiger sollicitant", "SendInvitation", "Sollicitaties", new { id = s.ID, type = 2 }, null)
         </td>
 
     </tr>
         }
     }
 </table>
+
