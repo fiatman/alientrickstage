@@ -1,0 +1,88 @@
+﻿@model IEnumerable<JobApplication>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Sollicitaties</h2>
+
+<br />
+<p>
+    <a class="FontAwesomeButton" href="@Url.Action("Create", "Studenten", null)"><i class="far fa-plus-square"></i> Nieuwe Student</a>
+</p>
+@Html.Raw(TempData["msg"])
+<form asp-controller="Studenten" asp-action="Index" class="form-inline">
+    <p>
+        <input class="form-control" type="text" placeholder="Achternaam" name="SearchString"> <input class="btn btn-default" type="submit" value="Filter" />
+    </p>
+</form>
+<table class="table">
+    <tr>
+        <th>
+            Voornaam
+        </th>
+        <th>
+            Achternaam
+        </th>
+        <th>
+            Telefoonnummer
+        </th>
+        <th>
+            Mailadres
+        </th>
+        <th>
+            Bijgevoegd bestand
+        </th>
+        <th>
+            Sollicitatiedatum
+        </th>
+        <th>
+            Gekoppelde vacature
+        </th>
+        <th>
+            Gespreksdatum
+        </th>
+        <th></th>
+    </tr>
+
+    @if (Model == null)
+    {
+        <text>Geen sollicitaties geselecteerd</text>
+    }
+    else
+    {
+
+        foreach (var s in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(m => s.CandidateName)
+        </td>
+        <td>
+            @Html.DisplayFor(m => s.CandidateLastName)
+        </td>
+        <td>
+            @Html.DisplayFor(m => s.CandidatePhoneNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(m => s.CandidateMailadress)
+        </td>
+        <td>
+            @Html.DisplayFor(m => s.Enclosureurl)
+        </td>
+        <td>
+            @Html.DisplayFor(m => s.ApplicationDate)
+        </td>
+        <td>
+            @Html.DisplayFor(m => s.Vacature_id)
+        </td>
+        <td>
+            @Html.ActionLink("Nodig sollicitant uit", "Sendinvitation", "Vacatures", new { id = s.ID, type = 1 }, null)
+        </td>
+        <td>
+            @Html.ActionLink("Weiger sollicitant", "Sendinvitation", "Vacatures", new { id = s.ID, type = 2 }, null)
+        </td>
+
+    </tr>
+        }
+    }
+</table>

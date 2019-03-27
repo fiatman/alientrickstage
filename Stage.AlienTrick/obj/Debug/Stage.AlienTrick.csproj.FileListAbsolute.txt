@@ -444,7 +444,6 @@ C:\Users\Smits\Documents\GitHub\alientrickstage\Stage.AlienTrick\bin\Antlr3.Runt
 C:\Users\Smits\Documents\GitHub\alientrickstage\Stage.AlienTrick\bin\System.Diagnostics.DiagnosticSource.xml
 C:\Users\Smits\Documents\GitHub\alientrickstage\Stage.AlienTrick\bin\Microsoft.AspNet.TelemetryCorrelation.xml
 C:\Users\Smits\Documents\GitHub\alientrickstage\Stage.AlienTrick\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\Smits\Documents\GitHub\alientrickstage\Stage.AlienTrick\obj\Debug\Stage.AlienTrick.csprojAssemblyReference.cache
 C:\Users\Smits\Documents\GitHub\alientrickstage\Stage.AlienTrick\obj\Debug\Stage.AlienTrick.csproj.CoreCompileInputs.cache
 C:\Users\Smits\Documents\GitHub\alientrickstage\Stage.AlienTrick\obj\Debug\Stage.AlienTrick.csproj.CopyComplete
 C:\Users\Smits\Documents\GitHub\alientrickstage\Stage.AlienTrick\obj\Debug\Stage.AlienTrick.dll
@@ -465,3 +464,4 @@ C:\Users\Smits\Documents\GitHub\alientrickstage\Stage.AlienTrick\obj\Debug\Stage
 C:\Users\Smits\Documents\GitHub\alientrickstage\Stage.AlienTrick\obj\Debug\Stage.AlienTrick.Migrations.windowsauthentication.resources
 C:\Users\Smits\Documents\GitHub\alientrickstage\Stage.AlienTrick\obj\Debug\Stage.AlienTrick.Migrations.datums.resources
 C:\Users\Smits\Documents\GitHub\alientrickstage\Stage.AlienTrick\obj\Debug\Stage.AlienTrick.Migrations.ding.resources
+C:\Users\Smits\Documents\GitHub\alientrickstage\Stage.AlienTrick\obj\Debug\Stage.AlienTrick.Migrations.hoi2.resources
