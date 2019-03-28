@@ -236,6 +236,7 @@
       <DependentUpon>201903281251417_leu.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Homemodel.cs" />
     <Compile Include="Models\Messagemodel.cs" />
     <Compile Include="Models\Persoonlijkmodel.cs" />
     <Compile Include="Models\Sollicitatiemodel.cs" />
@@ -410,11 +411,11 @@
     <Content Include="Views\Studenten\MeetingCompleted.cshtml" />
     <Content Include="Views\Studenten\Completethemeeting.cshtml" />
     <Content Include="Views\Studenten\Applyrating.cshtml" />
-    <Content Include="Views\Studenten\Applyforjob.cshtml" />
     <Content Include="Views\Vacatures\Applyforjob.cshtml" />
     <Content Include="Views\Sollicitaties\Index.cshtml" />
     <Content Include="Views\Studenten\Persoonlijkevoortgang.cshtml" />
     <Content Include="Views\Studenten\StudentMeeting.cshtml" />
+    <Content Include="Views\Home\Applyforjob.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

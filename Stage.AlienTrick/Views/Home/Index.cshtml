@@ -17,6 +17,10 @@
             scrollTop: $("#columns").offset().top
         }, 2000);
     });
+
+    jQuery(document).ready(function () {
+        jQuery("#navbarid").hide();
+    });
 </script>
 
 <div class="columns" id="columns">
@@ -57,7 +61,8 @@
                                 </p>
                             </div>
                             <div class="solliciteer">
-                                @Html.ActionLink("Solliciteer!", "Applyforjob", "Vacatures", new { vcid item.ID }))
+                                <a class="solicitatie" onclick="var id = @item.ID">("Solliciteer op deze vacature", "Applyforjob", new { vcid = item.ID }) |</a>
+
                             </div>
 
                     </div>
@@ -72,8 +77,11 @@
     }
 
 </div>
-
-
+<div class="solliciteren" style="display: none">
+@Html.BeginForm()
+{
+  
+}
 
 
 <style>
@@ -84,7 +92,7 @@
 
     .center {
         margin: 0 auto;
-        top: 45%;
+        top: 42%;
         left: 32%;
         border: 3px solid orange;
         text-align: center;
@@ -96,8 +104,8 @@
 
     .button {
         background-color: mediumpurple;
-        top: 65%;
-        left: 43%;
+        top: 62%;
+        left: 44%;
         border: none;
         color: white;
         padding: 15px 32px;
@@ -111,6 +119,8 @@
     }
 
     body {
-        background-image: url(../../Content/Images/image.png)
+        background-image: url(../../Content/Images/image.png);
+        background-position:center;
+        background-size: cover;
     }
 </style>

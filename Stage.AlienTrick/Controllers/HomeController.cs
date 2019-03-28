@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Stage.AlienTrick.Attributes;
+using Stage.AlienTrick.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -30,6 +32,35 @@ namespace Stage.AlienTrick.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        [Rights(AllowAdmins = true)]
+        [AllowAnonymous]
+        [HttpGet]
+        public ActionResult Applyforjob(int? id, int vcid, Student student, JobApplication jobApplication, Sollicitatiemodel sollicitatiemodel)
+        {
+            return View(sollicitatiemodel);
+        }
+
+
+        [Rights(AllowAdmins = true)]
+        [AllowAnonymous]
+        [HttpPost]
+        public ActionResult Applyforjob(int? id, int vcid, JobApplication jobApplication, Sollicitatiemodel sollicitatiemodel)
+        {
+            jobApplication.CandidateName = sollicitatiemodel.CandidateName;
+            jobApplication.CandidateLastName = sollicitatiemodel.CandidateLastName;
+            jobApplication.CandidateMailadress = sollicitatiemodel.CandidateMailadress;
+            jobApplication.ApplicationDate = DateTime.Now;
+            jobApplication.CandidatePhoneNumber = sollicitatiemodel.Candidatephonenumber;
+            jobApplication.Enclosureurl = sollicitatiemodel.Enclosureurl;
+            jobApplication.Vacature_id = vcid;
+
+            db.JobApplications.Add(jobApplication);
+            db.SaveChanges();
+
+
+            return RedirectToAction("index");
         }
     }
 }
