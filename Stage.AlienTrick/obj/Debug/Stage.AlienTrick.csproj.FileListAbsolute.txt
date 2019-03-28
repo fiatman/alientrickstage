@@ -465,7 +465,10 @@ C:\Users\Smits\Documents\GitHub\alientrickstage\Stage.AlienTrick\obj\Debug\Stage
 C:\Users\Smits\Documents\GitHub\alientrickstage\Stage.AlienTrick\obj\Debug\Stage.AlienTrick.Migrations.datums.resources
 C:\Users\Smits\Documents\GitHub\alientrickstage\Stage.AlienTrick\obj\Debug\Stage.AlienTrick.Migrations.ding.resources
 C:\Users\Smits\Documents\GitHub\alientrickstage\Stage.AlienTrick\obj\Debug\Stage.AlienTrick.Migrations.hoi2.resources
-C:\Users\Smits\Documents\GitHub\alientrickstage\Stage.AlienTrick\obj\Debug\Stage.AlienTrick.csprojAssemblyReference.cache
 C:\Users\Smits\Documents\GitHub\alientrickstage\Stage.AlienTrick\obj\Debug\Stage.AlienTrick.Migrations.yes.resources
 C:\Users\Smits\Documents\GitHub\alientrickstage\Stage.AlienTrick\obj\Debug\Stage.AlienTrick.Migrations.ding1.resources
 C:\Users\Smits\Documents\GitHub\alientrickstage\Stage.AlienTrick\obj\Debug\Stage.AlienTrick.Migrations.ding2.resources
+C:\Users\Smits\Documents\GitHub\alientrickstage\Stage.AlienTrick\bin\PagedList.dll
+C:\Users\Smits\Documents\GitHub\alientrickstage\Stage.AlienTrick\bin\PagedList.Mvc.dll
+C:\Users\Smits\Documents\GitHub\alientrickstage\Stage.AlienTrick\bin\PagedList.xml
+C:\Users\Smits\Documents\GitHub\alientrickstage\Stage.AlienTrick\bin\PagedList.Mvc.xml

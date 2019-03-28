@@ -14,6 +14,7 @@ using static Stage.AlienTrick.PortalEntities;
 using System.IO;
 using Stage.AlienTrick.Models;
 using System.Web.UI.WebControls;
+using PagedList;
 
 namespace Stage.AlienTrick.Controllers
 {
@@ -36,15 +37,15 @@ namespace Stage.AlienTrick.Controllers
             return View(studentenCollection.ToArray());
         }
 
-        public ActionResult Persoonlijkevoortgang(Persoonlijkmodel persoonlijkmodel , Student student , WindowsUsersAndRoles windows)
+        public ActionResult Persoonlijkevoortgang(Persoonlijkmodel persoonlijkmodel , Student student , WindowsUsersAndRoles windows , int? page)
         {
             //var studentuser = db.WindowsUsersAndRoles.Where(d => d.WindowsUserAccount == db.Students.Find().Windowsuseraccount);
             var userstudent = db.Students.Where(d => d.Windowsuseraccount.Equals(User.Identity.Name)).FirstOrDefault();
             var Student_ID = db.Tasks.Select(s => s.Student_ID);
 
-            persoonlijkmodel.voortgang = userstudent.AmountOfhoursToComplete / 100 * userstudent.AmountofbookedHours;
-            persoonlijkmodel.task = userstudent.Tasks.Where(d => d.Student_ID == userstudent.ID).ToList();
+
             return View(persoonlijkmodel);
+        
         }
         //create
         [Rights(AllowAdmins = true)]
@@ -444,12 +445,12 @@ namespace Stage.AlienTrick.Controllers
             return RedirectToAction("index");
         }
         [HttpGet]
-        public ActionResult CreateMeetingstudent(int? id , Takenmodel takenmodel)
+        public ActionResult StudentMeeting(int? id , Takenmodel takenmodel)
         {
             return View(takenmodel);
         }
         [HttpPost]
-        public ActionResult CreateMeetingstudent(int ID, Takenmodel takenmodel , WindowsUsersAndRoles windows)
+        public ActionResult StudentMeeting(int ID, Takenmodel takenmodel , WindowsUsersAndRoles windows)
 
         {
             Task task = new Task();
