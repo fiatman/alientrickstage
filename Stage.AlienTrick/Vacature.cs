@@ -30,5 +30,6 @@ namespace Stage.AlienTrick
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Stage> Stages { get; set; }
+        public string url { get; set; }
     }
 }

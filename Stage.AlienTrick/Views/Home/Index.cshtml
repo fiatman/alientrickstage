@@ -1,30 +1,118 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
+﻿@model List<global::Stage.AlienTrick.Vacature>
 
-<div class="jumbotron">
-    <h1>ALienTrick</h1>
-    <img src="~/Content/Images/"
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+<div class="center">
+    <h1>Welkom bij AlienTrick</h1>
+    <h2>Dit is ons stageportaal, zijn we op zoek naar jou?</h2>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
+
+
+<input type="button" href="#columns" id="button" class="button" value="Op naar de vacatures!">
+
+<script>
+    jQuery("#button").click(function () {
+        jQuery('html, body').animate({
+            scrollTop: $("#columns").offset().top
+        }, 2000);
+    });
+</script>
+
+<div class="columns" id="columns">
+    <center>
+        <h1 style="color: ghostwhite">Alle vacatures</h1>
+    </center>
+    @foreach (var item in Model)
+    {
+        <div class="columtest">
+            <div>
+                <div class="col-sm-4 col-centered">
+                    <div class="colom-1">
+                        <div class="img-vacature">
+                            <span class="et_pb_image_wrap">
+                                <img src="@item.url" style="height: 240px; width: 240px;">
+
+                            </span>
+                        </div>
+
+                        <div class="type-titel">
+                            <div class="et_pb_text_inner">
+                                <h4 style="color:ghostwhite">@item.StageTitle</h4>
+                            </div>
+                        </div>
+
+                        <div class="omschrijving-stage">
+                            <div class="type-stage-omschrijving">
+                                <p style="text-align: center; color: ghostwhite">
+                                    @item.StageDescription
+                                </p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="aantal-uren">
+                                <p style="text-align: center; color: ghostwhite">
+                                    @item.AmountofHours Uur
+                                </p>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+
+        <input type="button" href="@Html.Action("Solliciteer!" , "Applyforjob" , "Vacatures")" id="button" class="button" value="Solliciteer!">
+
+    }
+
 </div>
+
+
+
+
+<style>
+
+    .columns {
+        margin-top: 3000px;
+    }
+
+    .center {
+        margin: 0 auto;
+        top: 45%;
+        left: 32%;
+        border: 3px solid orange;
+        text-align: center;
+        padding: 20px;
+        position: absolute;
+        color: ghostwhite;
+        border-radius: 25px;
+    }
+
+    .button {
+        background-color: mediumpurple;
+        top: 65%;
+        left: 43%;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        position: absolute;
+    }
+
+    body {
+        background-image: url(../../Content/Images/image.png)
+    }
+</style>

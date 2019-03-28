@@ -16,10 +16,17 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Stageportaal AlienTrick", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                    <li>
+                    <div id="logo">
+                        <a href="@Url.Action("index", "Home")">
+                            <img style="height: 40px; width:100px;"src="~/Content/Images/AlienTrick_Logo_2016_WHITE.png" alt="" />
+                        </a>
+                    </div>
+                        </li>
+                    @* <li> <img  style="height: 50px; width: 100px;"src="~/Content/Images/AlienTrick_Logo_2016_WHITE.png" />@Html.ActionLink("Stageportaal AlienTrick", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</li> *@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Studenten", "Index", "Studenten")</li>
                     <li>@Html.ActionLink("Stages", "Index", "Stages")</li>
@@ -33,7 +40,6 @@
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - AlienTrick</p>
         </footer>
@@ -42,5 +48,9 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+    <script>
+
+    </script>
 </body>
 </html>

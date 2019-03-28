@@ -42,7 +42,7 @@ namespace Stage.AlienTrick.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public ActionResult Create([Bind(Include = "StageTitle,ID,AmountofHours,AmountofStudents,StageDescription")] Vacature vacature)
+        public ActionResult Create([Bind(Include = "StageTitle,ID,AmountofHours,AmountofStudents,StageDescription,url")] Vacature vacature)
         {
             if (ModelState.IsValid)
             {
@@ -72,7 +72,7 @@ namespace Stage.AlienTrick.Controllers
         [Rights(AllowAdmins = true)]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,StageTitle,AmountofHours,AmountofStudents,StageDescription")] Vacature vacature)
+        public ActionResult Edit([Bind(Include = "ID,StageTitle,AmountofHours,AmountofStudents,StageDescription,url")] Vacature vacature)
         {
             if (ModelState.IsValid)
             {

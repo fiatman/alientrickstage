@@ -8,10 +8,14 @@ namespace Stage.AlienTrick.Controllers
 {
     public class HomeController : Controller
     {
+        PortalEntities db = new PortalEntities();
+
         [AllowAnonymous]
         public ActionResult Index()
         {
-            return View();
+            List<Vacature> vacatures = new List<Vacature>();
+            vacatures = (db.Vacatures).ToList();
+            return View(vacatures);
         }
 
         public ActionResult About()
