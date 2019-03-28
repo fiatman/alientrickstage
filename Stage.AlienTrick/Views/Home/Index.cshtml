@@ -50,14 +50,15 @@
                             </div>
                         </div>
 
-                        <div>
+                        
                             <div class="aantal-uren">
                                 <p style="text-align: center; color: ghostwhite">
                                     @item.AmountofHours Uur
                                 </p>
-
                             </div>
-                        </div>
+                            <div class="solliciteer">
+                                @Html.ActionLink("Solliciteer!", "Applyforjob", "Vacatures", new { vcid item.ID }))
+                            </div>
 
                     </div>
                 </div>
@@ -67,9 +68,6 @@
             </div>
 
         </div>
-
-
-        <input type="button" href="@Html.Action("Solliciteer!" , "Applyforjob" , "Vacatures")" id="button" class="button" value="Solliciteer!">
 
     }
 
