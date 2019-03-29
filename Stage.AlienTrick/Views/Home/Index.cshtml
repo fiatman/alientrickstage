@@ -1,8 +1,8 @@
-﻿@model List<global::Stage.AlienTrick.Vacature>
+﻿@model global::Stage.AlienTrick.Models.Homemodel
 
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/jqueryval")
-<div class="center">
+<div class="center-block">
     <h1>Welkom bij AlienTrick</h1>
     <h2>Dit is ons stageportaal, zijn we op zoek naar jou?</h2>
 </div>
@@ -27,7 +27,7 @@
     <center>
         <h1 style="color: ghostwhite">Alle vacatures</h1>
     </center>
-    @foreach (var item in Model)
+    @foreach (var item in Model.vacatures)
     {
         <div class="columtest">
             <div>
@@ -61,7 +61,7 @@
                                 </p>
                             </div>
                             <div class="solliciteer">
-                                <a class="solicitatie" onclick="var id = @item.ID">("Solliciteer op deze vacature", "Applyforjob", new { vcid = item.ID }) |</a>
+                                <a class="solicitatie" onclick="{var id = @item.ID ">("Solliciteer op deze vacature", "Applyforjob", new { vcid = item.ID }) |</a>
 
                             </div>
 
@@ -78,49 +78,102 @@
 
 </div>
 <div class="solliciteren" style="display: none">
-@Html.BeginForm()
-{
-  
-}
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Solliciteer op deze vacature</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.CandidateName, "Voornaam", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CandidateName, new { htmlAttributes = new { @class = "form-control", } })
+                    @Html.ValidationMessageFor(model => model.CandidateName, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
 
-<style>
+            <div class="form-group">
+                @Html.LabelFor(model => model.CandidateLastName, "Achternaam", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CandidateLastName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CandidateLastName, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-    .columns {
-        margin-top: 3000px;
+            <div class="form-group">
+                @Html.LabelFor(model => model.CandidateMailadress, "Mailadres", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CandidateMailadress, new { htmlAttributes = new { @class = "form-control", @type = "mail" } })
+                    @Html.ValidationMessageFor(model => model.CandidateMailadress, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Candidatephonenumber, "Telefoonnummer", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Candidatephonenumber, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Candidatephonenumber, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Enclosureurl, "bijlage", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Enclosureurl, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Enclosureurl, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+    </div>
     }
 
-    .center {
-        margin: 0 auto;
-        top: 42%;
-        left: 32%;
-        border: 3px solid orange;
-        text-align: center;
-        padding: 20px;
-        position: absolute;
-        color: ghostwhite;
-        border-radius: 25px;
-    }
 
-    .button {
-        background-color: mediumpurple;
-        top: 62%;
-        left: 44%;
-        border: none;
-        color: white;
-        padding: 15px 32px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-        position: absolute;
-    }
+    <style>
 
-    body {
-        background-image: url(../../Content/Images/image.png);
-        background-position:center;
-        background-size: cover;
-    }
-</style>
+        .columns {
+            margin-top: 3000px;
+        }
+
+        .center-block {
+            margin: 0 auto;
+            top: 42%;
+            left: 32%;
+            border: 3px solid orange;
+            text-align: center;
+            padding: 20px;
+            position: absolute;
+            color: ghostwhite;
+            border-radius: 25px;
+        }
+
+        .button {
+            background-color: mediumpurple;
+            top: 62%;
+            left: 44%;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            position: absolute;
+        }
+
+        body {
+            background-image: url(../../Content/Images/image.png);
+            background-position: center;
+            background-size: cover;
+        }
+    </style>
