@@ -15,9 +15,12 @@ namespace Stage.AlienTrick.Controllers
         [AllowAnonymous]
         public ActionResult Index()
         {
+            Homemodel homemodel = new Homemodel();
             List<Vacature> vacatures = new List<Vacature>();
+            homemodel.vacatures = vacatures;
             vacatures = (db.Vacatures).ToList();
-            return View(vacatures);
+            homemodel.vacatures = vacatures.ToList();
+            return View(homemodel);
         }
 
         public ActionResult About()

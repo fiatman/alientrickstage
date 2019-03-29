@@ -11,17 +11,7 @@
 
 <input type="button" href="#columns" id="button" class="button" value="Op naar de vacatures!">
 
-<script>
-    jQuery("#button").click(function () {
-        jQuery('html, body').animate({
-            scrollTop: $("#columns").offset().top
-        }, 2000);
-    });
 
-    jQuery(document).ready(function () {
-        jQuery("#navbarid").hide();
-    });
-</script>
 
 <div class="columns" id="columns">
     <center>
@@ -61,8 +51,7 @@
                                 </p>
                             </div>
                             <div class="solliciteer">
-                                <a class="solicitatie" onclick="{var id = @item.ID ">("Solliciteer op deze vacature", "Applyforjob", new { vcid = item.ID }) |</a>
-
+                                <a class="solicitatieknopje" data-value="@item.ID">Solliciteer hierop!</a>
                             </div>
 
                     </div>
@@ -177,3 +166,24 @@
             background-size: cover;
         }
     </style>
+    <script>
+        jQuery("#button").click(function () {
+            jQuery('html, body').animate({
+                scrollTop: $("#columns").offset().top
+            }, 2000);
+        });
+
+        jQuery(document).ready(function () {
+            jQuery("#navbarid").hide();
+        });
+
+        jQuery(".solicitatieknopje").click(function () {
+            console.log(jQuery(this).data("value"));
+        });
+
+        jQuery(".solicitatieknopje").click(function () {
+            jQuery('html, body').animate({
+                scrollTop: $(".solliciteren").offset().top
+            }, 2000);
+        });
+    </script>

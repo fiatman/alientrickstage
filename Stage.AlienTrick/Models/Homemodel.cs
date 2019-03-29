@@ -14,5 +14,6 @@ namespace Stage.AlienTrick.Models
         public int Candidatephonenumber { get; set; }
         public DateTime Applicationdate { get; set; }
         public string Enclosureurl { get; set; }
+        public int VacatureID { get; set; }
     }
 }
