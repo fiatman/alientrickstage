@@ -333,6 +333,11 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\alientrick_logo.jpg" />
     <Content Include="Content\Images\AlienTrick_Logo_2016_WHITE.png" />
+    <Content Include="Content\Images\atfoto.png" />
+    <Content Include="Content\Images\atfoto2.png" />
+    <Content Include="Content\Images\atfoto3.png" />
+    <Content Include="Content\Images\footootoooo.png" />
+    <Content Include="Content\Images\foto2.png" />
     <Content Include="Content\Images\image.png" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
