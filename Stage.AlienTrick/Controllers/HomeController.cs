@@ -2,6 +2,7 @@
 using Stage.AlienTrick.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -37,27 +38,28 @@ namespace Stage.AlienTrick.Controllers
             return View();
         }
 
-        [Rights(AllowAdmins = true)]
-        [AllowAnonymous]
-        [HttpGet]
-        public ActionResult Applyforjob(int? id, int vcid, Student student, JobApplication jobApplication, Sollicitatiemodel sollicitatiemodel)
-        {
-            return View(sollicitatiemodel);
-        }
-
 
         [Rights(AllowAdmins = true)]
         [AllowAnonymous]
         [HttpPost]
-        public ActionResult Applyforjob(int? id, int vcid, JobApplication jobApplication, Sollicitatiemodel sollicitatiemodel)
+        public ActionResult Applyforjob(JobApplication jobApplication, Homemodel homemodel , IEnumerable<HttpPostedFileBase> files)
         {
-            jobApplication.CandidateName = sollicitatiemodel.CandidateName;
-            jobApplication.CandidateLastName = sollicitatiemodel.CandidateLastName;
-            jobApplication.CandidateMailadress = sollicitatiemodel.CandidateMailadress;
+            foreach (var file in files)
+            {
+                if (file.ContentLength > 0)
+                {
+                    var fileName = Path.GetFileName(file.FileName);
+                    var path = Path.Combine(Server.MapPath("~/App_Data/uploads"), fileName);
+                    file.SaveAs(path);
+                }
+            }
+            jobApplication.CandidateName = homemodel.CandidateName;
+            jobApplication.CandidateLastName = homemodel.CandidateLastName;
+            jobApplication.CandidateMailadress = homemodel.CandidateMailadress;
             jobApplication.ApplicationDate = DateTime.Now;
-            jobApplication.CandidatePhoneNumber = sollicitatiemodel.Candidatephonenumber;
-            jobApplication.Enclosureurl = sollicitatiemodel.Enclosureurl;
-            jobApplication.Vacature_id = vcid;
+            jobApplication.CandidatePhoneNumber = homemodel.Candidatephonenumber;
+            jobApplication.Enclosureurl = homemodel.Enclosureurl;
+            jobApplication.Vacature_id = homemodel.VacatureID;
 
             db.JobApplications.Add(jobApplication);
             db.SaveChanges();

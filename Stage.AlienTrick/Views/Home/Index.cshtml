@@ -1,23 +1,30 @@
 ﻿@model global::Stage.AlienTrick.Models.Homemodel
+<head>
+    <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
 
+    <script>
+        ScrollReveal.debug = true;
+    </script>
+</head>
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/jqueryval")
 <div class="center-block">
-    <h1>Welkom bij AlienTrick</h1>
-    <h2>Dit is ons stageportaal, zijn we op zoek naar jou?</h2>
+    <h1>Stage, bij AlienTrick?</h1>
+    <h2>Wij Zoeken Jou! 👈</h2>
 </div>
 
 
 
-<input type="button" href="#columns" id="buttonvacature" class="button" value="Op naar de vacatures!">
+<input type="button" href="#columns" id="buttonvacature" class="button" value="Op naar de vacatures!" >
 <div class="border">
-<div class="col-text">
-    <h1>Stage lopen bij AlienTrick</h1>
-    <p>
-        Wij zijn één team van vijftig nieuwsgierige strategen, designers, copywriters en developers. Maar we zijn vooral professionals met een gezamenlijke missie: we willen merken mooier, leuker en waardevoller maken. Bij ons staat kennisdeling en persoonlijke ontwikkeling voorop en we maken daarom altijd graag een plaatsje vrij voor een al net zo nieuwsgierige stagiaire.
-        Bij AlienTrick is er per stageperiode plaats voor 2-4 stagiairs en wel op onze afdelingen Design, Technology en Strategy. Bij ons hoef je niet de hele dag koffie te halen of kopietjes te maken (kunnen we zelf), maar ben je wel volop aan het werk in je toekomstige vakgebied. Klinkt goed, toch?
-    </p>
-</div>
+    <div class="col-text">
+        <h1>Stage lopen bij AlienTrick</h1>
+        <br />
+        <p>
+            Wij zijn één team van vijftig nieuwsgierige strategen, designers, copywriters en developers. Maar we zijn vooral professionals met een gezamenlijke missie: we willen merken mooier, leuker en waardevoller maken. Bij ons staat kennisdeling en persoonlijke ontwikkeling voorop en we maken daarom altijd graag een plaatsje vrij voor een al net zo nieuwsgierige stagiaire.
+            Bij AlienTrick is er per stageperiode plaats voor 2-4 stagiairs en wel op onze afdelingen Design, Technology en Strategy. Bij ons hoef je niet de hele dag koffie te halen of kopietjes te maken (kunnen we zelf), maar ben je wel volop aan het werk in je toekomstige vakgebied. Klinkt goed, toch?
+        </p>
+    </div>
     <div class="foto1">
         <img src="~/Content/Images/atfoto.png" />
     </div>
@@ -25,31 +32,33 @@
     <div class="belangrijk">
         <h1>Wat vinden wij belangrijk:</h1>
         <br />
+        <p>
+            Inzet om alles aan te pakken wat er op je weg komt;
+            <br />
+            <br />
+            Communicatief sterk denken;
+            <br />
+            <br />
+            MBO of HBO denkniveau;
+            <br />
+            <br />
+            Out-of-the-box mentaliteit;
+        </p>
+    </div>
+    <br>
+    <div class="col-text2">
+        <h1>
+            In het kort
+        </h1>
         <br />
-        <p>Inzet om alles aan te pakken wat er op je weg komt;
-        <br />
-        <br />
-        Communicatief sterk denken;
-        <br />
-        <br />
-        MBO of HBO denkniveau;
-        <br />
-        <br />
-        Out-of-the-box mentaliteit;</p>
-        </div>
-        <br>
-<div class="col-text2">
-    <h1>
-        In het kort
-    </h1>
-    <p>
-        Binnen de afdeling Design houden we ons bezig met het ontwerpen van websites, webshops, awesome visual design en mind-blowing animaties. Wij vertellen het verhaal van onze klant op een visueel onweerstaanbare manier.
+        <p>
+            Binnen de afdeling Design houden we ons bezig met het ontwerpen van websites, webshops, awesome visual design en mind-blowing animaties. Wij vertellen het verhaal van onze klant op een visueel onweerstaanbare manier.
 
-        Op de afdeling Technology ontwikkelen we de software die nodig is om webwinkels, websites, apps en portals goed te laten draaien.  Of je er nou naar kijkt, er op bestelt, er op klikt of ermee werkt, onze developers combineren creativiteit met een knap staaltje technologie.
+            Op de afdeling Technology ontwikkelen we de software die nodig is om webwinkels, websites, apps en portals goed te laten draaien.  Of je er nou naar kijkt, er op bestelt, er op klikt of ermee werkt, onze developers combineren creativiteit met een knap staaltje technologie.
 
-        Ben jij een strateeg in de dop? Dan zit je binnen de afdeling Strategy vast op je plek. Wij creëren merk- en bedrijfsnamen, concepten en campagnes, altijd met de wensen van de klant in ons hoofd. We zetten online marketingcampagnes op en schrijven pakkende teksten.
-    </p>
-</div>
+            Ben jij een strateeg in de dop? Dan zit je binnen de afdeling Strategy vast op je plek. Wij creëren merk- en bedrijfsnamen, concepten en campagnes, altijd met de wensen van de klant in ons hoofd. We zetten online marketingcampagnes op en schrijven pakkende teksten.
+        </p>
+    </div>
     <div class="foto2">
         <img src="~/Content/Images/footootoooo.png" />
     </div>
@@ -57,6 +66,7 @@
         <h1>
             Wat kun je van ons verwachten?
         </h1>
+        <br />
         <p>
             Een veelzijdige, uitdagende stageplaats met gezellige, enthousiaste collega's;
             <br />
@@ -76,229 +86,235 @@
     <div class="foto3">
         <img src="~/Content/Images/atfoto2.png" />
     </div>
-<div class="columns" id="columns">
-    <center>
-        <h1>Alle vacatures</h1>
-    </center>
-    @foreach (var item in Model.vacatures)
-    {
-        <div class="columtest">
-            <div>
-                <div class="col-sm-4 col-centered">
-                    <div class="colom-1">
-                        <div class="img-vacature">
-                            <span class="et_pb_image_wrap">
-                                <img src="@item.url" style="height: 240px; width: 240px;">
+    <div class="columns" id="columns">
+        <center>
+            <h1>Alle vacatures</h1>
+        </center>
+        @foreach (var item in Model.vacatures)
+        {
+            <div class="columtest vacature">
+                <div>
+                    <div class="col-sm-4 col-centered">
+                        <div class="colom-1">
+                            <div class="img-vacature">
+                                <span class="et_pb_image_wrap">
+                                    <img src="@item.url" style="height: 240px; width: 240px;">
 
-                            </span>
-                        </div>
-
-                        <div class="type-titel">
-                            <div class="et_pb_text_inner">
-                                <h4 style="color:ghostwhite">@item.StageTitle</h4>
+                                </span>
                             </div>
-                        </div>
 
-                        <div class="omschrijving-stage">
-                            <div class="type-stage-omschrijving">
+                            <div class="type-titel">
+                                <div class="et_pb_text_inner">
+                                    <h4 style="color:ghostwhite">@item.StageTitle</h4>
+                                </div>
+                            </div>
+
+                            <div class="omschrijving-stage">
+                                <div class="type-stage-omschrijving">
+                                    <p style="text-align: center; color: ghostwhite">
+                                        @item.StageDescription
+                                    </p>
+                                </div>
+                            </div>
+
+
+                            <div class="aantal-uren">
                                 <p style="text-align: center; color: ghostwhite">
-                                    @item.StageDescription
+                                    @item.AmountofHours Uur
                                 </p>
                             </div>
+                            <div class="solliciteer">
+                                <a class="solicitatieknopje"  data-value="@item.ID">Solliciteer hierop!</a>
+                            </div>
+
                         </div>
+                    </div>
 
 
-                        <div class="aantal-uren">
-                            <p style="text-align: center; color: ghostwhite">
-                                @item.AmountofHours Uur
-                            </p>
-                        </div>
-                        <div class="solliciteer">
-                            <a class="solicitatieknopje" data-value="@item.ID">Solliciteer hierop!</a>
-                        </div>
 
+                </div>
+
+            </div>
+
+        }
+
+    </div>
+    <div class="jumbotron" id="solliciteren" style="display: none">
+        @using (Html.BeginForm("Applyforjob", "Home", FormMethod.Post))
+        {
+
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.VacatureID, htmlAttributes: new { @class = "form-vacature-id" })
+            <div class="form-horizontal">
+                <h4>Solliciteer op deze vacature</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CandidateName, "Voornaam", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.CandidateName, new { htmlAttributes = new { @class = "form-control", } })
+                        @Html.ValidationMessageFor(model => model.CandidateName, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
 
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CandidateLastName, "Achternaam", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.CandidateLastName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CandidateLastName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CandidateMailadress, "Mailadres", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.CandidateMailadress, new { htmlAttributes = new { @class = "form-control", @type = "mail" } })
+                        @Html.ValidationMessageFor(model => model.CandidateMailadress, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Candidatephonenumber, "Telefoonnummer", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Candidatephonenumber, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Candidatephonenumber, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Enclosureurl, "bijlage", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <label for="file1">Filename:</label>
+                        <input type="file" name="files" id="file1" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </div>
             </div>
-
-        </div>
-
-    }
-
+        }
+    </div>
 </div>
-<div class="jumbotron" id="solliciteren" style="display: none">
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-horizontal">
-            <h4>Solliciteer op deze vacature</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.LabelFor(model => model.CandidateName, "Voornaam", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.CandidateName, new { htmlAttributes = new { @class = "form-control", } })
-                    @Html.ValidationMessageFor(model => model.CandidateName, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.CandidateLastName, "Achternaam", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.CandidateLastName, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.CandidateLastName, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.CandidateMailadress, "Mailadres", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.CandidateMailadress, new { htmlAttributes = new { @class = "form-control", @type = "mail" } })
-                    @Html.ValidationMessageFor(model => model.CandidateMailadress, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Candidatephonenumber, "Telefoonnummer", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Candidatephonenumber, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Candidatephonenumber, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(model => model.Enclosureurl, "bijlage", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Enclosureurl, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Enclosureurl, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
-                </div>
-            </div>
-        </div>
-    }
-</div>
-</div>
-
 <style>
-    .foto3{
-        margin-top:100px;
-        margin-bottom:200px;
-    }
-    .foto3 img{
-        max-width: 75%;
-        align-content:right;
-        border-radius:
-    }
-    .tekstje{
+
+    .foto3 {
         margin-top: 100px;
-        font-size:large;
-        text-align:center;
-        max-width:100%;
+        margin-bottom: 200px;
     }
 
-    .container{
+        .foto3 img {
+            max-width: 75%;
+            border-radius: 8px;
+        }
+
+    .tekstje {
+        margin-top: 100px;
+        font-size: large;
+        text-align: center;
+        max-width: 100%;
+    }
+
+    .container {
         max-width: 1140px;
     }
 
     .foto2 {
         padding-top: 50px;
     }
-    .foto2 img{
-        width: 100%;
-        border-radius:20px;
-    }
+
+        .foto2 img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
     .belangrijk {
         text-align: left;
         margin-right: 60%;
         padding-right: 30px;
         font-size: large;
         overflow: hidden;
-        float:left;
+        float: left;
     }
+
     .foto1 {
+        
+        border-radius: 8px;
+        
+        float: right;
+        max-width: 75%;
         margin-left: 50%;
-        position: sticky;
-        border-radius: 20px;
-        overflow: hidden;
+        margin-bottom: 50px;
     }
+
     .col-centered {
         color: ghostwhite;
-        background-color: #f58220;
-        opacity: 0.7;
-        padding: 30px;
-        border-radius: 25px;
+        background-image: linear-gradient(to top left, #00ad8e, #00aeef);
+        padding: 15px;
+        border-radius: 8px;
         margin-right: 10px;
-        font-size:large;
+        font-size: large;
+        text-align: center;
     }
 
     .col-text {
-        margin-top: 1200px;
+        margin-top: 500px;
         color: ghostwhite;
-        background-image: linear-gradient(to bottom, #aa1f70, #5e2f7d);
-        opacity: 0.7;
+        background-image: linear-gradient(to bottom left, #aa1f70, #5e2f7d);
         text-align: left;
         margin-right: 55%;
         padding: 30px;
-        border-radius: 25px;
+        border-radius: 8px;
         font-size: large;
     }
 
     .col-text2 {
-        margin-top: 300px;
-        color: ghostwhite;
-        background-color: #f58220;
-        opacity: 0.7;
         text-align: left;
         margin-left: 60%;
         padding: 30px;
-        border-radius: 25px;
+        border-radius: 8px;
+        font-size: large;
+        background-image: linear-gradient(to bottom right, #f58220, #ed1165);
     }
+
     .jumbotron {
         margin-top: 500px;
         color: rebeccapurple;
-        background-color: #f58220;
-        opacity: 0.7;
+        background-image: linear-gradient(to bottom right, #f58220, #ed1165);
     }
+
     .columns {
         margin-top: 500px;
-        max-width: 100%
+        max-width: 100%;
     }
 
     .center-block {
-        margin: 0 auto;
-        top: 42%;
-        left: 32%;
-        border: 3px solid orange;
+        margin-top: 30%;
+        border: 3px solid transparent;
+        border-image: linear-gradient(to bottom left, #aa1f70, #5e2f7d);
+        border-image-slice: 1;
         text-align: center;
-        padding: 20px;
-        position: absolute;
+        position: relative;
         color: ghostwhite;
-        border-radius: 25px;
+        border-radius: 8px;
+        max-width: 60%;
+        padding: 10px;
+        margin-bottom: 5%;
     }
 
     .button {
-        background-color: mediumpurple;
-        top: 62%;
-        left: 44%;
         border: none;
+        background-image: linear-gradient(to bottom right, #f58220, #ed1165);
+        position: relative;
         color: white;
         padding: 15px 32px;
         text-align: center;
-        text-decoration: none;
-        display: inline-block;
         font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-        position: absolute;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
     }
 
 
@@ -307,8 +323,10 @@
     body {
         background-image: url(../../Content/Images/image.png);
         background-repeat: no-repeat;
-   
+        background-position-x: center;
     }
+
+
 </style>
 <script>
     jQuery("#buttonvacature").click(function () {
@@ -322,7 +340,11 @@
     });
 
     jQuery(".solicitatieknopje").click(function () {
-        console.log(jQuery(this).data("value"));
+
+        $('.form-vacature-id').val($(this).attr('data-value'));
+        console.log('Vacature ID geladen in form', $('.form-vacature-id').val());
+
+        //console.log(jQuery(this).data("value"));
     });
 
 
@@ -334,5 +356,16 @@
         console.log($("#solliciteren").offset());
     });
 
+    ScrollReveal().reveal('.col-text', { delay: 70, distance: '20px', cleanup: true });
+    ScrollReveal().reveal('.foto1', { delay: 70, distance: '20px', cleanup: true});
+    ScrollReveal().reveal('.foto2', { delay: 70, distance: '20px', cleanup: true });
+    ScrollReveal().reveal('.foto3', { delay: 70, distance: '20px', cleanup: true});
+    ScrollReveal().reveal('.belangrijk', { delay: 70, distance: '20px', cleanup: true});
+    ScrollReveal().reveal('.col-text2', { delay: 70, distance: '20px', cleanup: true});
+    ScrollReveal().reveal('.tekstje', { delay: 70, distance: '20px', cleanup: true});
+    ScrollReveal().reveal('.tekstje', { delay: 70, distance: '20px', cleanup: true});
+    ScrollReveal().reveal('.columns', { delay: 70, distance: '20px', cleanup: true }); 
+    ScrollReveal().reveal('.button', { delay: 70, distance: '20px', cleanup: true });
+    ScrollReveal().reveal('.center-block', { delay: 70, distance: '20px', cleanup: true });
 </script>
 
