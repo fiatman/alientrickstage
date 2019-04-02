@@ -53,6 +53,7 @@ namespace Stage.AlienTrick.Controllers
                     file.SaveAs(path);
                 }
             }
+            
             jobApplication.CandidateName = homemodel.CandidateName;
             jobApplication.CandidateLastName = homemodel.CandidateLastName;
             jobApplication.CandidateMailadress = homemodel.CandidateMailadress;

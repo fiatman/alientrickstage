@@ -9,19 +9,22 @@
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/jqueryval")
 <div class="center-block">
-    <h1>Stage, bij AlienTrick?</h1>
+    <h1><b>Stage, bij AlienTrick?</b></h1>
     <h2>Wij Zoeken Jou! 👈</h2>
 </div>
 
+<div class="arrow">
+    <span></span>
+    <span></span>
+    <span></span>
 
-
-<input type="button" href="#columns" id="buttonvacature" class="button" value="Op naar de vacatures!" >
-<div class="border">
+</div>
+@*<input type="button" href="#columns" id="buttonvacature" class="button" value="Op naar de vacatures!" >*@
     <div class="col-text">
-        <h1>Stage lopen bij AlienTrick</h1>
+        <h1><b>Stage lopen bij AlienTrick</b></h1>
         <br />
         <p>
-            Wij zijn één team van vijftig nieuwsgierige strategen, designers, copywriters en developers. Maar we zijn vooral professionals met een gezamenlijke missie: we willen merken mooier, leuker en waardevoller maken. Bij ons staat kennisdeling en persoonlijke ontwikkeling voorop en we maken daarom altijd graag een plaatsje vrij voor een al net zo nieuwsgierige stagiaire.
+            <b>Wij zijn één team van vijftig nieuwsgierige strategen, designers, copywriters en developers. Maar we zijn vooral professionals met een gezamenlijke missie: we willen merken mooier, leuker en waardevoller maken.</b><br /><br /> Bij ons staat kennisdeling en persoonlijke ontwikkeling voorop en we maken daarom altijd graag een plaatsje vrij voor een al net zo nieuwsgierige stagiaire.
             Bij AlienTrick is er per stageperiode plaats voor 2-4 stagiairs en wel op onze afdelingen Design, Technology en Strategy. Bij ons hoef je niet de hele dag koffie te halen of kopietjes te maken (kunnen we zelf), maar ben je wel volop aan het werk in je toekomstige vakgebied. Klinkt goed, toch?
         </p>
     </div>
@@ -30,31 +33,28 @@
     </div>
 
     <div class="belangrijk">
-        <h1>Wat vinden wij belangrijk:</h1>
+        <h1><b>Wat vinden wij belangrijk:</b></h1>
         <br />
         <p>
-            Inzet om alles aan te pakken wat er op je weg komt;
+            • Inzet om alles aan te pakken wat er op je weg komt;
             <br />
+            • Communicatief sterk denken;
             <br />
-            Communicatief sterk denken;
+            • MBO of HBO denkniveau;
             <br />
-            <br />
-            MBO of HBO denkniveau;
-            <br />
-            <br />
-            Out-of-the-box mentaliteit;
+            • Out-of-the-box mentaliteit;
         </p>
     </div>
-    <br>
+    <br />
     <div class="col-text2">
         <h1>
-            In het kort
+            <b>In het kort</b>
         </h1>
         <br />
         <p>
-            Binnen de afdeling Design houden we ons bezig met het ontwerpen van websites, webshops, awesome visual design en mind-blowing animaties. Wij vertellen het verhaal van onze klant op een visueel onweerstaanbare manier.
+            Binnen de afdeling Design houden we ons bezig met het ontwerpen van websites, webshops, awesome visual design en mind-blowing animaties. Wij vertellen het verhaal van onze klant op een visueel onweerstaanbare manier.<br />
 
-            Op de afdeling Technology ontwikkelen we de software die nodig is om webwinkels, websites, apps en portals goed te laten draaien.  Of je er nou naar kijkt, er op bestelt, er op klikt of ermee werkt, onze developers combineren creativiteit met een knap staaltje technologie.
+            Op de afdeling Technology ontwikkelen we de software die nodig is om webwinkels, websites, apps en portals goed te laten draaien.  Of je er nou naar kijkt, er op bestelt, er op klikt of ermee werkt, onze developers combineren creativiteit met een knap staaltje technologie.<br />
 
             Ben jij een strateeg in de dop? Dan zit je binnen de afdeling Strategy vast op je plek. Wij creëren merk- en bedrijfsnamen, concepten en campagnes, altijd met de wensen van de klant in ons hoofd. We zetten online marketingcampagnes op en schrijven pakkende teksten.
         </p>
@@ -64,31 +64,35 @@
     </div>
     <div class="tekstje">
         <h1>
-            Wat kun je van ons verwachten?
+           <b> Wat kun je van ons verwachten?</b>
         </h1>
         <br />
         <p>
-            Een veelzijdige, uitdagende stageplaats met gezellige, enthousiaste collega's;
+            • Een veelzijdige, uitdagende stageplaats met gezellige, enthousiaste collega's;
             <br />
             <br />
-            Ruimte voor zelfstandigheid, verantwoordelijkheid en eigen inbreng;
+            • Ruimte voor zelfstandigheid, verantwoordelijkheid en eigen inbreng;
             <br />
             <br />
-            Goede begeleiding;
+            • Goede begeleiding;
             <br />
             <br />
-            Een open en informele werksfeer;
+            • Een open en informele werksfeer;
             <br />
             <br />
-            Marktconforme stagevergoeding.
+            • Marktconforme stagevergoeding.
         </p>
     </div>
     <div class="foto3">
         <img src="~/Content/Images/atfoto2.png" />
     </div>
+    <div class="lasttext">
+       <h1><b>The creative cosmic agency</b></h1>
+       <p>Wij zijn een hecht team van enthousiaste en creatieve strategen, designers en developers die werken voor mooie, (inter)nationale klanten. <br />Kennisdeling binnen het team en met onze klanten vinden wij belangrijk. We houden ervan om te inspireren, maar worden ook graag zelf geïnspireerd. <br />Lunchen doen we altijd samen en we trappen vaak een balletje in de pauze. Na je werkdag kun je je even lekker laten gaan in onze Fight Academy. <br />Niet zo sportief? Geen zorgen, we spelen ook graag (board)games en houden van lekker eten en drinken.</p>
+    </div>
     <div class="columns" id="columns">
         <center>
-            <h1>Alle vacatures</h1>
+            <h1><b>Alle vacatures</b></h1>
         </center>
         @foreach (var item in Model.vacatures)
         {
@@ -197,21 +201,28 @@
             </div>
         }
     </div>
-</div>
-<style>
+    <style>
+    .lasttext {
 
+        text-align: left;
+        margin-left: 50%;
+        background-image: linear-gradient(to top left, #00aeef, #00ad8e);
+        padding: 30px;
+        font-size: large;
+        border-top-right-radius: 8px;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+    }
     .foto3 {
         margin-top: 100px;
-        margin-bottom: 200px;
     }
 
         .foto3 img {
             max-width: 75%;
-            border-radius: 8px;
         }
 
     .tekstje {
-        margin-top: 100px;
+        margin-top: 50px;
         font-size: large;
         text-align: center;
         max-width: 100%;
@@ -240,9 +251,8 @@
     }
 
     .foto1 {
-        
-        border-radius: 8px;
-        
+        border-top-right-radius: 8px;
+        border-bottom-left-radius: 8px;
         float: right;
         max-width: 75%;
         margin-left: 50%;
@@ -266,15 +276,19 @@
         text-align: left;
         margin-right: 55%;
         padding: 30px;
-        border-radius: 8px;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        border-bottom-left-radius: 8px;
         font-size: large;
     }
 
     .col-text2 {
+        margin-top: 470px;
         text-align: left;
         margin-left: 60%;
         padding: 30px;
-        border-radius: 8px;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
         font-size: large;
         background-image: linear-gradient(to bottom right, #f58220, #ed1165);
     }
@@ -286,7 +300,7 @@
     }
 
     .columns {
-        margin-top: 500px;
+       margin-top: 100px;
         max-width: 100%;
     }
 
@@ -326,10 +340,49 @@
         background-position-x: center;
     }
 
+.arrow{
+    position: relative;
+    margin-top: 100px;
+    margin-left: 65%;
+    transform: translate(-50%,-50%);
+}
+        .arrow span {
+            display: block;
+            width: 30px;
+            height: 30px;
+            border-bottom: 5px solid #f58220;
+            border-right: 5px solid #ed1165;
+            transform: rotate(45deg);
+            animation: animate 2s infinite;
+        }
+.arrow span:nth-child(2){
+    animation-delay: -0.2s;
+}
+.arrow span:nth-child(3){
+    animation-delay: -0.4s;
+}
+        @@keyframes animate {
+            0% {
+                opacity: 0;
+                transform: rotate(45deg) translate(-20px,-20px);
+            }
 
-</style>
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+                transform: rotate(45deg) translate(20px,20px);
+            }
+        }
+
+
+
+
+    </style>
 <script>
-    jQuery("#buttonvacature").click(function () {
+    jQuery(".arrow").click(function () {
         jQuery('html, body').animate({
             scrollTop: $("#columns").offset().top
         }, 2000);
@@ -367,5 +420,7 @@
     ScrollReveal().reveal('.columns', { delay: 70, distance: '20px', cleanup: true }); 
     ScrollReveal().reveal('.button', { delay: 70, distance: '20px', cleanup: true });
     ScrollReveal().reveal('.center-block', { delay: 70, distance: '20px', cleanup: true });
+    ScrollReveal().reveal('.lasttext ', { delay: 70, distance: '20px', cleanup: true });
+    ScrollReveal().reveal('.arrow ', { delay: 70, distance: '20px', cleanup: true });
 </script>
 
