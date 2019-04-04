@@ -2,8 +2,14 @@
 @{
     ViewBag.Title = "Plan meeting of taak";
 }
+<head>
+    <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
 
-<h2>Create</h2>
+    <script>
+        ScrollReveal.debug = true;
+    </script>
+</head>
+<h2 class="h2">Afspraak maken</h2>
 
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/jqueryval")
@@ -20,7 +26,7 @@ new SelectListItem { Value = "Peter", Text = "Peter van den Dungen" },
 
     @Html.HiddenFor(m => m.student.ID)
     @Html.AntiForgeryToken()
-
+    <div class="invoer">
     <div class="form-group">
         @Html.LabelFor(model => model.TaskName, "Afspraak onderwerp", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
@@ -70,7 +76,7 @@ new SelectListItem { Value = "Peter", Text = "Peter van den Dungen" },
             <input type="submit" value="Create" class="btn btn-default" />
         </div>
     </div>
-     
+     </div>
 }
 
 
@@ -78,3 +84,24 @@ new SelectListItem { Value = "Peter", Text = "Peter van den Dungen" },
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+<style>
+    .h2{
+        margin-top: 200px;
+        color:white;
+    }
+    body{
+        background-image: url(../../Content/Images/image.png);
+        background-position:initial;
+    }
+    .invoer {
+        background-image: linear-gradient(to top left, #00aeef, #00ad8e);
+        border-radius: 8px;
+        padding: 100px;
+        opacity: 0.6;
+    }
+</style>
+<script>
+    ScrollReveal().reveal('.h2 ', { delay: 70, distance: '20px', cleanup: true });
+    ScrollReveal().reveal('.invoer ', { delay: 70, distance: '20px', cleanup: true });
+</script>

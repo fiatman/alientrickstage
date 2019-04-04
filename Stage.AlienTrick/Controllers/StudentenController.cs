@@ -37,11 +37,17 @@ namespace Stage.AlienTrick.Controllers
             return View(studentenCollection.ToArray());
         }
 
-        public ActionResult Persoonlijkevoortgang(Persoonlijkmodel persoonlijkmodel , Student student , WindowsUsersAndRoles windows , int? page)
+        public ActionResult Persoonlijkevoortgang(Persoonlijkmodel persoonlijkmodel , Student student , WindowsUsersAndRoles windows)
         {
             //var studentuser = db.WindowsUsersAndRoles.Where(d => d.WindowsUserAccount == db.Students.Find().Windowsuseraccount);
             var userstudent = db.Students.Where(d => d.Windowsuseraccount.Equals(User.Identity.Name)).FirstOrDefault();
             var Student_ID = db.Tasks.Select(s => s.Student_ID);
+
+            persoonlijkmodel.voortgang = userstudent.AmountOfhoursToComplete / 100 * userstudent.AmountofbookedHours;
+            persoonlijkmodel.task = userstudent.Tasks.Where(d => d.Student_ID == userstudent.ID).ToList();
+            persoonlijkmodel.student = userstudent;
+
+            return View(persoonlijkmodel);
 
 
             return View(persoonlijkmodel);
@@ -177,14 +183,14 @@ namespace Stage.AlienTrick.Controllers
         [Rights(AllowStudents = true, AllowAdmins = true)]
         public ActionResult AddHours(int? id, Student studentstage )
         {
-            
-            var student = db.Students.Where(s => s.ID == id).FirstOrDefault();
+            var echtestudenten = db.WindowsUsersAndRoles.Where(d => d.WindowsUserAccount == User.Identity.Name).FirstOrDefault();
+            var student = db.Students.Where(s => s.Windowsuseraccount == User.Identity.Name).FirstOrDefault();
             if (studentstage.Stage != null || student.StudentStatus != 0)
             {
                 if (student.AmountOfhoursToComplete == student.AmountofbookedHours)
                 {
                     TempData["msg"] = "<script>alert('Je hebt jou stageuren behaald! ');</script>";
-                    return RedirectToAction("index");
+                    return RedirectToAction("Persoonlijkevoortgang");
                 }
                 else
                 {
@@ -200,7 +206,7 @@ namespace Stage.AlienTrick.Controllers
             else
             {
                 TempData["msg"] = "<script>alert('Student is niet gekoppeld aan stage, of de laatst ingevoerde uren zijn nog niet goedgekeurd!');</script>";
-                return RedirectToAction("index");
+                return RedirectToAction("Persoonlijkevoortgang");
 
             }
         }
@@ -210,14 +216,15 @@ namespace Stage.AlienTrick.Controllers
         public ActionResult AddHours(Models.Voortgangsmodel v)
         {
             var HoursAccepted = 0;
-            var student = db.Students.Where(s => s.ID == v.student.ID).FirstOrDefault();
+            var echtestudenten = db.WindowsUsersAndRoles.Where(d => d.WindowsUserAccount == User.Identity.Name).FirstOrDefault();
+            var student = db.Students.Where(s => s.Windowsuseraccount == User.Identity.Name).FirstOrDefault();
 
             double CalculateHours = student.AmountofbookedHours + v.AmountofbookedHours;
 
             if (student.AmountOfhoursToComplete == student.AmountofbookedHours)
             {
                 TempData["msg"] = "<script>alert('Jouw stage zit erop! je hebt alle uren gedraaid die je moest draaien!');</script>";
-                return RedirectToAction("index");
+                return RedirectToAction("Persoonlijkevoortgang");
             }
             else
             {
@@ -227,12 +234,7 @@ namespace Stage.AlienTrick.Controllers
             }
 
 
-            return RedirectToAction("GetProgress", new
-            {
-                student.ID,
-                student.AmountofbookedHours,
-                student.AmountOfhoursToComplete
-            });
+            return RedirectToAction("Persoonlijkevoortgang");
         }
 
         [Rights (AllowStudents = true , AllowAdmins = true)]

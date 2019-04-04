@@ -2,87 +2,168 @@
 @{
     ViewBag.Title = "Persoonlijkevoortgang";
 }
+<head>
+    <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
 
-<h2>Persoonlijkevoortgang</h2>
-@Html.Raw(TempData["msg"])
+    <script>
+        ScrollReveal.debug = true;
+    </script>
+    </head>
+    <h2 style="color:white;">Persoonlijke Voortgang</h2>
+    @Html.Raw(TempData["msg"])
+    <div class="chartje">
+        <div id="piechart"></div>
+        @Html.ActionLink("klik hier om uren te boeken", "AddHours", "studenten")
+    </div>
+   
 
-<h3> jou voortgang op dit moment is: @Model.voortgang %</h3>
+  <div class="titel">
+        <h3> Dit zijn jouw taken</h3>
+    </div>
+    <div class="afspraak">
+        @Html.ActionLink("klik hier om een afspraak aan te vragen", "StudentMeeting", "studenten")
+    </div>
+    <table class="table">
 
+        <tr>
+            <th>
+                Taaknaam
+            </th>
+            <th>
+                Taakbeschrijving
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                School of werk
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+                Goedgekeurd
+            </th>
+            <th>
+                Cijfer
+            </th>
+            <th>
+                Datum
+            </th>
+            <th>
+                Tijd
+            </th>
+            <th></th>
+        </tr>
 
-@Html.ActionLink("klik hier om een afspraak aan te vragen", "StudentMeeting", "studenten")
-
-<h3> Dit zijn jou taken</h3>
-<table class="table" style="height: 200px; width: 200px;">
-    <tr>
-        <th>
-            Taaknaam
-        </th>
-        <th>
-            Taakbeschrijving
-        </th>
-        <th>
-            Type
-        </th>
-        <th>
-            School of werk
-        </th>
-        <th>
-            Status
-        </th>
-        <th>
-            Goedgekeurd
-        </th>
-        <th>
-            Cijfer
-        </th>
-        <th>
-            Datum
-        </th>
-        <th>
-            Tijd
-        </th>
-        <th></th>
-    </tr>
-
-    @if (Model == null)
-    {
-        <text>Geen studenten geselecteerd</text>
-    }
-    else
-    {
-
-        foreach (var t in Model.task)
+        @if (Model == null)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(m => t.TaskName)
-                </td>
-                <td>
-                    @Html.DisplayFor(m => t.Taskdescription)
-                </td>
-                <td>
-                    @Html.DisplayFor(m => t.SchoolOrWork)
-                </td>
-                <td>
-                    @Html.DisplayFor(m => t.Status)
-                </td>
-                <td>
-                    @Html.DisplayFor(m => t.TaskApproved)
-                </td>
-                <td>
-                    @Html.DisplayFor(m => t.Rating)
-                </td>
-                <td>
-                    @Html.DisplayFor(m => t.BeginDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(m => t.Time)
-                </td>
-                <td>
-                    @Html.ActionLink("Voltooi taak of afspraak", "Inleveren", "Studenten", new { id = t.ID }, null)
-                </td>
-
-            </tr>
+            <text>Error</text>
         }
-    }
-</table>
+        else
+        {
+
+            foreach (var t in Model.task)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(m => t.TaskName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => t.Taskdescription)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => t.Type)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => t.SchoolOrWork)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => t.Status)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => t.TaskApproved)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => t.Rating)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => t.BeginDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => t.Time)
+                    </td>
+                    <td style="color: white;">
+
+                        @Html.ActionLink("Voltooi taak of afspraak", "Inleveren", "Studenten", new { id = t.ID }, null)
+                    </td>
+
+                </tr>
+            }
+        }
+    </table>
+
+
+    <style>
+        .chartje {
+            border-radius: 8px;
+            background-image: linear-gradient(to bottom right, #f58220, #ed1165);
+            max-width: 1200px;
+            max-height: 500px;
+            opacity: 0.8;
+        }
+
+        .afspraak {
+            position: relative;
+            background-image: linear-gradient(to bottom right, #f58220, #ed1165);
+            float: right;
+        }
+
+        .titel {
+            color: white;
+            margin-right: 50%
+        }
+
+        .table {
+            color: white;
+            background-image: linear-gradient(to bottom right, #f58220, #ed1165);
+            opacity: 0.6;
+            border-radius: 8px;
+            max-width: 100%;
+            padding: 5px;
+            max-height: 300px;
+            margin-top: 50px;
+        }
+
+        body {
+            background-image: url(../../Content/Images/image.png);
+            background-position: initial;
+        }
+    </style>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+            ['Aantal uren', ' @Model.student.AmountOfhoursToComplete'],
+            ['Mijn geboekte uren', @Model.student.AmountofbookedHours],
+            ['Totaal Uren', @Model.student.AmountOfhoursToComplete],
+        ]);
+
+        var options = {
+            title: 'Mijn stagevoortgang'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+        }
+        ScrollReveal().reveal('.chartje', { delay: 70, distance: '20px', cleanup: true });
+        ScrollReveal().reveal('.table', { delay: 200, distance: '20px', cleanup: true });
+
+
+    </script>
+
