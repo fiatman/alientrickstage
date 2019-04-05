@@ -15,11 +15,11 @@
         <div id="piechart"></div>
         @Html.ActionLink("klik hier om uren te boeken", "AddHours", "studenten")
     </div>
-   
 
   <div class="titel">
         <h3> Dit zijn jouw taken</h3>
     </div>
+
     <div class="afspraak">
         @Html.ActionLink("klik hier om een afspraak aan te vragen", "StudentMeeting", "studenten")
     </div>
@@ -63,7 +63,7 @@
         else
         {
 
-            foreach (var t in Model.task)
+            foreach (var t in Model.task.Where(d => d.TaskApproved == 0))
             {
                 <tr>
                     <td>
@@ -149,8 +149,9 @@
 
         var data = google.visualization.arrayToDataTable([
             ['Aantal uren', ' @Model.student.AmountOfhoursToComplete'],
-            ['Mijn geboekte uren', @Model.student.AmountofbookedHours],
             ['Totaal Uren', @Model.student.AmountOfhoursToComplete],
+            ['Mijn geboekte uren', @Model.student.AmountofbookedHours],
+
         ]);
 
         var options = {
@@ -162,7 +163,7 @@
         chart.draw(data, options);
         }
         ScrollReveal().reveal('.chartje', { delay: 70, distance: '20px', cleanup: true });
-        ScrollReveal().reveal('.table', { delay: 200, distance: '20px', cleanup: true });
+        ScrollReveal().reveal('.table', { delay: 500, distance: '20px', cleanup: true });
 
 
     </script>

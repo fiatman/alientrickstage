@@ -49,8 +49,6 @@ namespace Stage.AlienTrick.Controllers
 
             return View(persoonlijkmodel);
 
-
-            return View(persoonlijkmodel);
         
         }
         //create
@@ -312,6 +310,7 @@ namespace Stage.AlienTrick.Controllers
                 task.Taskdescription = takenmodel.TaskDescription;
                 task.Type = takenmodel.Type;
                 task.Rating = takenmodel.Rating;
+                task.BeginDate = DateTime.Now;
 
                 task.TaskApproved = 0;
 
@@ -349,7 +348,7 @@ namespace Stage.AlienTrick.Controllers
              var studentstask = db.Students.Where(t => t.ID == taak.Student_ID).FirstOrDefault();
             taak.TaskApproved = 2;
             db.SaveChanges();
-            return RedirectToAction("index");
+            return View("MeetingCompleted");
         }
 
         [Rights(AllowAdmins = true , AllowStudents = true)]
@@ -361,6 +360,7 @@ namespace Stage.AlienTrick.Controllers
             task.TaskApproved = 1;
             db.SaveChanges();
             TempData["msg"] = "<script>alert('Jou taak is ingeleverd!');</script>";
+            return RedirectToAction("persoonlijkevoortgang");
             }
 
             if(task.TaskApproved == 1)
@@ -452,7 +452,7 @@ namespace Stage.AlienTrick.Controllers
             return View(takenmodel);
         }
         [HttpPost]
-        public ActionResult StudentMeeting(int ID, Takenmodel takenmodel , WindowsUsersAndRoles windows)
+        public ActionResult StudentMeeting(int ID, Takenmodel takenmodel)
 
         {
             Task task = new Task();
