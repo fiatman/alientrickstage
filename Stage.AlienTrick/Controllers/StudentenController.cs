@@ -113,7 +113,7 @@ namespace Stage.AlienTrick.Controllers
             {
                 if (studentaccepthours.AmountofbookedHours >= studentaccepthours.AmountOfhoursToComplete)
                 {
-                    TempData["msg"] = "<script>alert('Deze student heef zijn stageuren voltooid!');</script>";
+                    TempData["msg"] = "<script>alert('Deze student heeft zijn stageuren voltooid!');</script>";
                     return RedirectToAction("index");
                 }
                 else
@@ -296,8 +296,8 @@ namespace Stage.AlienTrick.Controllers
                 task.TaskApproved = 0;
                 db.SaveChanges();
 
-                var apmt = db.Appointments.Where(d => d.Task_ID == d.Task.ID).FirstOrDefault();
-                apmt.Task_ID = task.ID;
+                Appointment appointment = new Appointment();
+                appointment.Task_ID = task.ID;
                 db.SaveChanges();
                 return RedirectToAction("index");
 
@@ -346,9 +346,11 @@ namespace Stage.AlienTrick.Controllers
              Models.Takenmodel takenmodel = new Models.Takenmodel();
              var taak = db.Tasks.Where(d => d.ID == id).FirstOrDefault();
              var studentstask = db.Students.Where(t => t.ID == taak.Student_ID).FirstOrDefault();
+            var studentid = id;
+            var studentenid = db.Students.Where(w => w.ID == taak.Student_ID).FirstOrDefault().ID;
             taak.TaskApproved = 2;
             db.SaveChanges();
-            return View("MeetingCompleted");
+            return RedirectToAction("index");
         }
 
         [Rights(AllowAdmins = true , AllowStudents = true)]
