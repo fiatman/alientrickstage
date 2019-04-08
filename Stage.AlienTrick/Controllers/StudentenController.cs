@@ -193,7 +193,7 @@ namespace Stage.AlienTrick.Controllers
                 else
                 {
                   
-                    Models.Voortgangsmodel voortgang = new Models.Voortgangsmodel();
+                    Models.Voortgangsmodel voortgang = new Voortgangsmodel();
                     voortgang.AmountofbookedHours = student.AmountofbookedHours;
                     voortgang.AmountOfHourstoComplete = student.AmountOfhoursToComplete;
                     voortgang.student = student;
@@ -246,7 +246,7 @@ namespace Stage.AlienTrick.Controllers
                         .ToList();
                 }
 
-            var result = new Models.Takenmodel();
+            var result = new Takenmodel();
                 result.Students = studentens;
                 return View(result);
             
