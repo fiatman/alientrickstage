@@ -2,9 +2,16 @@
 @{
     ViewBag.Title = "Plan meeting of taak";
 }
+<head>
+    <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
 
+    <script>
+        ScrollReveal.debug = true;
+    </script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+</head>
 <h2>Create</h2>
-
+<div class="opmaken">
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/jqueryval")
 
@@ -112,6 +119,7 @@ new SelectListItem { Value = "Verlof", Text = "Verlof" }
                  @Html.ValidationMessageFor(model => model.Time, "", new { @class = "text-danger" })
                 </div>
          </div>
+
          <br />
          <br />
     <div class="form-group">
@@ -121,8 +129,26 @@ new SelectListItem { Value = "Verlof", Text = "Verlof" }
     </div>
 }
 
+<script>
 
+</script>
 
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+<style>
+    body {
+        background-image: url(../../Content/Images/image.png);
+        color: white;
+    }
+
+    .table {
+        background-image: linear-gradient(to bottom right, #f58220, #ed1165);
+        opacity: 0.7;
+        border-radius: 8px;
+        padding: 10px;
+        text-align: center;
+        border-color: white;
+    }
+</style>
