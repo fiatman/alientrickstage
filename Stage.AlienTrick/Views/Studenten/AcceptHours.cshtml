@@ -2,9 +2,20 @@
 @{
     ViewBag.Title = "AcceptHours";
 }
+<head>
+    <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
+
+    <script>
+        ScrollReveal.debug = true;
+    </script>
+</head>
 
 <h2>Uren Accepteren</h2>
 
+<div class="chartje">
+    <div id="piechart"></div>
+</div>
+<div class="text">
 <h3>Deze student heeft @Model.AmountofbookedHours uren geboekt.</h3>
 
 <h4>Wilt u deze accepteren? druk dan op de knop: Uren Goedkeuren.</h4>
@@ -15,6 +26,83 @@
     @Html.HiddenFor(s => s.AmountofbookedHours);
     @Html.HiddenFor(s => s.HoursAccepted);
     @Html.HiddenFor(id => id.student.ID);
-    
+
     <button name="AcceptHours" type="submit" value="AcceptHours" class="btn btn-default" id="@Model.student.ID">Uren Goedkeuren</button>
+
+
 }
+
+@using (Html.BeginForm("DenyHours", "Studenten", FormMethod.Post))
+{
+    @Html.HiddenFor(s => s.student);
+    @Html.HiddenFor(s => s.AmountofbookedHours);
+    @Html.HiddenFor(s => s.HoursAccepted);
+    @Html.HiddenFor(id => id.student.ID);
+    <button name="DenyHours" type="submit" value="DenyHours" class="btn btn-default" id="@Model.student.ID">Uren Afkeuren</button>
+}
+    </div>
+<style>
+    .chartje {
+        border-radius: 8px;
+        background-image: linear-gradient(to bottom right, #f58220, #ed1165);
+        max-width: 1200px;
+        max-height: 500px;
+        opacity: 0.8;
+        margin-top: 100px;
+    }
+
+    .afspraak {
+        position: relative;
+        background-image: linear-gradient(to bottom right, #f58220, #ed1165);
+        float: right;
+    }
+
+    .titel {
+        color: white;
+        margin-right: 50%
+    }
+
+    .table {
+        color: white;
+        background-image: linear-gradient(to bottom right, #f58220, #ed1165);
+        opacity: 0.6;
+        border-radius: 8px;
+        max-width: 100%;
+        padding: 5px;
+        max-height: 300px;
+        margin-top: 50px;
+    }
+
+    body {
+        background-image: url(../../Content/Images/image.png);
+        background-position: initial;
+        color: white;
+    }
+</style>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+            ['Aantal uren', ' @Model.student.AmountOfhoursToComplete'],
+            ['Totaal Uren', @Model.student.AmountOfhoursToComplete],
+            ['Mijn geboekte uren', @Model.student.AmountofbookedHours],
+
+        ]);
+
+        var options = {
+            title: 'Mijn stagevoortgang'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+        }
+        ScrollReveal().reveal('.chartje', { delay: 70, distance: '20px', cleanup: true });
+        ScrollReveal().reveal('.text', { delay: 500, distance: '20px', cleanup: true });
+
+
+</script>

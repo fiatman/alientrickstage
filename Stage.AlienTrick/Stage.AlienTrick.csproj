@@ -235,6 +235,18 @@
     <Compile Include="Migrations\201903281251417_leu.Designer.cs">
       <DependentUpon>201903281251417_leu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904090647447_lasthours.cs" />
+    <Compile Include="Migrations\201904090647447_lasthours.Designer.cs">
+      <DependentUpon>201904090647447_lasthours.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904090659140_ja.cs" />
+    <Compile Include="Migrations\201904090659140_ja.Designer.cs">
+      <DependentUpon>201904090659140_ja.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904090700164_joa.cs" />
+    <Compile Include="Migrations\201904090700164_joa.Designer.cs">
+      <DependentUpon>201904090700164_joa.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Homemodel.cs" />
     <Compile Include="Models\Messagemodel.cs" />
@@ -501,6 +513,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903281251417_leu.resx">
       <DependentUpon>201903281251417_leu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904090647447_lasthours.resx">
+      <DependentUpon>201904090647447_lasthours.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904090659140_ja.resx">
+      <DependentUpon>201904090659140_ja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904090700164_joa.resx">
+      <DependentUpon>201904090700164_joa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="obj\Debug\Stage.AlienTrick.Migrations.copeted.resources" />
     <EmbeddedResource Include="obj\Debug\Stage.AlienTrick.Migrations.da.resources" />

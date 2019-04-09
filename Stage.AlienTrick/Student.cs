@@ -71,6 +71,8 @@ namespace Stage.AlienTrick
         public virtual ICollection<Task> Tasks { get; set; }
         public string Windowsuseraccount { get; set; }
 
+        public double LastHours { get; set; }
+
 
     }
 }

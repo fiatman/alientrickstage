@@ -2,12 +2,21 @@
 @{
     ViewBag.Title = "Index";
 }
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<head>
+    <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
+
+    <script>
+        ScrollReveal.debug = true;
+    </script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+</head>
 
 <h2>Sollicitaties</h2>
 
 <br />
 <p>
-    <a class="FontAwesomeButton" href="@Url.Action("Create", "Vacatures", null)"><i class="far fa-plus-square"></i> Nieuwe Vacature</a>
+    <a class="FontAwesomeButton" href="@Url.Action("Create", "Vacatures", null)"><i class="fas fa-briefcase fa-2x"></i> Nieuwe Vacature</a>
 </p>
 @Html.Raw(TempData["msg"])
 <form asp-controller="Studenten" asp-action="Index" class="form-inline">
@@ -50,42 +59,42 @@
 
         foreach (var s in Model.Where(d => d.ApplyAnswered == 0))
         {
-    <tr>
-        <td>
-            @Html.DisplayFor(m => s.CandidateName)
-        </td>
-        <td>
-            @Html.DisplayFor(m => s.CandidateLastName)
-        </td>
-        <td>
-            @Html.DisplayFor(m => s.CandidatePhoneNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(m => s.CandidateMailadress)
-        </td>
-        <td>
-            @Html.DisplayFor(m => s.Enclosureurl)
-        </td>
-        <td>
-            @Html.DisplayFor(m => s.ApplicationDate)
-        </td>
-        <td>
-            @Html.DisplayFor(m => s.Vacature_id)
-        </td>
+            <tr>
+                <td>
+                    @Html.DisplayFor(m => s.CandidateName)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => s.CandidateLastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => s.CandidatePhoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => s.CandidateMailadress)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => s.Enclosureurl)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => s.ApplicationDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => s.Vacature_id)
+                </td>
 
-        <td>
-            @Html.ActionLink("Nodig sollicitant uit", "SendInvitation", "Sollicitaties", new { id = s.ID, type = 1 }, null)
-        </td>
-        <td>
-            @Html.ActionLink("Weiger sollicitant", "SendInvitation", "Sollicitaties", new { id = s.ID, type = 2 }, null)
-        </td>
+                <td>
+                  <a href="@Url.Action("SendInvitation", "Sollicitaties", new { id = s.ID, type = 1 }, null)"><i class="far fa-smile fa-2x"></i></a>
+                </td>
+                <td>
+                  <a href="@Url.Action("SendInvitation", "Sollicitaties", new { id = s.ID, type = 2 }, null)"><i class="far fa-frown fa-2x"></i></a>
+                </td>
 
-    </tr>
+            </tr>
         }
     }
 </table>
-<br/>
-<br/>
+<br />
+<br />
 <h2> Al geaccepteerde sollicitaties</h2>
 <table class="table">
     <tr>
@@ -145,7 +154,7 @@
                     @Html.DisplayFor(m => s.Vacature_id)
                 </td>
                 <td>
-                    @Html.ActionLink("Sollicitant toch verwijderen", "SendInvitation", "Sollicitaties", new { id = s.ID, type = 2 }, null)
+                    <a href="@Url.Action("SendInvitation", "Sollicitaties", new { id = s.ID, type = 2 }, null)"><i class="far fa-frown fa-2x"></i></a>
                 </td>
 
             </tr>
@@ -153,3 +162,28 @@
     }
 </table>
 
+<style>
+    body {
+        background-image: url(../../Content/Images/image.png);
+        color: white;
+    }
+
+    .table {
+        background-image: linear-gradient(to bottom right, #f58220, #ed1165);
+        opacity: 0.7;
+        border-radius: 8px;
+        padding-top: 50px;
+        padding: 10px;
+        border-color: white;
+        max-width: 100%;
+    }
+
+    #knopje {
+        margin-top: 20px;
+        float: left;
+    }
+</style>
+<script>
+    ScrollReveal().reveal('.table', { delay: 70, distance: '20px', cleanup: true });
+    ScrollReveal().reveal('.knopje', { delay: 70, distance: '20px', cleanup: true });
+</script>

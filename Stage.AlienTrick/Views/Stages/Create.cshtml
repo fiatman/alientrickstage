@@ -2,7 +2,15 @@
 @{
     ViewBag.Title = "Nieuwe stage";
 }
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<head>
+    <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
 
+    <script>
+        ScrollReveal.debug = true;
+    </script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+</head>
 <h2>Create</h2>
 
 @Scripts.Render("~/bundles/jquery")
@@ -15,50 +23,46 @@
     @Html.HiddenFor(m => m.StudentID)
     @Html.HiddenFor(m => m.VacatureID)
     @Html.AntiForgeryToken()
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.StageName, "Stage Naam", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.StageName, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.StageName, "", new { @class = "text-danger" })
+    <div class="form-horizontal">
+        <div class="form-group">
+            @Html.LabelFor(model => model.StageName, "Stage Naam", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.StageName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.StageName, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
-    <br>
-    <div class="form-group">
-        @Html.LabelFor(model => model.Beginperiod, "Beginperiode", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Beginperiod, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
-            @Html.ValidationMessageFor(model => model.Beginperiod, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Beginperiod, "Beginperiode", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Beginperiod, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                @Html.ValidationMessageFor(model => model.Beginperiod, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
-    <br>
-    <div class="form-group">
-        @Html.LabelFor(model => model.Endperiod, "Eindperiode", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Endperiod, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
-            @Html.ValidationMessageFor(model => model.Endperiod, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Endperiod, "Eindperiode", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Endperiod, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                @Html.ValidationMessageFor(model => model.Endperiod, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
-    <br>
-    <div class="form-group">
-        @Html.LabelFor(model => model.NeededEducation, "Opleidingsniveau", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.NeededEducation, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.NeededEducation, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.NeededEducation, "Opleidingsniveau", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NeededEducation, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NeededEducation, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
-    <br>
-    <div class="form-group">
-        @Html.LabelFor(model => model.StageDescription, "Stage Beschrijving", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.StageDescription, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.StageDescription, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.StageDescription, "Stage Beschrijving", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.StageDescription, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.StageDescription, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
-    <br>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
         </div>
     </div>
 }
@@ -68,3 +72,30 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+<style>
+    body {
+        background-image: url(../../Content/Images/image.png);
+        color: white;
+    }
+    .form-horizontal {
+        max-height: 100%;
+        background-image: linear-gradient(to top left, #00aeef, #00ad8e);
+        padding-left: 35px;
+        padding-top: 35px;
+        padding-bottom: 35px;
+        border-radius: 8px;
+        opacity: 0.7;
+        margin-right: 100px;
+    }
+
+
+    .knopje {
+        margin-top: 500px;
+        position: center;
+    }
+</style>
+<script>
+    ScrollReveal().reveal('.form-horizontal', { delay: 70, distance: '20px', cleanup: true });
+    ScrollReveal().reveal('.knopje ', { delay: 70, distance: '20px', cleanup: true });
+    ScrollReveal().reveal('.linkje ', { delay: 70, distance: '20px', cleanup: true });
+</script>
