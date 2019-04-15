@@ -52,6 +52,12 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -136,8 +142,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Attributes\RightsAttribute.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
+    <Compile Include="Controllers\SollicitatiesController.cs" />
     <Compile Include="Controllers\StagesController.cs" />
     <Compile Include="Controllers\StudentenController.cs" />
     <Compile Include="Controllers\VacaturesController.cs" />
@@ -155,29 +163,225 @@
     <Compile Include="Migrations\201903131331504_timespan.Designer.cs">
       <DependentUpon>201903131331504_timespan.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903190737586_copeted.cs" />
+    <Compile Include="Migrations\201903190737586_copeted.Designer.cs">
+      <DependentUpon>201903190737586_copeted.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903190739366_dinges.cs" />
+    <Compile Include="Migrations\201903190739366_dinges.Designer.cs">
+      <DependentUpon>201903190739366_dinges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903191315508_hoi.cs" />
+    <Compile Include="Migrations\201903191315508_hoi.Designer.cs">
+      <DependentUpon>201903191315508_hoi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903211306447_dng.cs" />
+    <Compile Include="Migrations\201903211306447_dng.Designer.cs">
+      <DependentUpon>201903211306447_dng.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903211308436_da.cs" />
+    <Compile Include="Migrations\201903211308436_da.Designer.cs">
+      <DependentUpon>201903211308436_da.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903211311579_kadkh.cs" />
+    <Compile Include="Migrations\201903211311579_kadkh.Designer.cs">
+      <DependentUpon>201903211311579_kadkh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903220941183_hoi1.cs" />
+    <Compile Include="Migrations\201903220941183_hoi1.Designer.cs">
+      <DependentUpon>201903220941183_hoi1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903220948242_time.cs" />
+    <Compile Include="Migrations\201903220948242_time.Designer.cs">
+      <DependentUpon>201903220948242_time.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903221409097_id.cs" />
+    <Compile Include="Migrations\201903221409097_id.Designer.cs">
+      <DependentUpon>201903221409097_id.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903221421532_nieuw.cs" />
+    <Compile Include="Migrations\201903221421532_nieuw.Designer.cs">
+      <DependentUpon>201903221421532_nieuw.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903250827511_windows authentication.cs" />
+    <Compile Include="Migrations\201903250827511_windows authentication.Designer.cs">
+      <DependentUpon>201903250827511_windows authentication.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903260928202_datums.cs" />
+    <Compile Include="Migrations\201903260928202_datums.Designer.cs">
+      <DependentUpon>201903260928202_datums.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903261055091_ding.cs" />
+    <Compile Include="Migrations\201903261055091_ding.Designer.cs">
+      <DependentUpon>201903261055091_ding.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903271027033_hoi2.cs" />
+    <Compile Include="Migrations\201903271027033_hoi2.Designer.cs">
+      <DependentUpon>201903271027033_hoi2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903271227594_yes.cs" />
+    <Compile Include="Migrations\201903271227594_yes.Designer.cs">
+      <DependentUpon>201903271227594_yes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903271333329_ding1.cs" />
+    <Compile Include="Migrations\201903271333329_ding1.Designer.cs">
+      <DependentUpon>201903271333329_ding1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903271542138_ding2.cs" />
+    <Compile Include="Migrations\201903271542138_ding2.Designer.cs">
+      <DependentUpon>201903271542138_ding2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903281251417_leu.cs" />
+    <Compile Include="Migrations\201903281251417_leu.Designer.cs">
+      <DependentUpon>201903281251417_leu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904090647447_lasthours.cs" />
+    <Compile Include="Migrations\201904090647447_lasthours.Designer.cs">
+      <DependentUpon>201904090647447_lasthours.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904090659140_ja.cs" />
+    <Compile Include="Migrations\201904090659140_ja.Designer.cs">
+      <DependentUpon>201904090659140_ja.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904090700164_joa.cs" />
+    <Compile Include="Migrations\201904090700164_joa.Designer.cs">
+      <DependentUpon>201904090700164_joa.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Homemodel.cs" />
     <Compile Include="Models\Messagemodel.cs" />
+    <Compile Include="Models\Persoonlijkmodel.cs" />
+    <Compile Include="Models\Sollicitatiemodel.cs" />
     <Compile Include="Models\Stagemodel.cs" />
     <Compile Include="Models\Takenmodel.cs" />
     <Compile Include="Models\Voortgangsmodel.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="PortalEntities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Stage.cs" />
     <Compile Include="Student.cs" />
     <Compile Include="Task.cs" />
     <Compile Include="Vacature.cs" />
+    <Compile Include="WindowsUsersAndRoles.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Antlr3.Runtime.dll" />
+    <Content Include="bin\Antlr3.Runtime.pdb" />
+    <Content Include="bin\EntityFramework.dll" />
+    <Content Include="bin\EntityFramework.SqlServer.dll" />
+    <Content Include="bin\EntityFramework.SqlServer.xml" />
+    <Content Include="bin\EntityFramework.xml" />
+    <Content Include="bin\Microsoft.AspNet.TelemetryCorrelation.dll" />
+    <Content Include="bin\Microsoft.AspNet.TelemetryCorrelation.xml" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
+    <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
+    <Content Include="bin\Newtonsoft.Json.dll" />
+    <Content Include="bin\Newtonsoft.Json.xml" />
+    <Content Include="bin\PagedList.dll" />
+    <Content Include="bin\PagedList.Mvc.dll" />
+    <Content Include="bin\PagedList.Mvc.xml" />
+    <Content Include="bin\PagedList.xml" />
+    <Content Include="bin\roslyn\csc.exe" />
+    <Content Include="bin\roslyn\csi.exe" />
+    <Content Include="bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll" />
+    <Content Include="bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll" />
+    <Content Include="bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll" />
+    <Content Include="bin\roslyn\System.AppContext.dll" />
+    <Content Include="bin\roslyn\System.Collections.Immutable.dll" />
+    <Content Include="bin\roslyn\System.Console.dll" />
+    <Content Include="bin\roslyn\System.Diagnostics.FileVersionInfo.dll" />
+    <Content Include="bin\roslyn\System.Diagnostics.StackTrace.dll" />
+    <Content Include="bin\roslyn\System.IO.Compression.dll" />
+    <Content Include="bin\roslyn\System.IO.FileSystem.dll" />
+    <Content Include="bin\roslyn\System.IO.FileSystem.Primitives.dll" />
+    <Content Include="bin\roslyn\System.IO.Pipes.AccessControl.dll" />
+    <Content Include="bin\roslyn\System.IO.Pipes.dll" />
+    <Content Include="bin\roslyn\System.Reflection.Metadata.dll" />
+    <Content Include="bin\roslyn\System.Security.AccessControl.dll" />
+    <Content Include="bin\roslyn\System.Security.Claims.dll" />
+    <Content Include="bin\roslyn\System.Security.Cryptography.Algorithms.dll" />
+    <Content Include="bin\roslyn\System.Security.Cryptography.Encoding.dll" />
+    <Content Include="bin\roslyn\System.Security.Cryptography.Primitives.dll" />
+    <Content Include="bin\roslyn\System.Security.Cryptography.X509Certificates.dll" />
+    <Content Include="bin\roslyn\System.Security.Principal.Windows.dll" />
+    <Content Include="bin\roslyn\System.Text.Encoding.CodePages.dll" />
+    <Content Include="bin\roslyn\System.ValueTuple.dll" />
+    <Content Include="bin\roslyn\System.Xml.ReaderWriter.dll" />
+    <Content Include="bin\roslyn\System.Xml.XmlDocument.dll" />
+    <Content Include="bin\roslyn\System.Xml.XPath.dll" />
+    <Content Include="bin\roslyn\System.Xml.XPath.XDocument.dll" />
+    <Content Include="bin\roslyn\vbc.exe" />
+    <Content Include="bin\roslyn\VBCSCompiler.exe" />
+    <Content Include="bin\Stage.AlienTrick.dll" />
+    <Content Include="bin\Stage.AlienTrick.pdb" />
+    <Content Include="bin\System.Diagnostics.DiagnosticSource.dll" />
+    <Content Include="bin\System.Diagnostics.DiagnosticSource.xml" />
+    <Content Include="bin\System.Web.Helpers.dll" />
+    <Content Include="bin\System.Web.Helpers.xml" />
+    <Content Include="bin\System.Web.Mvc.dll" />
+    <Content Include="bin\System.Web.Mvc.xml" />
+    <Content Include="bin\System.Web.Optimization.dll" />
+    <Content Include="bin\System.Web.Optimization.xml" />
+    <Content Include="bin\System.Web.Razor.dll" />
+    <Content Include="bin\System.Web.Razor.xml" />
+    <Content Include="bin\System.Web.WebPages.Deployment.dll" />
+    <Content Include="bin\System.Web.WebPages.Deployment.xml" />
+    <Content Include="bin\System.Web.WebPages.dll" />
+    <Content Include="bin\System.Web.WebPages.Razor.dll" />
+    <Content Include="bin\System.Web.WebPages.Razor.xml" />
+    <Content Include="bin\System.Web.WebPages.xml" />
+    <Content Include="bin\WebGrease.dll" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\alientrick_logo.jpg" />
+    <Content Include="Content\Images\AlienTrick_Logo_2016_WHITE.png" />
+    <Content Include="Content\Images\atfoto.png" />
+    <Content Include="Content\Images\atfoto2.png" />
+    <Content Include="Content\Images\atfoto3.png" />
+    <Content Include="Content\Images\footootoooo.png" />
+    <Content Include="Content\Images\foto2.png" />
+    <Content Include="Content\Images\image.png" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="obj\Debug\Stage.AlienTrick.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\Stage.AlienTrick.dll" />
+    <Content Include="obj\Debug\Stage.AlienTrick.pdb" />
+    <Content Include="obj\Debug\TempPE\Models.portalmodel.Context.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models.portalmodel.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models.portalmodel.Designer.cs.dll" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <Content Include="obj\Debug\Stage.AlienTrick.csproj.CopyComplete" />
+    <Content Include="obj\Debug\Stage.AlienTrick.csproj.CoreCompileInputs.cache" />
+    <Content Include="obj\Debug\Stage.AlienTrick.csproj.GenerateResource.cache" />
+    <Content Include="obj\Debug\Stage.AlienTrick.csprojAssemblyReference.cache" />
+    <Content Include="obj\Release\Stage.AlienTrick.csproj.CoreCompileInputs.cache" />
+    <Content Include="bin\roslyn\csc.exe.config" />
+    <Content Include="bin\roslyn\csc.rsp" />
+    <Content Include="bin\roslyn\csi.exe.config" />
+    <Content Include="bin\roslyn\csi.rsp" />
+    <Content Include="bin\roslyn\Microsoft.CSharp.Core.targets" />
+    <Content Include="bin\roslyn\Microsoft.Managed.Core.targets" />
+    <Content Include="bin\roslyn\Microsoft.VisualBasic.Core.targets" />
+    <Content Include="bin\roslyn\vbc.exe.config" />
+    <Content Include="bin\roslyn\vbc.rsp" />
+    <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
+    <Content Include="bin\Stage.AlienTrick.dll.config" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -221,9 +425,17 @@
     <Content Include="Views\Studenten\Edit.cshtml" />
     <Content Include="Views\Studenten\AcceptHours.cshtml" />
     <Content Include="Views\Studenten\CreateMeeting.cshtml" />
+    <Content Include="Views\Studenten\MeetingCompleted.cshtml" />
+    <Content Include="Views\Studenten\Completethemeeting.cshtml" />
+    <Content Include="Views\Studenten\Applyrating.cshtml" />
+    <Content Include="Views\Vacatures\Applyforjob.cshtml" />
+    <Content Include="Views\Sollicitaties\Index.cshtml" />
+    <Content Include="Views\Studenten\Persoonlijkevoortgang.cshtml" />
+    <Content Include="Views\Studenten\StudentMeeting.cshtml" />
+    <Content Include="Views\Home\Applyforjob.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="App_Data\uploads\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -248,6 +460,88 @@
     <EmbeddedResource Include="Migrations\201903131331504_timespan.resx">
       <DependentUpon>201903131331504_timespan.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903190737586_copeted.resx">
+      <DependentUpon>201903190737586_copeted.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903190739366_dinges.resx">
+      <DependentUpon>201903190739366_dinges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903191315508_hoi.resx">
+      <DependentUpon>201903191315508_hoi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903211306447_dng.resx">
+      <DependentUpon>201903211306447_dng.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903211308436_da.resx">
+      <DependentUpon>201903211308436_da.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903211311579_kadkh.resx">
+      <DependentUpon>201903211311579_kadkh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903220941183_hoi1.resx">
+      <DependentUpon>201903220941183_hoi1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903220948242_time.resx">
+      <DependentUpon>201903220948242_time.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903221409097_id.resx">
+      <DependentUpon>201903221409097_id.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903221421532_nieuw.resx">
+      <DependentUpon>201903221421532_nieuw.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903250827511_windows authentication.resx">
+      <DependentUpon>201903250827511_windows authentication.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903260928202_datums.resx">
+      <DependentUpon>201903260928202_datums.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903261055091_ding.resx">
+      <DependentUpon>201903261055091_ding.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903271027033_hoi2.resx">
+      <DependentUpon>201903271027033_hoi2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903271227594_yes.resx">
+      <DependentUpon>201903271227594_yes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903271333329_ding1.resx">
+      <DependentUpon>201903271333329_ding1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903271542138_ding2.resx">
+      <DependentUpon>201903271542138_ding2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903281251417_leu.resx">
+      <DependentUpon>201903281251417_leu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904090647447_lasthours.resx">
+      <DependentUpon>201904090647447_lasthours.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904090659140_ja.resx">
+      <DependentUpon>201904090659140_ja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904090700164_joa.resx">
+      <DependentUpon>201904090700164_joa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="obj\Debug\Stage.AlienTrick.Migrations.copeted.resources" />
+    <EmbeddedResource Include="obj\Debug\Stage.AlienTrick.Migrations.da.resources" />
+    <EmbeddedResource Include="obj\Debug\Stage.AlienTrick.Migrations.datums.resources" />
+    <EmbeddedResource Include="obj\Debug\Stage.AlienTrick.Migrations.ding.resources" />
+    <EmbeddedResource Include="obj\Debug\Stage.AlienTrick.Migrations.ding1.resources" />
+    <EmbeddedResource Include="obj\Debug\Stage.AlienTrick.Migrations.ding2.resources" />
+    <EmbeddedResource Include="obj\Debug\Stage.AlienTrick.Migrations.dinges.resources" />
+    <EmbeddedResource Include="obj\Debug\Stage.AlienTrick.Migrations.dng.resources" />
+    <EmbeddedResource Include="obj\Debug\Stage.AlienTrick.Migrations.hoi.resources" />
+    <EmbeddedResource Include="obj\Debug\Stage.AlienTrick.Migrations.hoi1.resources" />
+    <EmbeddedResource Include="obj\Debug\Stage.AlienTrick.Migrations.hoi2.resources" />
+    <EmbeddedResource Include="obj\Debug\Stage.AlienTrick.Migrations.id.resources" />
+    <EmbeddedResource Include="obj\Debug\Stage.AlienTrick.Migrations.intiial.resources" />
+    <EmbeddedResource Include="obj\Debug\Stage.AlienTrick.Migrations.kadkh.resources" />
+    <EmbeddedResource Include="obj\Debug\Stage.AlienTrick.Migrations.nieuw.resources" />
+    <EmbeddedResource Include="obj\Debug\Stage.AlienTrick.Migrations.time.resources" />
+    <EmbeddedResource Include="obj\Debug\Stage.AlienTrick.Migrations.timespan.resources" />
+    <EmbeddedResource Include="obj\Debug\Stage.AlienTrick.Migrations.windowsauthentication.resources" />
+    <EmbeddedResource Include="obj\Debug\Stage.AlienTrick.Migrations.yes.resources" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

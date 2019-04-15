@@ -1,31 +1,434 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
+﻿@model global::Stage.AlienTrick.Models.Homemodel
+<head>
+    <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    <script>
+        ScrollReveal.debug = true;
+    </script>
+</head>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+<div class="center-block">
+    <h1><b>Stage, bij AlienTrick?</b></h1>
+    <h2>Wij Zoeken Jou! 👈</h2>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+<div class="arrow">
+    <span></span>
+    <span></span>
+    <span></span>
+
+</div>
+@*<input type="button" href="#columns" id="buttonvacature" class="button" value="Op naar de vacatures!" >*@
+<div class="col-text">
+    <h1><b>Stage lopen bij AlienTrick</b></h1>
+    <br />
+    <p>
+        <b>Wij zijn één team van vijftig nieuwsgierige strategen, designers, copywriters en developers. Maar we zijn vooral professionals met een gezamenlijke missie: we willen merken mooier, leuker en waardevoller maken.</b><br /><br /> Bij ons staat kennisdeling en persoonlijke ontwikkeling voorop en we maken daarom altijd graag een plaatsje vrij voor een al net zo nieuwsgierige stagiaire.
+        Bij AlienTrick is er per stageperiode plaats voor 2-4 stagiairs en wel op onze afdelingen Design, Technology en Strategy. Bij ons hoef je niet de hele dag koffie te halen of kopietjes te maken (kunnen we zelf), maar ben je wel volop aan het werk in je toekomstige vakgebied. Klinkt goed, toch?
+    </p>
+</div>
+<div class="foto1">
+    <img src="~/Content/Images/atfoto.png" />
+</div>
+
+<div class="belangrijk">
+    <h1><b>Wat vinden wij belangrijk:</b></h1>
+    <br />
+    <p>
+        • Inzet om alles aan te pakken wat er op je weg komt;
+        <br />
+        • Communicatief sterk denken;
+        <br />
+        • MBO of HBO denkniveau;
+        <br />
+        • Out-of-the-box mentaliteit;
+    </p>
+</div>
+<br />
+<div class="col-text2">
+    <h1>
+        <b>In het kort</b>
+    </h1>
+    <br />
+    <p>
+        Binnen de afdeling Design houden we ons bezig met het ontwerpen van websites, webshops, awesome visual design en mind-blowing animaties. Wij vertellen het verhaal van onze klant op een visueel onweerstaanbare manier.<br />
+
+        Op de afdeling Technology ontwikkelen we de software die nodig is om webwinkels, websites, apps en portals goed te laten draaien.  Of je er nou naar kijkt, er op bestelt, er op klikt of ermee werkt, onze developers combineren creativiteit met een knap staaltje technologie.<br />
+
+        Ben jij een strateeg in de dop? Dan zit je binnen de afdeling Strategy vast op je plek. Wij creëren merk- en bedrijfsnamen, concepten en campagnes, altijd met de wensen van de klant in ons hoofd. We zetten online marketingcampagnes op en schrijven pakkende teksten.
+    </p>
+</div>
+<div class="foto2">
+    <img src="~/Content/Images/footootoooo.png" />
+</div>
+<div class="tekstje">
+    <h1>
+        <b> Wat kun je van ons verwachten?</b>
+    </h1>
+    <br />
+    <p>
+        • Een veelzijdige, uitdagende stageplaats met gezellige, enthousiaste collega's;
+        <br />
+        <br />
+        • Ruimte voor zelfstandigheid, verantwoordelijkheid en eigen inbreng;
+        <br />
+        <br />
+        • Goede begeleiding;
+        <br />
+        <br />
+        • Een open en informele werksfeer;
+        <br />
+        <br />
+        • Marktconforme stagevergoeding.
+    </p>
+</div>
+<div class="foto3">
+    <img src="~/Content/Images/atfoto2.png" />
+</div>
+<div class="lasttext">
+    <h1><b>The creative cosmic agency</b></h1>
+    <p>Wij zijn een hecht team van enthousiaste en creatieve strategen, designers en developers die werken voor mooie, (inter)nationale klanten. <br />Kennisdeling binnen het team en met onze klanten vinden wij belangrijk. We houden ervan om te inspireren, maar worden ook graag zelf geïnspireerd. <br />Lunchen doen we altijd samen en we trappen vaak een balletje in de pauze. Na je werkdag kun je je even lekker laten gaan in onze Fight Academy. <br />Niet zo sportief? Geen zorgen, we spelen ook graag (board)games en houden van lekker eten en drinken.</p>
+</div>
+
+<center>
+    <h1><b>Alle vacatures</b></h1>
+</center>
+@foreach (var item in Model.vacatures)
+{
+<div class="columns" id="columns">
+    <div class="columtest vacature">
+        <div>
+            <div class="col-sm-4 col-centered">
+                <div class="colom-1">
+                    <div class="img-vacature">
+                        <span class="et_pb_image_wrap">
+                            <img src="@item.url" style="height: 240px; width: 240px;">
+
+                        </span>
+                    </div>
+
+                    <div class="type-titel">
+                        <div class="et_pb_text_inner">
+                            <h4 style="color:ghostwhite">@item.StageTitle</h4>
+                        </div>
+                    </div>
+
+                    <div class="omschrijving-stage">
+                        <div class="type-stage-omschrijving">
+                            <p style="text-align: center; color: ghostwhite">
+                                @item.StageDescription
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="aantal-uren">
+                        <p style="text-align: center; color: ghostwhite">
+                            @item.AmountofHours Uur
+                        </p>
+                    </div>
+                    <div class="solliciteer">
+                        <a class="solicitatieknopje" data-value="@item.ID">Solliciteer hierop!</a>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+        </div>
+
     </div>
 </div>
+        }
+
+<div style="clear: both;"></div>
+
+    @using (Html.BeginForm("Applyforjob", "Home", FormMethod.Post))
+    {
+
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.VacatureID, htmlAttributes: new { @class = "form-vacature-id" })
+        <div class="form-horizontal">
+            <div class="jumbotron" id="solliciteren" style="display: none">
+                <h4>Solliciteer op deze vacature</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CandidateName, "Voornaam", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.CandidateName, new { htmlAttributes = new { @class = "form-control", } })
+                        @Html.ValidationMessageFor(model => model.CandidateName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CandidateLastName, "Achternaam", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.CandidateLastName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CandidateLastName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CandidateMailadress, "Mailadres", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.CandidateMailadress, new { htmlAttributes = new { @class = "form-control", @type = "mail" } })
+                        @Html.ValidationMessageFor(model => model.CandidateMailadress, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Candidatephonenumber, "Telefoonnummer", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Candidatephonenumber, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Candidatephonenumber, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Enclosureurl, "bijlage", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <label for="file1">Filename:</label>
+                        <input type="file" name="files" id="file1" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <style>
+        .lasttext {
+            text-align: left;
+            margin-left: 50%;
+            background-image: linear-gradient(to top left, #00aeef, #00ad8e);
+            padding: 30px;
+            font-size: large;
+            border-top-right-radius: 8px;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+
+        .foto3 {
+            margin-top: 100px;
+        }
+
+            .foto3 img {
+                max-width: 75%;
+            }
+
+        .tekstje {
+            margin-top: 50px;
+            font-size: large;
+            text-align: center;
+            max-width: 100%;
+        }
+
+        .container {
+            max-width: 1140px;
+        }
+
+        .foto2 {
+            padding-top: 50px;
+        }
+
+            .foto2 img {
+                width: 100%;
+                border-radius: 8px;
+            }
+
+        .belangrijk {
+            text-align: left;
+            margin-right: 60%;
+            padding-right: 30px;
+            font-size: large;
+            overflow: hidden;
+            float: left;
+        }
+
+        .foto1 {
+            border-top-right-radius: 8px;
+            border-bottom-left-radius: 8px;
+            float: right;
+            max-width: 75%;
+            margin-left: 50%;
+            margin-bottom: 50px;
+        }
+
+        .col-centered {
+            color: ghostwhite;
+            background-image: linear-gradient(to top left, #00ad8e, #00aeef);
+            padding: 10px;
+            border-radius: 8px;
+            margin-right: 5px;
+            font-size: large;
+            text-align: center;
+            max-width: 100%;
+            margin-bottom: 40px;
+            margin-right: 92px;
+            margin-left: 92px;
+        }
+
+        .col-text {
+            margin-top: 500px;
+            color: ghostwhite;
+            background-image: linear-gradient(to bottom left, #aa1f70, #5e2f7d);
+            text-align: left;
+            margin-right: 55%;
+            padding: 10px;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            border-bottom-left-radius: 8px;
+            font-size: large;
+        }
+
+        .col-text2 {
+            margin-top: 470px;
+            text-align: left;
+            margin-left: 60%;
+            padding: 10px;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+            font-size: large;
+            background-image: linear-gradient(to bottom right, #f58220, #ed1165);
+        }
+
+        .jumbotron {
+            margin-top: 100px;
+            padding-top: 30px;
+            color: rebeccapurple;
+            background-image: linear-gradient(to bottom right, #f58220, #ed1165);
+        }
+
+        .columns {
+            margin-top: 100px;
+            max-width: 100%;
+        }
+
+        .center-block {
+            margin-top: 30%;
+            border: 3px solid transparent;
+            border-image: linear-gradient(to bottom left, #aa1f70, #5e2f7d);
+            border-image-slice: 1;
+            text-align: center;
+            position: relative;
+            color: ghostwhite;
+            border-radius: 8px;
+            max-width: 60%;
+            padding: 10px;
+            margin-bottom: 5%;
+        }
+
+        .button {
+            border: none;
+            background-image: linear-gradient(to bottom right, #f58220, #ed1165);
+            position: relative;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            font-size: 16px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+        }
+
+
+
+
+        body {
+            background-image: url(../../Content/Images/image.png);
+            background-repeat: no-repeat;
+            background-position-x: center;
+        }
+
+        .arrow {
+            position: relative;
+            margin-top: 100px;
+            margin-left: 65%;
+            transform: translate(-50%,-50%);
+        }
+
+            .arrow span {
+                display: block;
+                width: 30px;
+                height: 30px;
+                border-bottom: 5px solid #f58220;
+                border-right: 5px solid #ed1165;
+                transform: rotate(45deg);
+                animation: animate 2s infinite;
+            }
+
+                .arrow span:nth-child(2) {
+                    animation-delay: -0.2s;
+                }
+
+                .arrow span:nth-child(3) {
+                    animation-delay: -0.4s;
+                }
+
+        @@keyframes animate {
+            0% {
+                opacity: 0;
+                transform: rotate(45deg) translate(-20px,-20px);
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+                transform: rotate(45deg) translate(20px,20px);
+            }
+        }
+    </style>
+    <script>
+        jQuery(".arrow").click(function () {
+            jQuery('html, body').animate({
+                scrollTop: $("#columns").offset().top
+            }, 2000);
+        });
+            //Mathijn Smits
+        jQuery(document).ready(function () {
+            jQuery("#navbarid").hide();
+        });
+            //Mathijn Smits
+        jQuery(".solicitatieknopje").click(function () {
+
+            $('.form-vacature-id').val($(this).attr('data-value'));
+            console.log('Vacature ID geladen in form', $('.form-vacature-id').val());
+
+            //Mathijn Smits
+        });
+
+            //Mathijn Smits
+        jQuery(".solicitatieknopje").click(function () {
+            jQuery("#solliciteren").show();
+            jQuery('html, body').animate({
+                scrollTop: $("#solliciteren").offset().top
+            }, 2000);
+            console.log($("#solliciteren").offset());
+        });
+            //Mathijn Smits
+        ScrollReveal().reveal('.col-text', { delay: 70, distance: '20px', cleanup: true });
+        ScrollReveal().reveal('.foto1', { delay: 70, distance: '20px', cleanup: true });
+        ScrollReveal().reveal('.foto2', { delay: 70, distance: '20px', cleanup: true });
+        ScrollReveal().reveal('.foto3', { delay: 70, distance: '20px', cleanup: true });
+        ScrollReveal().reveal('.belangrijk', { delay: 70, distance: '20px', cleanup: true });
+        ScrollReveal().reveal('.col-text2', { delay: 70, distance: '20px', cleanup: true });
+        ScrollReveal().reveal('.tekstje', { delay: 70, distance: '20px', cleanup: true });
+        ScrollReveal().reveal('.tekstje', { delay: 70, distance: '20px', cleanup: true });
+        ScrollReveal().reveal('.columns', { delay: 70, distance: '20px', cleanup: true });
+        ScrollReveal().reveal('.button', { delay: 70, distance: '20px', cleanup: true });
+        ScrollReveal().reveal('.center-block', { delay: 70, distance: '20px', cleanup: true });
+        ScrollReveal().reveal('.lasttext ', { delay: 70, distance: '20px', cleanup: true });
+        ScrollReveal().reveal('.arrow ', { delay: 70, distance: '20px', cleanup: true });
+    </script>
+

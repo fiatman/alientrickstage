@@ -1,0 +1,228 @@
+﻿@model IEnumerable<Task>
+
+@{
+    ViewBag.Title = "MeetingCompleted";
+}
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<head>
+    <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
+
+    <script>
+        ScrollReveal.debug = true;
+    </script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+</head>
+
+<h2>Taken van deze student</h2>
+
+<br />
+
+@Html.Raw(TempData["msg"])
+<form asp-controller="Studenten" asp-action="Index" class="form-inline">
+    <p>
+        <input class="form-control" type="text" placeholder="Taaknaam" name="SearchString"> <input class="btn btn-default" type="submit" value="Filter" />
+    </p>
+</form>
+<table class="table">
+    <tr>
+        <th>
+            Taak naam
+        </th>
+        <th>
+            Taakbeschrijving
+        </th>
+        <th>
+            Type
+        </th>
+        <th>
+            Werk of School
+        </th>
+        <th>
+            Geplande datum(Afspraak)
+        </th>
+        <th></th>
+    </tr>
+
+    @if (Model == null)
+    {
+        <text>Geen studenten geselecteerd</text>
+    }
+    else
+    {
+
+        foreach (var Task in Model)
+        {
+            <tr>
+                <td>
+                    @Task.TaskName
+                </td>
+                <td>
+                    @Task.Taskdescription
+                </td>
+                <td>
+                    @Task.Type
+                </td>
+                <td>
+                    @Task.SchoolOrWork
+                </td>
+                <td>
+                    @Task.Appointments.Where(d => d.Task_ID == Task.Student.ID).Select(b => b.BeginDate).FirstOrDefault()
+                </td>
+                <td>
+                    <a href="@Url.Action("Completethemeeting", "Studenten", new { id = Task.ID }, null)"><i class="fas fa-thumbs-up fa-2x"></i></a>
+                </td>
+                <td>
+                    <a href="@Url.Action("Applyrating" ,"Studenten", new { id = Task.Student_ID }, null)"><i class="fas fa-star-half-alt fa-2x"></i></a>
+                </td>
+            </tr>
+        }
+    }
+</table>
+
+<br />
+<br />
+<h2>Door de student ingeleverde taken</h2>
+<table class="table">
+    <tr>
+        <th>
+            Taak naam
+        </th>
+        <th>
+            Taakbeschrijving
+        </th>
+        <th>
+            Type
+        </th>
+        <th>
+            Werk of School
+        </th>
+        <th>
+            Geplande datum(Afspraak)
+        </th>
+        <th></th>
+    </tr>
+
+    @if (Model == null)
+    {
+        <text>Geen studenten geselecteerd</text>
+    }
+    else
+    {
+
+        foreach (var Task in Model.Where(t => t.TaskApproved == 1))
+        {
+            <tr>
+                <td>
+                    @Task.TaskName
+                </td>
+                <td>
+                    @Task.Taskdescription
+                </td>
+                <td>
+                    @Task.Type
+                </td>
+                <td>
+                    @Task.SchoolOrWork
+                </td>
+                <td>
+                    @Task.Appointments.Where(d => d.Task_ID == Task.Student.ID).Select(b => b.BeginDate).FirstOrDefault()
+                </td>
+                <td>
+                    <a href="@Url.Action("Completethemeeting", "Studenten", new { id = Task.ID }, null)"><i class="fas fa-thumbs-up fa-2x"></i></a>
+                </td>
+                <td>
+                    <a href="@Url.Action("Applyrating" ,"Studenten", new { id = Task.Student_ID }, null)"><i class="fas fa-star-half-alt fa-2x"></i></a>
+                </td>
+            </tr>
+        }
+    }
+</table>
+<br />
+<br />
+<h2>Goedgekeurde taken</h2>
+<table class="table">
+    <tr>
+        <th>
+            Taak naam
+        </th>
+        <th>
+            Taakbeschrijving
+        </th>
+        <th>
+            Type
+        </th>
+        <th>
+            Werk of School
+        </th>
+        <th>
+            Geplande datum(Afspraak)
+        </th>
+        <th>
+            Cijfer
+        </th>
+        <th></th>
+    </tr>
+
+    @if (Model == null)
+    {
+        <text>Geen studenten geselecteerd</text>
+    }
+    else
+    {
+
+        foreach (var Task in Model.Where(t => t.TaskApproved == 2))
+        {
+            <tr>
+                <td>
+                    @Task.TaskName
+                </td>
+                <td>
+                    @Task.Taskdescription
+                </td>
+                <td>
+                    @Task.Type
+                </td>
+                <td>
+                    @Task.SchoolOrWork
+                </td>
+                <td>
+                    @Task.Appointments.Where(d => d.Task_ID == Task.Student.ID).Select(b => b.BeginDate).FirstOrDefault()
+                </td>
+                <td>
+                    @Task.Rating
+                </td>
+                <td>
+                    <a href="@Url.Action("Completethemeeting", "Studenten", new { id = Task.ID }, null)"><i class="fas fa-thumbs-up fa-2x"></i></a>
+                </td>
+                <td>
+                    <a href="@Url.Action("Applyrating" ,"Studenten", new { id = Task.Student_ID }, null)"><i class="fas fa-star-half-alt fa-2x"></i></a>
+                </td>
+            </tr>
+        }
+    }
+</table>
+<style>
+    body {
+        background-image: url(../../Content/Images/image.png);
+        color: white;
+    }
+
+    .table {
+        background-image: linear-gradient(to bottom right, #f58220, #ed1165);
+        opacity: 0.7;
+        border-radius: 8px;
+        padding-top: 50px;
+        padding: 10px;
+        border-color: white;
+        max-width: 100%;
+    }
+
+    #knopje {
+        margin-top: 20px;
+        float: left;
+    }
+</style>
+<script>
+    ScrollReveal().reveal('.table', { delay: 70, distance: '20px', cleanup: true });
+    ScrollReveal().reveal('.knopje', { delay: 70, distance: '20px', cleanup: true });
+</script>

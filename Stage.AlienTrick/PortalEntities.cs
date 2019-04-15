@@ -20,6 +20,8 @@ namespace Stage.AlienTrick
         public virtual DbSet<Task> Tasks { get; set; }
         public virtual DbSet<Vacature> Vacatures { get; set; }
 
+        public virtual DbSet<WindowsUsersAndRoles> WindowsUsersAndRoles { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Stage>()
@@ -51,6 +53,15 @@ namespace Stage.AlienTrick
                 .HasMany(e => e.Stages)
                 .WithOptional(e => e.Vacature)
                 .WillCascadeOnDelete();
+
+            modelBuilder.Entity<Appointment>()
+                .Property(f => f.BeginDate)
+                .HasColumnType("datetime");
+
+            modelBuilder.Entity<JobApplication>()
+                .Property(f => f.ApplicationDate)
+                .HasColumnType("datetime");
+
         }
     }
 }

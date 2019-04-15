@@ -28,6 +28,8 @@ namespace Stage.AlienTrick
         [StringLength(255)]
         public string Type { get; set; }
 
+        public byte Taskcomplete { get; set; }
+
         public int Rating { get; set; }
 
         [Required]
@@ -38,9 +40,17 @@ namespace Stage.AlienTrick
 
         public int? Student_ID { get; set; }
 
+        public DateTime BeginDate { get; set; }
+
+        public TimeSpan  Time { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Appointment> Appointments { get; set; }
 
         public virtual Student Student { get; set; }
+        public byte TaskApproved { get; set; }
+
+        public string Stagebegeleider { get; set; }
+
     }
 }

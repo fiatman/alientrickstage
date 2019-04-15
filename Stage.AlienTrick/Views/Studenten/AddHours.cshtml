@@ -3,10 +3,17 @@
     ViewBag.Title = "AddHours";
 }
 @Html.Raw(TempData["msg"])
+<head>
+    <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
+
+    <script>
+        ScrollReveal.debug = true;
+    </script>
+</head>
 <h2>Voeg Uren toe</h2>
 
-
-<h3>op dit moment zijn er @Model.AmountofbookedHours uren gedraaid door de stagiaire</h3>
+<div class="invoer">
+<h3>Op dit moment zijn er @Model.AmountofbookedHours uren gedraaid door de stagiaire</h3>
 
 @using (Html.BeginForm("AddHours", "Studenten", FormMethod.Post, null))
 {
@@ -24,10 +31,36 @@
             @Html.ValidationMessageFor(model => model.AmountofbookedHours, "", new { @class = "text-danger" })
         </div>
     </div>
-    <br>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" value="Create" class="btn btn-default" />
         </div>
     </div>
 }
+</div>
+<style>
+    .invoer {
+        margin-top: 200px;
+        border-radius: 8px;
+        padding: 30px;
+        background-image: linear-gradient(to top left, #00aeef, #00ad8e);
+        opacity: 0.6;
+    }
+
+    
+    body{
+        background-image: url(../../Content/Images/image.png);
+        background-position: initial;
+        color: white;
+    }
+
+    
+</style>
+<script>
+    ScrollReveal().reveal('.invoer', { delay: 70, distance: '20px', cleanup: true });
+</script>

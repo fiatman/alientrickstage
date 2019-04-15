@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Stage.AlienTrick.Attributes;
+using Stage.AlienTrick.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -11,8 +13,10 @@ namespace Stage.AlienTrick.Controllers
 {
     public class VacaturesController : Controller
     {
+        
         private PortalEntities db = new PortalEntities();
         // GET: Vacatures
+        [AllowAnonymous]
         public ActionResult Index(string searchString)
         {
             var vacature = db.Vacatures.ToList();
@@ -27,16 +31,18 @@ namespace Stage.AlienTrick.Controllers
             return View(vacature);
         }
         //Create
+        [Rights(AllowAdmins = true)]
         public ActionResult Create()
         {
             return View();
         }
 
         //Post Create
+        [Rights(AllowAdmins = true)]
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public ActionResult Create([Bind(Include = "StageTitle,ID,AmountofHours,AmountofStudents,StageDescription")] Vacature vacature)
+        public ActionResult Create([Bind(Include = "StageTitle,ID,AmountofHours,AmountofStudents,StageDescription,url")] Vacature vacature)
         {
             if (ModelState.IsValid)
             {
@@ -46,8 +52,9 @@ namespace Stage.AlienTrick.Controllers
             }
             return View("index");
         }
-        
+
         //Edit
+        [Rights(AllowAdmins = true)]
         public ActionResult Edit(int? ID)
         {
             if (ID == null)
@@ -62,9 +69,10 @@ namespace Stage.AlienTrick.Controllers
             return View(vacature);
         }
         //Edit post
+        [Rights(AllowAdmins = true)]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,StageTitle,AmountofHours,AmountofStudents,StageDescription")] Vacature vacature)
+        public ActionResult Edit([Bind(Include = "ID,StageTitle,AmountofHours,AmountofStudents,StageDescription,url")] Vacature vacature)
         {
             if (ModelState.IsValid)
             {
@@ -76,6 +84,7 @@ namespace Stage.AlienTrick.Controllers
         }
 
         //Delete
+        [Rights(AllowAdmins = true)]
 
         public ActionResult Delete(int? ID)
         {
@@ -90,6 +99,7 @@ namespace Stage.AlienTrick.Controllers
             }
             return View(vacature);
         }
+        [Rights(AllowAdmins = true)]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int? ID)
@@ -100,6 +110,34 @@ namespace Stage.AlienTrick.Controllers
             return RedirectToAction("index");
 
         }
+        [Rights(AllowAdmins = true)]
+        [AllowAnonymous]
+        [HttpGet]
+        public ActionResult Applyforjob(int? id, int vcid, Student student, JobApplication jobApplication, Sollicitatiemodel sollicitatiemodel)
+        {
+            return View(sollicitatiemodel);
+        }
+
+
+        [Rights(AllowAdmins = true)]
+        [AllowAnonymous]
+        [HttpPost]
+        public ActionResult Applyforjob(int? id, int vcid, JobApplication jobApplication, Sollicitatiemodel sollicitatiemodel)
+        {
+            jobApplication.CandidateName = sollicitatiemodel.CandidateName;
+            jobApplication.CandidateLastName = sollicitatiemodel.CandidateLastName;
+            jobApplication.CandidateMailadress = sollicitatiemodel.CandidateMailadress;
+            jobApplication.ApplicationDate = DateTime.Now;
+            jobApplication.CandidatePhoneNumber = sollicitatiemodel.Candidatephonenumber;
+            jobApplication.Enclosureurl = sollicitatiemodel.Enclosureurl;
+            jobApplication.Vacature_id = vcid;
+
+            db.JobApplications.Add(jobApplication);
+            db.SaveChanges();
+
+
+            return RedirectToAction("index");
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -108,5 +146,6 @@ namespace Stage.AlienTrick.Controllers
             }
             base.Dispose(disposing);
         }
+       
     }
 }

@@ -65,12 +65,12 @@ namespace Stage.AlienTrick.Controllers
         public ActionResult CreateStage(Stagemodel stagemodel)
         {
             //save
-            
-                var students = db.Students.FirstOrDefault(d => d.ID == stagemodel.StudentID);
+
+            Student students = db.Students.FirstOrDefault(d => d.ID == stagemodel.StudentID);
                 var CreateStage = new Stage();
                 CreateStage.Beginperiod = stagemodel.Beginperiod;
                 CreateStage.Endperiod = stagemodel.Endperiod;
-                students.Stage_ID = stagemodel.VacatureID;
+                
                 CreateStage.StudentID = stagemodel.StudentID;
                 CreateStage.StageName = stagemodel.StageName;
                 CreateStage.VacatureID = stagemodel.VacatureID;
@@ -79,8 +79,10 @@ namespace Stage.AlienTrick.Controllers
 
                 db.Stages.Add(CreateStage);
                 db.SaveChanges();
-                
-            
+
+            students.Stage_ID = CreateStage.ID;
+            db.SaveChanges();
+
             return RedirectToAction("Index");
         }
 

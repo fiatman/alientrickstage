@@ -43,6 +43,8 @@ namespace Stage.AlienTrick
         [StringLength(255)]
         public string Studentnumber { get; set; }
 
+        public byte Taskcompleted { get; set; }
+
         public decimal Compensation { get; set; }
 
         public string Description { get; set; }
@@ -67,5 +69,10 @@ namespace Stage.AlienTrick
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Task> Tasks { get; set; }
+        public string Windowsuseraccount { get; set; }
+
+        public double LastHours { get; set; }
+
+
     }
 }

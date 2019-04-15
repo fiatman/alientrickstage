@@ -1,9 +1,17 @@
 ﻿@model global::Stage.AlienTrick.Models.Voortgangsmodel
+<head>
+    <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
 
+    <script>
+        ScrollReveal.debug = true;
+    </script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+</head>
 @{
     ViewBag.Title = "GetProgress";
 }
 @Html.Raw(TempData["msg"])
+<div class="fadein">
 <h2>Jouw voortgang</h2>
 
 <h1>Op dit moment heb je @Model.ProgressPercentage% van je stage uren voldaan.</h1>
@@ -15,5 +23,15 @@
 <p>
     <a class="FontAwesomeButton" href="@Url.Action("AddHours", "Studenten", new { id = Model.student.ID})"><i class="far fa-plus-square"></i>Voeg hier je uren toe</a>
 </p>
+    </div>
 
+<style>
+    body {
+        background-image: url(../../Content/Images/image.png);
+        color: white;
+    }
 
+</style>
+<script>
+    ScrollReveal().reveal('.fadein', { delay: 70, distance: '20px', cleanup: true });
+</script>

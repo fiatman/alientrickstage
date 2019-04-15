@@ -9,7 +9,7 @@ namespace Stage.AlienTrick
     public partial class JobApplication
     {
         public int ID { get; set; }
-
+        
         public DateTime ApplicationDate { get; set; }
 
         public string CandidateMailadress { get; set; }
@@ -21,5 +21,8 @@ namespace Stage.AlienTrick
         public string CandidateLastName { get; set; }
 
         public string Enclosureurl { get; set; }
+
+        public int Vacature_id { get; set; }
+        public byte ApplyAnswered { get; set; }
     }
 }

@@ -2,7 +2,14 @@
 @{
     ViewBag.Title = "Plan meeting of taak";
 }
+<head>
+    <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
 
+    <script>
+        ScrollReveal.debug = true;
+    </script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+</head>
 <h2>Create</h2>
 
 @Scripts.Render("~/bundles/jquery")
@@ -11,103 +18,145 @@
 
 @using (Html.BeginForm("CreateMeeting", "Studenten", FormMethod.Post, null))
 {
+
+    var Schoolofwerk = new SelectListItem[]
+{
+new SelectListItem { Value = "1", Text = "Schoolgerelateerd" },
+new SelectListItem { Value = "2", Text = "Werkgerelateerd" },
+};
     var afspraakTypen = new SelectListItem[]
-    {
+{
 new SelectListItem { Value = "Taak", Text = "Taak" },
-new SelectListItem { Value = "Afspraak", Text = "Afspraak" }
-    };
+new SelectListItem { Value = "Afspraak", Text = "Afspraak" },
+new SelectListItem { Value = "Verlof", Text = "Verlof" }
+};
     @Html.HiddenFor(m => m.student.ID)
     @Html.AntiForgeryToken()
+    <div class="opmaken">
+        <div class="form-group">
+            @Html.LabelFor(model => model.TaskName, "Taak Naam", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TaskName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TaskName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br>
+        <br>
+        <br />
+        <div class="form-group">
+            @Html.LabelFor(model => model.TaskDescription, "Taak Beschrijving", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TaskDescription, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TaskDescription, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br>
+        <br>
+        <br />
+        <div class="form-group" id="typeafspraak">
+            @Html.LabelFor(model => model.Type, "Taak, afspraak of verlof", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Type, afspraakTypen, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br>
+        <br>
+        <br />
+        <div class="form-group">
+            @Html.LabelFor(model => model.SchoolOrWork, "School gerelateerd Werk gerelateerd", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.SchoolOrWork, Schoolofwerk, new { @class = "form-control"})
+                @Html.ValidationMessageFor(model => model.SchoolOrWork, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br>
+        <br>
+        <br />
+        <script>
+            jQuery(document).ready(function () {
+                jQuery("#typeafspraak").on("input", function (e) {
+                    if (jQuery(e.target).val() === "Afspraak") {
+                        jQuery("#datepicker").show();
+                    }
+                    else if (jQuery(e.target).val() === "Verlof") {
+                        jQuery("#datepicker").show();
+                    }
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.TaskName, "Taak Naam", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.TaskName, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.TaskName, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <br>
-    <br>
-    <br />
-    <div class="form-group">
-        @Html.LabelFor(model => model.TaskDescription, "Taak Beschrijving", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.TaskDescription, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.TaskDescription, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <br>
-    <br>
-    <br />
-    <div class="form-group" id="typeafspraak">
-        @Html.LabelFor(model => model.Type, "Taak = 1 Aspraak = 2", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownListFor(model => model.Type, afspraakTypen, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <br>
-    <br>
-    <br />
-    <div class="form-group">
-        @Html.LabelFor(model => model.SchoolOrWork, "School gerelateerd = 1 Werk gerelateerd = 2", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.SchoolOrWork, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.SchoolOrWork, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <br>
-    <br>
-    <br />
-    <script>
-        jQuery(document).ready(function () {
-            jQuery("#typeafspraak").on("input", function (e) {
-                if (jQuery(e.target).val() === "Afspraak") {
-                    jQuery("#datepicker").show();
-                } else {
-                    jQuery("#datepicker").hide();
-                }
+                    else {
+                        jQuery("#datepicker").hide();
+                    }
+                });
             });
-        });
 
-        jQuery(document).ready(function () {
-            jQuery("#typeafspraak").on("input", function (f) {
-                if (jQuery(f.target).val() === "Afspraak") {
-                    jQuery("#time").show();
-                } else {
-                    jQuery("#time").hide();
-                }
+            jQuery(document).ready(function () {
+                jQuery("#typeafspraak").on("input", function (f) {
+                    if (jQuery(f.target).val() === "Afspraak") {
+                        jQuery("#time").show();
+                    } else if ((jQuery(f.target).val() === "Verlof")) {
+                        jQuery("#time").show();
+                    }
+                    else {
+                        jQuery("#time").hide();
+                    }
+                });
             });
-        });
-    </script>
-    <div class="form-group" id="datepicker" style="display: none">
-        @Html.LabelFor(model => model.appointment.BeginDate, "Wanneer is de afspraak?", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.appointment.BeginDate, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
-            @Html.ValidationMessageFor(model => model.appointment.BeginDate, "", new { @class = "text-danger" })
+        </script>
+        <div class="form-group" id="datepicker" style="display: none">
+            @Html.LabelFor(model => model.BeginDate, "Wanneer is de afspraak?", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BeginDate, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                @Html.ValidationMessageFor(model => model.BeginDate, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
-    <br />
-    <br />
-    <br />
-         <div class="form-group" id="time" style="display: none">
-             @Html.LabelFor(model => model.appointment.Time, "Hoelaat is de afspraak?", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                 @Html.EditorFor(model => model.appointment.BeginDate, new { htmlAttributes = new { @class = "form-control", @type = "time", @min = "8:00", @max = "19:00" } })
-                 @Html.ValidationMessageFor(model => model.appointment.Time, "", new { @class = "text-danger" })
-                </div>
-         </div>
-         <br />
-         <br />
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
+        <br />
+        <br />
+        <br />
+        <div class="form-group" id="time" style="display: none">
+            @Html.LabelFor(model => model.Time, "Hoelaat is de afspraak?", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Time, new { htmlAttributes = new { @class = "form-control", @type = "time" } })
+                @Html.ValidationMessageFor(model => model.Time, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
-}
 
-
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
+        <br />
+        <br />
+    
+                <input id="knopje" type="submit" value="Create" class="btn btn-default" />
+        
+        
 </div>
+}
+        <script>
+
+        </script>
+
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+
+        <style>
+            body {
+                background-image: url(../../Content/Images/image.png);
+                color: white;
+            }
+
+            .opmaken {
+                background-image: linear-gradient(to bottom right, #f58220, #ed1165);
+                opacity: 0.7;
+                border-radius: 8px;
+                padding-top: 50px;
+                padding: 10px;
+                text-align: center;
+                border-color: white;
+                margin-top: 50px;
+            }
+            #knopje{
+                margin-top: 20px;
+                float: left;
+            }
+        </style>
+<script>
+    ScrollReveal().reveal('.opmaken', { delay: 70, distance: '20px', cleanup: true });
+</script>

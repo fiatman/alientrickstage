@@ -2,7 +2,15 @@
 @{
     ViewBag.Title = "Index";
 }
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<head>
+    <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
 
+    <script>
+        ScrollReveal.debug = true;
+    </script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+</head>
 <h2>Index</h2>
 
 <br />
@@ -47,9 +55,35 @@
                 @Html.DisplayFor(m => stage.StageDescription)
             </td>
             <td>
-               @Html.ActionLink("Maak hiermee een nieuwe stage aan", "Studentslist", "Stages", new { VacatureID = stage.ID}, null)
+              <a href="@Url.Action("Studentslist", "Stages", new { VacatureID = stage.ID }, null)"><i class="fas fa-plane fa-2x"></i></a>
             </td>
         </tr>
     }
 
 </table>
+
+<style>
+    body {
+        background-image: url(../../Content/Images/image.png);
+        color: white;
+    }
+
+    .table {
+        background-image: linear-gradient(to bottom right, #f58220, #ed1165);
+        opacity: 0.7;
+        border-radius: 8px;
+        padding-top: 50px;
+        padding: 10px;
+        border-color: white;
+        max-width: 100%;
+    }
+
+    #knopje {
+        margin-top: 20px;
+        float: left;
+    }
+</style>
+<script>
+    ScrollReveal().reveal('.table', { delay: 70, distance: '20px', cleanup: true });
+    ScrollReveal().reveal('.knopje', { delay: 70, distance: '20px', cleanup: true });
+</script>
